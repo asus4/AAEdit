@@ -9,22 +9,44 @@
 #import <Foundation/Foundation.h>
 #import "AAAsciiTraceView.h"
 #import "AATextField.h"
+#import "AAWebView.h"
+#import "AADataManager.h"
 
 @interface AAViewModel : NSObject {
+    AADataManager * _dataManager;
+    
+    NSURL * _movieUrl;
     double _moviePosition;
     int _fps;
     int _currentFrame;
     bool _playbackMode;
     bool _useFilter;
+    NSColor *_color;
+    double _edgeIntensity;
+    NSString * _htmlString;
 }
 
 @property (weak) IBOutlet AAAsciiTraceView *asciiTraceView;
-@property (weak) IBOutlet AATextField *aaTextField;
+@property (weak) IBOutlet AAWebView *webView;
 
+// Bindings
+
+// movie
+@property (nonatomic, setter = setMovieUrl:) NSURL * movieUrl;
 @property (nonatomic, setter = setMoviePositon:) double moviePosition;
+
+// UI
 @property (nonatomic, setter = setFps:, getter = getFps) int fps;
-@property (nonatomic, getter = getCurrentFrame) int currentFrame;
+@property (nonatomic, setter = setCurrentFrame:, getter = getCurrentFrame) int currentFrame;
 @property (nonatomic, getter = getTotalFrames) int totalFrames;
 @property (nonatomic, setter = setPlaybackMode:) bool playbackMode;
 @property (nonatomic, setter = setUseFilter:) bool useFilter;
+@property (nonatomic, setter = setOverlayColor:) NSColor* overlayColor;
+@property (nonatomic, setter = setEdgeIntensity:) double edgeIntensity;
+
+// Text
+@property (nonatomic, setter = setHtmlString:) NSString * htmlString;
+
+
+
 @end

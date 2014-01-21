@@ -16,10 +16,10 @@
 @interface AAMainViewController : NSViewController
 - (IBAction)loadMovie:(id)sender;
 - (IBAction)doTrace:(id)sender;
+- (IBAction)save:(id)sender;
 
 @property (weak) IBOutlet AAViewModel *viewModel;
 @property (weak) IBOutlet AAAsciiTraceView *asciiView;
-@property (weak) IBOutlet AATextField *aaTextField;
 @property (weak) IBOutlet AAWebView *webView;
 
 

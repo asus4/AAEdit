@@ -15,4 +15,18 @@
     [self setDrawsBackground:NO];
     [self setWantsLayer:YES];
 }
+
+- (void) saveToFile:(NSString *)path {
+    // http://xcatsan.blogspot.jp/2009/04/webkit2_08.html
+    NSBitmapImageRep* bitmap =
+    [self bitmapImageRepForCachingDisplayInRect:self.bounds];
+    [self cacheDisplayInRect:self.bounds
+                    toBitmapImageRep:bitmap];
+    
+    NSData* outdata = [bitmap representationUsingType:NSPNGFileType
+                                           properties:[NSDictionary dictionary]];
+    
+    [outdata writeToFile:path atomically:YES];
+}
+
 @end

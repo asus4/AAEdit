@@ -19,6 +19,8 @@
 - (void) setFrames:(int) frame;
 - (void) setPlaybackMode:(BOOL) isPlayback;
 - (void) setUseFilter:(BOOL) useFilter;
+- (void) setOverlayColor:(NSColor*) color;
+- (void) setEdgeIntensity:(double) intensity;
 
 - (double) getMovieDuration;
 

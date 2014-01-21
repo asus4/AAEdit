@@ -20,7 +20,7 @@
 }
 
 - (void) awakeFromNib {
-    __strong NSMutableParagraphStyle * style = [[NSMutableParagraphStyle alloc] init];
+    NSMutableParagraphStyle * style = [[NSMutableParagraphStyle alloc] init];
     [style setLineHeightMultiple:12];
     [style setLineSpacing:10];
     [self setDefaultParagraphStyle:style];

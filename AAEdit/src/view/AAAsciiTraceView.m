@@ -14,6 +14,8 @@
 #define _KEY_FPS @"Fps"
 #define _KEY_FRAMES @"Frames"
 #define _KEY_USE_FILTER @"UseFilter"
+#define _KEY_OVERLAY_COLOR @"OverlayColor"
+#define _KEY_EDGE_INTENSITY @"EdgeIntensity"
 // output keys
 #define _KEY_MOVIE_DURATION @"MovieDuration"
 
@@ -79,7 +81,17 @@
     [_qcView setValue:[NSNumber numberWithBool:useFilter] forInputKey:_KEY_USE_FILTER];
 }
 
+- (void) setOverlayColor:(NSColor*)color {
+    [_qcView setValue:color forInputKey:_KEY_OVERLAY_COLOR];
+}
+
 - (double) getMovieDuration {
     return [[_qcView valueForOutputKey:_KEY_MOVIE_DURATION] doubleValue];
 }
+
+- (void) setEdgeIntensity:(double)intensity {
+    [_qcView setValue:[NSNumber numberWithDouble:intensity] forInputKey:_KEY_EDGE_INTENSITY];
+}
+
+
 @end

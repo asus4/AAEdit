@@ -31,17 +31,24 @@
 //    [panel setAllowedFileTypes:@[@"mov"]]; // all file types
     
     if([panel runModal] == NSOKButton) {
-        [self.asciiView loadMovie:panel.URL.path];
+        self.viewModel.movieUrl = panel.URL;
     }
 }
 
 - (IBAction)doTrace:(id)sender
 {
-    NSLog(@"text field : %@", self.aaTextField.stringValue);
-    
     NSURL *url = [NSURL URLWithString:@"file://localhost/Users/ibu/Projects/HaKU/git/AA/index.html"];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [self.webView.mainFrame loadRequest:req];
+}
+
+- (IBAction)save:(id)sender {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(
+                                                         NSDesktopDirectory, NSUserDomainMask, YES);
+    NSString* path = [NSString stringWithFormat:@"%@/test.png",
+                      [paths objectAtIndex:0], nil];
+    
+    [self.webView saveToFile:path];
 }
 
 @end

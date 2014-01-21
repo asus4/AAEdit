@@ -11,4 +11,5 @@
 
 @interface AAWebView : WebView
 
+- (void) saveToFile:(NSString *)path;
 @end

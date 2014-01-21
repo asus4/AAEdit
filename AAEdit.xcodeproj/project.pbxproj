@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781C3E03188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
+		781C3E04188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
 		7833C8FE188CD33C00905AA6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7833C8FD188CD33C00905AA6 /* Cocoa.framework */; };
 		7833C908188CD33C00905AA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7833C906188CD33C00905AA6 /* InfoPlist.strings */; };
 		7833C90A188CD33C00905AA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7833C909188CD33C00905AA6 /* main.m */; };
@@ -27,7 +29,6 @@
 		7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 7833C948188CD42F00905AA6 /* NSColorWellWithAlpha.m */; };
 		7833C952188CD45900905AA6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7833C951188CD45900905AA6 /* QTKit.framework */; };
 		7833C956188CD4A200905AA6 /* player.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 7833C954188CD4A200905AA6 /* player.qtz */; };
-		7833C957188CD4A200905AA6 /* player~.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 7833C955188CD4A200905AA6 /* player~.qtz */; };
 		78647E62188CF68E00CECA10 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78647E60188CF66F00CECA10 /* WebKit.framework */; };
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
+		781C3E02188E22E20017D677 /* AADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataManager.m; sourceTree = "<group>"; };
 		7833C8FA188CD33C00905AA6 /* AAEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C8FD188CD33C00905AA6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7833C900188CD33C00905AA6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -53,8 +56,8 @@
 		7833C909188CD33C00905AA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7833C90B188CD33C00905AA6 /* AAEdit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAEdit-Prefix.pch"; sourceTree = "<group>"; };
 		7833C90D188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7833C90F188CD33C00905AA6 /* AAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAAppDelegate.h; sourceTree = "<group>"; };
-		7833C910188CD33C00905AA6 /* AAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAAppDelegate.m; sourceTree = "<group>"; };
+		7833C90F188CD33C00905AA6 /* AAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AAAppDelegate.h; path = ../AAAppDelegate.h; sourceTree = "<group>"; };
+		7833C910188CD33C00905AA6 /* AAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AAAppDelegate.m; path = ../AAAppDelegate.m; sourceTree = "<group>"; };
 		7833C913188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7833C91A188CD33C00905AA6 /* AAEditTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AAEditTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C91B188CD33C00905AA6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,7 +82,6 @@
 		7833C948188CD42F00905AA6 /* NSColorWellWithAlpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSColorWellWithAlpha.m; sourceTree = "<group>"; };
 		7833C951188CD45900905AA6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		7833C954188CD4A200905AA6 /* player.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = player.qtz; sourceTree = "<group>"; };
-		7833C955188CD4A200905AA6 /* player~.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "player~.qtz"; sourceTree = "<group>"; };
 		78647E60188CF66F00CECA10 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		78647E63188CF6BB00CECA10 /* AAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAWebView.h; sourceTree = "<group>"; };
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
@@ -156,9 +158,6 @@
 			children = (
 				7833C953188CD4A200905AA6 /* resources */,
 				7833C935188CD42F00905AA6 /* src */,
-				7833C90F188CD33C00905AA6 /* AAAppDelegate.h */,
-				7833C910188CD33C00905AA6 /* AAAppDelegate.m */,
-				7833C912188CD33C00905AA6 /* MainMenu.xib */,
 				7833C904188CD33C00905AA6 /* Supporting Files */,
 			);
 			path = AAEdit;
@@ -198,6 +197,8 @@
 		7833C935188CD42F00905AA6 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				7833C90F188CD33C00905AA6 /* AAAppDelegate.h */,
+				7833C910188CD33C00905AA6 /* AAAppDelegate.m */,
 				7833C936188CD42F00905AA6 /* controller */,
 				7833C939188CD42F00905AA6 /* model */,
 				7833C93C188CD42F00905AA6 /* view */,
@@ -217,6 +218,8 @@
 		7833C939188CD42F00905AA6 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				781C3E01188E22E20017D677 /* AADataManager.h */,
+				781C3E02188E22E20017D677 /* AADataManager.m */,
 				7833C93A188CD42F00905AA6 /* AAViewModel.h */,
 				7833C93B188CD42F00905AA6 /* AAViewModel.m */,
 			);
@@ -245,8 +248,8 @@
 		7833C953188CD4A200905AA6 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				7833C912188CD33C00905AA6 /* MainMenu.xib */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
-				7833C955188CD4A200905AA6 /* player~.qtz */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -327,7 +330,6 @@
 				7833C90E188CD33C00905AA6 /* Credits.rtf in Resources */,
 				7833C914188CD33C00905AA6 /* MainMenu.xib in Resources */,
 				7833C956188CD4A200905AA6 /* player.qtz in Resources */,
-				7833C957188CD4A200905AA6 /* player~.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +374,7 @@
 				7833C94E188CD42F00905AA6 /* AATextView.m in Sources */,
 				7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */,
 				78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */,
+				781C3E03188E22E20017D677 /* AADataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7833C928188CD33C00905AA6 /* AAEditTests.m in Sources */,
+				781C3E04188E22E20017D677 /* AADataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +420,7 @@
 				7833C913188CD33C00905AA6 /* en */,
 			);
 			name = MainMenu.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7833C923188CD33C00905AA6 /* InfoPlist.strings */ = {
