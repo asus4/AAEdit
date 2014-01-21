@@ -7,6 +7,7 @@
 //
 
 #import "AAMainViewController.h"
+#import "AAFileUtil.h"
 
 @interface AAMainViewController ()
 
@@ -37,18 +38,22 @@
 
 - (IBAction)doTrace:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:@"file://localhost/Users/ibu/Projects/HaKU/git/AA/index.html"];
-    NSURLRequest *req = [NSURLRequest requestWithURL:url];
-    [self.webView.mainFrame loadRequest:req];
+    self.viewModel.htmlString = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
+    
+    [self.previewImage setImage:self.asciiView.getEdgeImage];
 }
 
 - (IBAction)save:(id)sender {
+    
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(
                                                          NSDesktopDirectory, NSUserDomainMask, YES);
     NSString* path = [NSString stringWithFormat:@"%@/test.png",
                       [paths objectAtIndex:0], nil];
     
     [self.webView saveToFile:path];
+    
+
 }
 
 @end

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AADataManager : NSObject {
-    NSString * directoryPath;
-}
+@interface AADataManager : NSObject
+
+@property (nonatomic, readonly) NSString * directoryPath;
 
 - (void) loadMovieFile:(NSURL*) file;
+
+
 
 @end

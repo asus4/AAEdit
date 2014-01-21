@@ -23,5 +23,6 @@
 - (void) setEdgeIntensity:(double) intensity;
 
 - (double) getMovieDuration;
+- (NSImage*) getEdgeImage;
 
 @end

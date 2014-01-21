@@ -7,12 +7,14 @@
 //
 
 #import "AADataManager.h"
+#import "AAFileUtil.h"
 
 @implementation AADataManager
 
 - (id) init {
     if(self = [super init]) {
-        
+        // initialize
+        _directoryPath = NSHomeDirectory();
     }
     return self;
 }
@@ -20,31 +22,13 @@
 #pragma mark public
 
 - (void) loadMovieFile:(NSURL *)file {
-    directoryPath = [self getContainsDirectory:file];
-    [self createFolder:directoryPath];
-}
-
-#pragma mark private
-
-- (NSString*) getContainsDirectory:(NSURL*)file {
-    NSString * path = file.path;
-    NSString * extension = [NSString stringWithFormat:@".%@", file.pathExtension];
-    NSArray * arr = [path componentsSeparatedByString:extension];
-    NSString * directory = arr[0];
-    return directory;
-}
-
-- (void) createFolder:(NSString*)directory {
-    NSFileManager * fm = [NSFileManager defaultManager];
+    // initialize
+    _directoryPath = [AAFileUtil getContainsDirectory:file];
+    [AAFileUtil createFolder:_directoryPath];
     
-    BOOL isDirectory;
-    BOOL isExists = [fm fileExistsAtPath:directory isDirectory:&isDirectory];
-    
-    if (!isExists) {
-        if (![fm createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil]) {
-			NSLog(@"can't make directory %@", directory);
-		}
-    }
+    // copy font file
+    NSString *fontPath = [[NSBundle mainBundle] pathForResource:@"ipagp-mona" ofType:@"woff"];
+    [AAFileUtil copyFile:fontPath toDirectory:_directoryPath name:@"ipagp-mona.woff"];
 }
 
 

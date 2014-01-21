@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		781C3E03188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
 		781C3E04188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
+		781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E05188E6FE80017D677 /* ipagp-mona.woff */; };
+		781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
+		781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
+		781C3E0D188E7E050017D677 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E0C188E7E050017D677 /* template.html */; };
+		781C3E0E188E7E050017D677 /* template.html in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E0C188E7E050017D677 /* template.html */; };
 		7833C8FE188CD33C00905AA6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7833C8FD188CD33C00905AA6 /* Cocoa.framework */; };
 		7833C908188CD33C00905AA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7833C906188CD33C00905AA6 /* InfoPlist.strings */; };
 		7833C90A188CD33C00905AA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7833C909188CD33C00905AA6 /* main.m */; };
@@ -46,6 +51,10 @@
 /* Begin PBXFileReference section */
 		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
 		781C3E02188E22E20017D677 /* AADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataManager.m; sourceTree = "<group>"; };
+		781C3E05188E6FE80017D677 /* ipagp-mona.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ipagp-mona.woff"; sourceTree = "<group>"; };
+		781C3E08188E7C730017D677 /* AAFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAFileUtil.h; path = util/AAFileUtil.h; sourceTree = "<group>"; };
+		781C3E09188E7C730017D677 /* AAFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAFileUtil.m; path = util/AAFileUtil.m; sourceTree = "<group>"; };
+		781C3E0C188E7E050017D677 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template.html; sourceTree = "<group>"; };
 		7833C8FA188CD33C00905AA6 /* AAEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C8FD188CD33C00905AA6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7833C900188CD33C00905AA6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -111,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		781C3E07188E7C560017D677 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				781C3E08188E7C730017D677 /* AAFileUtil.h */,
+				781C3E09188E7C730017D677 /* AAFileUtil.m */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		7833C8F1188CD33C00905AA6 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +220,7 @@
 				7833C936188CD42F00905AA6 /* controller */,
 				7833C939188CD42F00905AA6 /* model */,
 				7833C93C188CD42F00905AA6 /* view */,
+				781C3E07188E7C560017D677 /* util */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -248,6 +267,8 @@
 		7833C953188CD4A200905AA6 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				781C3E0C188E7E050017D677 /* template.html */,
+				781C3E05188E6FE80017D677 /* ipagp-mona.woff */,
 				7833C912188CD33C00905AA6 /* MainMenu.xib */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
 			);
@@ -330,6 +351,8 @@
 				7833C90E188CD33C00905AA6 /* Credits.rtf in Resources */,
 				7833C914188CD33C00905AA6 /* MainMenu.xib in Resources */,
 				7833C956188CD4A200905AA6 /* player.qtz in Resources */,
+				781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */,
+				781C3E0D188E7E050017D677 /* template.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7833C925188CD33C00905AA6 /* InfoPlist.strings in Resources */,
+				781C3E0E188E7E050017D677 /* template.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +399,7 @@
 				7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */,
 				78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */,
 				781C3E03188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +409,7 @@
 			files = (
 				7833C928188CD33C00905AA6 /* AAEditTests.m in Sources */,
 				781C3E04188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

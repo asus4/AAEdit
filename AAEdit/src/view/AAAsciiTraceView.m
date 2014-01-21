@@ -18,6 +18,7 @@
 #define _KEY_EDGE_INTENSITY @"EdgeIntensity"
 // output keys
 #define _KEY_MOVIE_DURATION @"MovieDuration"
+#define _KEY_EDGE_IMAGE @"EdgeImage"
 
 @implementation AAAsciiTraceView
 
@@ -85,12 +86,16 @@
     [_qcView setValue:color forInputKey:_KEY_OVERLAY_COLOR];
 }
 
+- (void) setEdgeIntensity:(double)intensity {
+    [_qcView setValue:[NSNumber numberWithDouble:intensity] forInputKey:_KEY_EDGE_INTENSITY];
+}
+
 - (double) getMovieDuration {
     return [[_qcView valueForOutputKey:_KEY_MOVIE_DURATION] doubleValue];
 }
 
-- (void) setEdgeIntensity:(double)intensity {
-    [_qcView setValue:[NSNumber numberWithDouble:intensity] forInputKey:_KEY_EDGE_INTENSITY];
+- (NSImage*) getEdgeImage {
+    return [_qcView valueForOutputKey:_KEY_EDGE_IMAGE];
 }
 
 

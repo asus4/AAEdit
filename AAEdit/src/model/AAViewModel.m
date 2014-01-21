@@ -47,6 +47,7 @@
 }
 
 - (void) setCurrentFrame:(int)currentFrame {
+    _currentFrame = currentFrame;
     [self.asciiTraceView setFrames:currentFrame];
 }
 
@@ -81,8 +82,21 @@
 - (void) setHtmlString:(NSString *)htmlString {
     _htmlString = htmlString;
     
-    NSURL *url = [NSURL URLWithString:@"file://localhost/Users/ibu/Projects/HaKU/git/AA/index.html"];
+    NSURL *url = [NSURL URLWithString: [_dataManager.directoryPath stringByAppendingString:@"/"]];
     [self.webView.mainFrame loadHTMLString:htmlString baseURL:url];
 }
 
+#pragma mark actions
+
+- (IBAction)nextFrame:(id)sender {
+    if(self.currentFrame+1 < self.totalFrames) {
+        self.currentFrame++;
+    }
+}
+
+- (IBAction)prevFrame:(id)sender {
+    if(self.currentFrame > 0) {
+        self.currentFrame--;
+    }
+}
 @end

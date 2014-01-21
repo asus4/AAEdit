@@ -48,5 +48,7 @@
 @property (nonatomic, setter = setHtmlString:) NSString * htmlString;
 
 
+- (IBAction)nextFrame:(id)sender;
+- (IBAction)prevFrame:(id)sender;
 
 @end
