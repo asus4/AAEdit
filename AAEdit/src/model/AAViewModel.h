@@ -29,8 +29,9 @@
 @property (weak) IBOutlet AAAsciiTraceView *asciiTraceView;
 @property (weak) IBOutlet AAWebView *webView;
 
-// Bindings
+@property (nonatomic) AADataManager * dataManager;
 
+// Bindings
 // movie
 @property (nonatomic, setter = setMovieUrl:) NSURL * movieUrl;
 @property (nonatomic, setter = setMoviePositon:) double moviePosition;
@@ -46,9 +47,12 @@
 
 // Text
 @property (nonatomic, setter = setHtmlString:) NSString * htmlString;
-
+@property (nonatomic, setter = setToneString:) NSString * toneString;
+@property (nonatomic, setter = setEdgeString:) NSString * edgeString;
 
 - (IBAction)nextFrame:(id)sender;
 - (IBAction)prevFrame:(id)sender;
 
+- (void) load;
+- (void) save;
 @end

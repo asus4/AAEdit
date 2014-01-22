@@ -24,7 +24,6 @@
     return self;
 }
 
-
 - (IBAction)loadMovie:(id)sender
 {
     NSOpenPanel * panel = [NSOpenPanel openPanel];
@@ -41,19 +40,14 @@
     self.viewModel.htmlString = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     
     [self.previewImage setImage:self.asciiView.getEdgeImage];
+    
+    DOMDocument * dd = self.webView.mainFrame.DOMDocument;
+    NSLog(@"DOM %@", dd);
 }
 
 - (IBAction)save:(id)sender {
-    
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(
-                                                         NSDesktopDirectory, NSUserDomainMask, YES);
-    NSString* path = [NSString stringWithFormat:@"%@/test.png",
-                      [paths objectAtIndex:0], nil];
-    
+    NSString* path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
     [self.webView saveToFile:path];
-    
-
 }
 
 @end

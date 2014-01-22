@@ -12,13 +12,33 @@
 
 - (id) init {
     if(self = [super init]) {
-        // TODO: load recent settings
-        _fps = 30;
-        _color = [NSColor clearColor];
         _dataManager = [[AADataManager alloc] init];
     }
     return self;
 }
+
+- (void) load {
+    // TODO: load recent settings
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.movieUrl = [defaults URLForKey:@"movieUrl"];
+    self.fps = [defaults integerForKey:@"fps"];
+    self.toneString = [defaults stringForKey:@"toneString"];
+    self.edgeString = [defaults stringForKey:@"edgeString"];
+    self.overlayColor = [NSColor clearColor];
+}
+
+- (void) save {
+    // TODO: save settings
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setURL:self.movieUrl forKey:@"movieUrl"];
+    [defaults setInteger:self.fps forKey:@"fps"];
+    [defaults setObject:self.toneString forKey:@"toneString"];
+    [defaults setObject:self.edgeString forKey:@"edgeString"];
+    [defaults synchronize];
+}
+
 
 #pragma SETTER GETTER
 
@@ -84,6 +104,16 @@
     
     NSURL *url = [NSURL URLWithString: [_dataManager.directoryPath stringByAppendingString:@"/"]];
     [self.webView.mainFrame loadHTMLString:htmlString baseURL:url];
+}
+
+- (void) setToneString:(NSString *)toneString {
+    _toneString = toneString;
+    NSLog(@"set tone string　%@", toneString);
+}
+
+- (void) setEdgeString:(NSString *)edgeString {
+    _edgeString = edgeString;
+    NSLog(@"set dege string %@", edgeString);
 }
 
 #pragma mark actions

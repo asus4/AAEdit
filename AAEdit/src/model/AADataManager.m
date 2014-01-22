@@ -14,7 +14,8 @@
 - (id) init {
     if(self = [super init]) {
         // initialize
-        _directoryPath = NSHomeDirectory();
+        _directoryPath = NSSearchPathForDirectoriesInDomains(
+                                                             NSDesktopDirectory, NSUserDomainMask, YES)[0];
     }
     return self;
 }

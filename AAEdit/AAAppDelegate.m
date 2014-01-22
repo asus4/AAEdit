@@ -12,7 +12,16 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    // register userdefaults
+    NSString * userDefaultsValuesPath = [[NSBundle mainBundle] pathForResource:@"UserDefaults" ofType:@"plist"];
+    NSDictionary *userDefaultsValuesDict = [NSDictionary dictionaryWithContentsOfFile:userDefaultsValuesPath];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsValuesDict];
+    
+    [self.viewModel load];
 }
 
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    [self.viewModel save];
+}
 @end
