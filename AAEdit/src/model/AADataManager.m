@@ -56,10 +56,7 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
         if([self isEscape:c]) { // remove escape characters
             continue;
         }
-        AAEdgeData *data = [[AAEdgeData alloc] init];
-        data.character = [NSString stringWithCharacters:&c length:1];
-        data.image = data.character;
-        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = data;
+        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c];
     }
 }
 

@@ -38,6 +38,9 @@
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
 		78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
 		78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
+		78ADD97918924BC5003B6D07 /* orenge.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97818924BC5003B6D07 /* orenge.png */; };
+		78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
+		78ADD97D189260DA003B6D07 /* ipagp-mona.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
 		78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B9F58D188FA4B7006D96DB /* UserDefaults.plist */; };
 		78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B9F590188FE9B3006D96DB /* AAEdgeData.m */; };
 /* End PBXBuildFile section */
@@ -51,6 +54,19 @@
 			remoteInfo = AAEdit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78ADD97C189260BC003B6D07 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				78ADD97D189260DA003B6D07 /* ipagp-mona.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
@@ -100,6 +116,8 @@
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
 		78ADD974189247C6003B6D07 /* NSArrayController+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArrayController+Addition.h"; path = "addition/NSArrayController+Addition.h"; sourceTree = "<group>"; };
 		78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArrayController+Addition.m"; path = "addition/NSArrayController+Addition.m"; sourceTree = "<group>"; };
+		78ADD97818924BC5003B6D07 /* orenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orenge.png; sourceTree = "<group>"; };
+		78ADD97A18926047003B6D07 /* ipagp-mona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ipagp-mona.ttf"; path = "fonts/ipagp-mona.ttf"; sourceTree = "<group>"; };
 		78B9F58D188FA4B7006D96DB /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		78B9F58F188FE9B3006D96DB /* AAEdgeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEdgeData.h; sourceTree = "<group>"; };
 		78B9F590188FE9B3006D96DB /* AAEdgeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEdgeData.m; sourceTree = "<group>"; };
@@ -279,10 +297,12 @@
 		7833C953188CD4A200905AA6 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				78ADD97818924BC5003B6D07 /* orenge.png */,
 				78B9F58D188FA4B7006D96DB /* UserDefaults.plist */,
 				781C3E0C188E7E050017D677 /* template.html */,
 				781C3E05188E6FE80017D677 /* ipagp-mona.woff */,
 				7833C912188CD33C00905AA6 /* MainMenu.xib */,
+				78ADD97A18926047003B6D07 /* ipagp-mona.ttf */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
 			);
 			path = resources;
@@ -307,6 +327,7 @@
 				7833C8F6188CD33C00905AA6 /* Sources */,
 				7833C8F7188CD33C00905AA6 /* Frameworks */,
 				7833C8F8188CD33C00905AA6 /* Resources */,
+				78ADD97C189260BC003B6D07 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -376,6 +397,8 @@
 				781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */,
 				781C3E0D188E7E050017D677 /* template.html in Resources */,
 				78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */,
+				78ADD97918924BC5003B6D07 /* orenge.png in Resources */,
+				78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,10 @@
 
 @interface AAEdgeData : NSObject
 
+- (id) initWithCharacter:(UniChar) c;
+
 @property (nonatomic) NSString * character;
-@property (nonatomic) NSString * image;
+@property (nonatomic) NSImage * image;
+@property (nonatomic) UInt size;
 
 @end

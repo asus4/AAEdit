@@ -120,7 +120,6 @@
     
     NSArray * arr = [self.dataManager getEdgeTableData];
     [self.edgeArrayController addObjects:arr];
-    
 }
 
 #pragma mark actions
