@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AADataManager : NSObject
+@interface AADataManager : NSObject {
+}
 
 @property (nonatomic, readonly) NSString * directoryPath;
 
+@property (nonatomic, readonly) NSMutableDictionary * edgeData;
+@property (nonatomic, readonly) NSMutableArray * toneData;
+
 - (void) loadMovieFile:(NSURL*) file;
 
-
+// setter getter
+- (void) setEdgeString:(NSString *)edgeString;
+- (void) setToneString:(NSString *)toneString;
+- (NSArray* )getEdgeTableData;
 
 @end

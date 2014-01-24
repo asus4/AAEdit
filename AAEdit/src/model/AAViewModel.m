@@ -7,6 +7,8 @@
 //
 
 #import "AAViewModel.h"
+#import "AAEdgeData.h"
+#import "NSArrayController+Addition.h"
 
 @implementation AAViewModel
 
@@ -18,7 +20,6 @@
 }
 
 - (void) load {
-    // TODO: load recent settings
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.movieUrl = [defaults URLForKey:@"movieUrl"];
@@ -29,7 +30,6 @@
 }
 
 - (void) save {
-    // TODO: save settings
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setURL:self.movieUrl forKey:@"movieUrl"];
@@ -112,8 +112,15 @@
 }
 
 - (void) setEdgeString:(NSString *)edgeString {
+    // clear
+    [self.edgeArrayController removeAllObjects];
+    
     _edgeString = edgeString;
-    NSLog(@"set dege string %@", edgeString);
+    [self.dataManager setEdgeString:edgeString];
+    
+    NSArray * arr = [self.dataManager getEdgeTableData];
+    [self.edgeArrayController addObjects:arr];
+    
 }
 
 #pragma mark actions
