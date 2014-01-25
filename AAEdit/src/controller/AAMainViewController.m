@@ -49,14 +49,11 @@
 }
 
 - (IBAction)save:(id)sender {
-    NSString* path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
+    NSString* img_path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
+    NSString* html_path = [NSString stringWithFormat:@"%@/%i.html", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
     
-    DOMDocument * dd = self.webView.mainFrame.DOMDocument;
-    WebFrame * webFrame = self.webView.mainFrame;
-    
-    NSLog(@"DOM %@ %@", dd, webFrame);
-
-    [self.webView saveImageFile:path];
+    [self.webView saveImageFile:img_path];
+    [self.webView saveHtmlFile:html_path];
 }
 
 @end

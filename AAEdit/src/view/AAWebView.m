@@ -29,4 +29,16 @@
     [outdata writeToFile:path atomically:YES];
 }
 
+- (void) saveHtmlFile:(NSString *)path {
+    // save to file
+    NSString * html = [(DOMHTMLElement*)self.mainFrame.DOMDocument.documentElement outerHTML];
+    
+    NSError *error;
+    BOOL status = [html writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    if(!status) {
+        NSLog(@"Failed to save : %@", [error domain]);
+    }
+}
+
 @end
