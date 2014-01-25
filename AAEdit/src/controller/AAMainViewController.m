@@ -39,10 +39,14 @@
 {
     self.viewModel.htmlString = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     
-    [self.previewImage setImage:self.asciiView.getEdgeImage];
+    [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
+    [self.previewNormalImage setImage:self.asciiView.getNormalImage];
     
     DOMDocument * dd = self.webView.mainFrame.DOMDocument;
     NSLog(@"DOM %@", dd);
+    
+    NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage];
+    NSLog(@"AA %@", aa);
 }
 
 - (IBAction)save:(id)sender {

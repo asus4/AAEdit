@@ -27,6 +27,7 @@
     self.toneString = [defaults stringForKey:@"toneString"];
     self.edgeString = [defaults stringForKey:@"edgeString"];
     self.overlayColor = [NSColor clearColor];
+    self.fontSize = [defaults integerForKey:@"fontSize"];
 }
 
 - (void) save {
@@ -36,11 +37,12 @@
     [defaults setInteger:self.fps forKey:@"fps"];
     [defaults setObject:self.toneString forKey:@"toneString"];
     [defaults setObject:self.edgeString forKey:@"edgeString"];
+    [defaults setInteger:self.fontSize forKey:@"fontSize"];
     [defaults synchronize];
 }
 
 
-#pragma SETTER GETTER
+#pragma mark SETTER GETTER
 
 - (void) setMovieUrl:(NSURL *)movieUrl {
     _movieUrl = movieUrl;
@@ -99,10 +101,16 @@
     [self.asciiTraceView setEdgeIntensity:edgeIntensity];
 }
 
+- (void) setFontSize:(uint)fontSize {
+    _fontSize = fontSize;
+    self.dataManager.fontSize = fontSize;
+    self.edgeString = self.edgeString; // update edge data
+}
+
 - (void) setHtmlString:(NSString *)htmlString {
     _htmlString = htmlString;
     
-    NSURL *url = [NSURL URLWithString: [_dataManager.directoryPath stringByAppendingString:@"/"]];
+    NSURL *url = [NSURL fileURLWithPath: [_dataManager.directoryPath stringByAppendingString:@"/"]];
     [self.webView.mainFrame loadHTMLString:htmlString baseURL:url];
 }
 

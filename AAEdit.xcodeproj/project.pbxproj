@@ -41,6 +41,8 @@
 		78ADD97918924BC5003B6D07 /* orenge.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97818924BC5003B6D07 /* orenge.png */; };
 		78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
 		78ADD97D189260DA003B6D07 /* ipagp-mona.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
+		78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */; };
+		78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */; };
 		78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B9F58D188FA4B7006D96DB /* UserDefaults.plist */; };
 		78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B9F590188FE9B3006D96DB /* AAEdgeData.m */; };
 /* End PBXBuildFile section */
@@ -118,6 +120,10 @@
 		78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArrayController+Addition.m"; path = "addition/NSArrayController+Addition.m"; sourceTree = "<group>"; };
 		78ADD97818924BC5003B6D07 /* orenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orenge.png; sourceTree = "<group>"; };
 		78ADD97A18926047003B6D07 /* ipagp-mona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ipagp-mona.ttf"; path = "fonts/ipagp-mona.ttf"; sourceTree = "<group>"; };
+		78ADD9811892A47F003B6D07 /* NSString+AAAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+AAAddition.h"; path = "addition/NSString+AAAddition.h"; sourceTree = "<group>"; };
+		78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AAAddition.m"; path = "addition/NSString+AAAddition.m"; sourceTree = "<group>"; };
+		78ADD9841892B1C3003B6D07 /* NSImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+Addition.h"; path = "addition/NSImage+Addition.h"; sourceTree = "<group>"; };
+		78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Addition.m"; path = "addition/NSImage+Addition.m"; sourceTree = "<group>"; };
 		78B9F58D188FA4B7006D96DB /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		78B9F58F188FE9B3006D96DB /* AAEdgeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEdgeData.h; sourceTree = "<group>"; };
 		78B9F590188FE9B3006D96DB /* AAEdgeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEdgeData.m; sourceTree = "<group>"; };
@@ -313,6 +319,10 @@
 			children = (
 				78ADD974189247C6003B6D07 /* NSArrayController+Addition.h */,
 				78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */,
+				78ADD9811892A47F003B6D07 /* NSString+AAAddition.h */,
+				78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */,
+				78ADD9841892B1C3003B6D07 /* NSImage+Addition.h */,
+				78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */,
 			);
 			name = addition;
 			sourceTree = "<group>";
@@ -448,6 +458,8 @@
 				781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */,
 				78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */,
 				78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
+				78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */,
+				78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

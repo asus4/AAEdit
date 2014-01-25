@@ -24,5 +24,6 @@
 
 - (double) getMovieDuration;
 - (NSImage*) getEdgeImage;
+- (NSImage*) getNormalImage;
 
 @end

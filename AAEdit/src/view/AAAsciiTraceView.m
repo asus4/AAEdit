@@ -7,6 +7,7 @@
 //
 
 #import "AAAsciiTraceView.h"
+#import "NSImage+Addition.h"
 
 // input keys
 #define _KEY_MOVIE_LOCATION @"MovieLocation"
@@ -19,6 +20,7 @@
 // output keys
 #define _KEY_MOVIE_DURATION @"MovieDuration"
 #define _KEY_EDGE_IMAGE @"EdgeImage"
+#define _KEY_NORMAL_IMAGE @"NormalImage"
 
 @implementation AAAsciiTraceView
 
@@ -95,8 +97,21 @@
 }
 
 - (NSImage*) getEdgeImage {
-    return [_qcView valueForOutputKey:_KEY_EDGE_IMAGE];
+    NSImage* img = [_qcView valueForOutputKey:_KEY_EDGE_IMAGE];
+    if(img.size.width == self.frame.size.width &&
+       img.size.height == self.frame.size.height) {
+        return img;
+    }
+    return [img resizeImage:self.frame.size scaleFactor:self.window.backingScaleFactor];
 }
 
+- (NSImage*) getNormalImage {
+    NSImage* img = [_qcView valueForOutputKey:_KEY_NORMAL_IMAGE];
+    if(img.size.width == self.frame.size.width &&
+       img.size.height == self.frame.size.height) {
+        return img;
+    }
+    return [img resizeImage:self.frame.size scaleFactor:self.window.backingScaleFactor];
+}
 
 @end

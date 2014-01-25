@@ -11,10 +11,12 @@
 @interface AADataManager : NSObject {
 }
 
+@property (nonatomic, readonly) NSFont * font;
 @property (nonatomic, readonly) NSString * directoryPath;
 
-@property (nonatomic, readonly) NSMutableDictionary * edgeData;
+@property (nonatomic, readonly) NSMutableDictionary * edgeData; // [uchar, AAEdgeData]
 @property (nonatomic, readonly) NSMutableArray * toneData;
+@property (nonatomic) uint fontSize;
 
 - (void) loadMovieFile:(NSURL*) file;
 
@@ -22,5 +24,7 @@
 - (void) setEdgeString:(NSString *)edgeString;
 - (void) setToneString:(NSString *)toneString;
 - (NSArray* )getEdgeTableData;
+
+- (NSString*) asciiTrace:(NSImage*) edgeImage;
 
 @end

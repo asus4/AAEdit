@@ -84,5 +84,7 @@ l
 ＜
 　 ＞＜
 .　　　 　＞</string>
+	<key>fontSize</key>
+	<integer>12</integer>
 </dict>
 </plist>

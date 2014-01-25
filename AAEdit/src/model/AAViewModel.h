@@ -46,6 +46,9 @@
 @property (nonatomic, setter = setOverlayColor:) NSColor* overlayColor;
 @property (nonatomic, setter = setEdgeIntensity:) double edgeIntensity;
 
+// Font
+@property (nonatomic, setter = setFontSize:) uint fontSize;
+
 // Text
 @property (nonatomic, setter = setHtmlString:) NSString * htmlString;
 @property (nonatomic, setter = setToneString:) NSString * toneString;

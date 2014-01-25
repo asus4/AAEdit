@@ -10,10 +10,9 @@
 
 @interface AAEdgeData : NSObject
 
-- (id) initWithCharacter:(UniChar) c;
+- (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
 
 @property (nonatomic) NSString * character;
 @property (nonatomic) NSImage * image;
-@property (nonatomic) UInt size;
-
+@property (nonatomic) NSSize size;
 @end

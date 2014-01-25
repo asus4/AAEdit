@@ -22,6 +22,7 @@
 @property (weak) IBOutlet AAAsciiTraceView *asciiView;
 @property (weak) IBOutlet AAWebView *webView;
 
-@property (weak) IBOutlet NSImageView *previewImage;
+@property (weak) IBOutlet NSImageView *previewEdgeImage;
+@property (weak) IBOutlet NSImageView *previewNormalImage;
 
 @end

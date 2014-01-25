@@ -12,7 +12,11 @@
 
 @implementation AADataManager
 
+#define _FONT_NAME @"IPAMonaPGothic"
+
 const UniChar escapes[] = {'\n','\b','\r','\t'};
+
+#pragma mark private
 
 - (BOOL) isEscape:(UniChar) c {
     uint length = sizeof escapes / sizeof escapes[0];
@@ -24,7 +28,7 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     return NO;
 }
 
-#pragma mark life cycle
+#pragma mark public
 
 - (id) init {
     if(self = [super init]) {
@@ -32,11 +36,11 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
         _directoryPath = NSSearchPathForDirectoriesInDomains(
                                                              NSDesktopDirectory, NSUserDomainMask, YES)[0];
         _edgeData = [@{} mutableCopy];
+        
+        self.fontSize = 12;
     }
     return self;
 }
-
-#pragma mark public
 
 - (void) loadMovieFile:(NSURL *)file {
     // initialize
@@ -56,12 +60,12 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
         if([self isEscape:c]) { // remove escape characters
             continue;
         }
-        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c];
+        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c font:self.font];
     }
 }
 
 - (void) setToneString:(NSString *)toneString {
-    
+    // TODO: implemented
 }
 
 - (NSArray*) getEdgeTableData {
@@ -70,6 +74,32 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
         [arr addObject:data];
     }
     return arr;
+}
+
+- (void) setFontSize:(uint)fontSize {
+    _fontSize = fontSize;
+    _font = nil;
+    _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
+}
+
+- (NSString*) asciiTrace:(NSImage *)edgeImage {
+    NSArray * edgeTable = [self getEdgeTableData];
+    
+    NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:[edgeImage TIFFRepresentation]];
+    
+    
+    for(id data in edgeTable) {
+        
+    }
+    
+    NSLog(@"image size %f,%f", edgeImage.size.width, edgeImage.size.height);
+    NSLog(@"imaeg rep %i,%i", (int)imageRep.pixelsWide, (int)imageRep.pixelsHigh);
+    
+    return @"a";
+}
+
+- (uint) getMatchLevel:(NSBitmapImageRep*) bmp edgeData:(AAEdgeData*)edgeData {
+    
 }
 
 @end
