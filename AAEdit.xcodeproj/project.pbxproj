@@ -38,7 +38,6 @@
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
 		78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
 		78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
-		78ADD97918924BC5003B6D07 /* orenge.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97818924BC5003B6D07 /* orenge.png */; };
 		78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
 		78ADD97D189260DA003B6D07 /* ipagp-mona.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
 		78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */; };
@@ -77,6 +76,7 @@
 		781C3E08188E7C730017D677 /* AAFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAFileUtil.h; path = util/AAFileUtil.h; sourceTree = "<group>"; };
 		781C3E09188E7C730017D677 /* AAFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAFileUtil.m; path = util/AAFileUtil.m; sourceTree = "<group>"; };
 		781C3E0C188E7E050017D677 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template.html; sourceTree = "<group>"; };
+		782432911893CDBF0037C1F8 /* AABitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABitmap.h; sourceTree = "<group>"; };
 		7833C8FA188CD33C00905AA6 /* AAEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C8FD188CD33C00905AA6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7833C900188CD33C00905AA6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -118,7 +118,6 @@
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
 		78ADD974189247C6003B6D07 /* NSArrayController+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArrayController+Addition.h"; path = "addition/NSArrayController+Addition.h"; sourceTree = "<group>"; };
 		78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArrayController+Addition.m"; path = "addition/NSArrayController+Addition.m"; sourceTree = "<group>"; };
-		78ADD97818924BC5003B6D07 /* orenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orenge.png; sourceTree = "<group>"; };
 		78ADD97A18926047003B6D07 /* ipagp-mona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ipagp-mona.ttf"; path = "fonts/ipagp-mona.ttf"; sourceTree = "<group>"; };
 		78ADD9811892A47F003B6D07 /* NSString+AAAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+AAAddition.h"; path = "addition/NSString+AAAddition.h"; sourceTree = "<group>"; };
 		78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AAAddition.m"; path = "addition/NSString+AAAddition.m"; sourceTree = "<group>"; };
@@ -277,6 +276,7 @@
 				7833C93B188CD42F00905AA6 /* AAViewModel.m */,
 				78B9F58F188FE9B3006D96DB /* AAEdgeData.h */,
 				78B9F590188FE9B3006D96DB /* AAEdgeData.m */,
+				782432911893CDBF0037C1F8 /* AABitmap.h */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -303,7 +303,6 @@
 		7833C953188CD4A200905AA6 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				78ADD97818924BC5003B6D07 /* orenge.png */,
 				78B9F58D188FA4B7006D96DB /* UserDefaults.plist */,
 				781C3E0C188E7E050017D677 /* template.html */,
 				781C3E05188E6FE80017D677 /* ipagp-mona.woff */,
@@ -407,7 +406,6 @@
 				781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */,
 				781C3E0D188E7E050017D677 /* template.html in Resources */,
 				78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */,
-				78ADD97918924BC5003B6D07 /* orenge.png in Resources */,
 				78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

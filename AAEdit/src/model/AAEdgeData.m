@@ -16,7 +16,6 @@
     if(self == [super init]) {
         self.character = [NSString stringWithCharacters:&c length:1];
         self.image = [self.character imageWithFont:font];
-//        self.size = font.pointSize;
         self.size = self.image.size;
     }
     return self;

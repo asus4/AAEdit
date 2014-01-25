@@ -9,6 +9,7 @@
 #import "AADataManager.h"
 #import "AAEdgeData.h"
 #import "AAFileUtil.h"
+#import "NSImage+Addition.h"
 
 @implementation AADataManager
 
@@ -57,7 +58,7 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     
     for(uint i=0; i<edgeString.length; ++i) {
         UniChar c = [edgeString characterAtIndex:i];
-        if([self isEscape:c]) { // remove escape characters
+        if([self isEscape:c]) { // avoid escape characters
             continue;
         }
         self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c font:self.font];
@@ -82,24 +83,79 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
 }
 
+
+#pragma mark Trace Logic
+
 - (NSString*) asciiTrace:(NSImage *)edgeImage {
     NSArray * edgeTable = [self getEdgeTableData];
     
-    NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:[edgeImage TIFFRepresentation]];
+    // TODO: edge, color, tone mode
     
-    
-    for(id data in edgeTable) {
-        
+    if(edgeTable.count == 0) {
+        return @"edge table is empty.";
     }
     
-    NSLog(@"image size %f,%f", edgeImage.size.width, edgeImage.size.height);
-    NSLog(@"imaeg rep %i,%i", (int)imageRep.pixelsWide, (int)imageRep.pixelsHigh);
+    // this is slow
+    //    NSColor * c = [imageRep colorAtX:0 y:0];
     
-    return @"a";
+    NSMutableString *aa = [NSMutableString stringWithString:@""];
+    
+    // Edge trace
+    int x=0,y=0;
+    
+    AABitmap bmp;
+//    [edgeImage getBitmapData:&buffer bytesPerRow:&bytesPerRow width:&width height:&height];
+    [edgeImage getAABitmap:&bmp];
+    
+//    NSLog(@"a");
+    
+    while (y<bmp.height) {
+        x = 0;
+        int _y = 0;
+        while (x<bmp.width) {
+            if(isBlack(bmp.buffer, x, y, bmp.bytesPerRow, 10)) {
+                [aa appendString:@"-"];
+            }
+            else {
+                [aa appendString:@"0"];
+            }
+            
+            int _x = 0;
+//            
+//            for(AAEdgeData* data in edgeTable) {
+//                
+//            }
+//            
+//            x += _x;
+            x++;
+        }
+        [aa appendString:@"\n"];
+//        y+= _y;
+        y++;
+    }
+    
+//    [self getMatchLevel:imageRep edgeData:edgeTable[0]];
+    
+    NSLog(@"image size %f,%f", edgeImage.size.width, edgeImage.size.height);
+//    NSLog(@"imaeg rep %i,%i", bmp.width, bmp.height);
+    
+    return aa;
 }
 
-- (uint) getMatchLevel:(NSBitmapImageRep*) bmp edgeData:(AAEdgeData*)edgeData {
-    
+
+static inline BOOL isBlack(UInt8* buffer, const int x, const int y, const size_t bytesPerRow, const int tolerance) {
+    UInt8*  pixelPtr = buffer + (int)y * bytesPerRow + (int)x * 4;
+    UInt8 r = *(pixelPtr);
+    UInt8 g = *(pixelPtr + 1);
+    UInt8 b = *(pixelPtr + 2);
+//    UInt8 a = *(pixelPtr + 3);
+    return (r + g + b < tolerance);
 }
+
+- (float) getMatchLevel:(NSBitmapImageRep*) bmp edgeData:(AAEdgeData*)edgeData {
+    return 0;
+}
+
+
 
 @end
