@@ -13,7 +13,7 @@
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
-#define _BLACK_TOLERANCE 10
+#define _BLACK_TOLERANCE 20
 
 const UniChar escapes[] = {'\n','\b','\r','\t'};
 
@@ -84,12 +84,14 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     _fontSize = fontSize;
     _font = nil;
     _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
+    
+    padding = fontSize/2;
 }
 
 
 #pragma mark Trace Logic
 
-- (NSString*) asciiTrace:(NSImage *) edgeImage {
+- (NSString*) asciiTrace:(NSImage *) edgeImage colorImage:(NSImage *) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor {
     NSArray * edgeTable = [self getEdgeTableData];
     
     if(edgeTable.count == 0) {
@@ -179,11 +181,13 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     return (r + g + b < _BLACK_TOLERANCE);
 }
 
+
 // bitmap matcing algorithm
+static int padding;
 static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const int sX, const int sY) {
     
-    if(sX+charBmp->width >= srcBmp->width
-       || sY+charBmp->height >= srcBmp->height) {
+    if(sX+charBmp->width >= srcBmp->width-padding
+       || sY+charBmp->height >= srcBmp->height-padding) {
         return -1.0f;
     }
     

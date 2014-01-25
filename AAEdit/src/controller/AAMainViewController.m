@@ -41,7 +41,11 @@
     [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
     [self.previewNormalImage setImage:self.asciiView.getNormalImage];
     
-    NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage];
+    NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage
+                                               colorImage:self.asciiView.getNormalImage
+                                                  useEdge:YES
+                                                  useTone:NO
+                                                 useColor:YES];
     NSLog(@"AA %@", aa);
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, aa];
