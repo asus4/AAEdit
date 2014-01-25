@@ -45,7 +45,7 @@
     CFRelease(dataRef);
 }
 
-- (void) getAABitmap:(AABitmap*)bmp {
+- (void) getAABitmap:(AABitmapRef)bmp {
     [self getBitmapData:&(*bmp).buffer bytesPerRow:&(*bmp).bytesPerRow width:&(*bmp).width height:&(*bmp).height];
 }
 @end

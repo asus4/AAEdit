@@ -7,7 +7,7 @@
 //
 
 #import "AAEdgeData.h"
-//#import "NSImage+AAAddition.h"
+#import "NSImage+Addition.h"
 #import "NSString+AAAddition.h"
 
 @implementation AAEdgeData
@@ -17,8 +17,14 @@
         self.character = [NSString stringWithCharacters:&c length:1];
         self.image = [self.character imageWithFont:font];
         self.size = self.image.size;
+        
+        [self.image getAABitmap:&bitmap];
     }
     return self;
+}
+
+- (AABitmapRef) getAABitmapRef {
+    return &bitmap;
 }
 
 @end

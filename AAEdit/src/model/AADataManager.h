@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AAEdgeData.h"
 
 @interface AADataManager : NSObject {
 }
@@ -16,6 +17,8 @@
 
 @property (nonatomic, readonly) NSMutableDictionary * edgeData; // [uchar, AAEdgeData]
 @property (nonatomic, readonly) NSMutableArray * toneData;
+@property (nonatomic, readonly) AAEdgeData * spaceChar;
+
 @property (nonatomic) uint fontSize;
 
 - (void) loadMovieFile:(NSURL*) file;
@@ -25,6 +28,6 @@
 - (void) setToneString:(NSString *)toneString;
 - (NSArray* )getEdgeTableData;
 
-- (NSString*) asciiTrace:(NSImage*) edgeImage;
+- (NSString*) asciiTrace:(NSImage *) edgeImage;
 
 @end

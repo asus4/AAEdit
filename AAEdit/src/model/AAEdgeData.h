@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AABitmap.h"
 
-@interface AAEdgeData : NSObject
-
-- (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
+@interface AAEdgeData : NSObject {
+    AABitmap bitmap;
+}
 
 @property (nonatomic) NSString * character;
 @property (nonatomic) NSImage * image;
 @property (nonatomic) NSSize size;
+
+- (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
+- (AABitmapRef) getAABitmapRef;
+
 @end

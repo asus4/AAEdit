@@ -37,21 +37,26 @@
 
 - (IBAction)doTrace:(id)sender
 {
-    self.viewModel.htmlString = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     
     [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
     [self.previewNormalImage setImage:self.asciiView.getNormalImage];
     
-    DOMDocument * dd = self.webView.mainFrame.DOMDocument;
-    NSLog(@"DOM %@", dd);
-    
     NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage];
     NSLog(@"AA %@", aa);
+    NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
+    self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, aa];
+    
 }
 
 - (IBAction)save:(id)sender {
     NSString* path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
-    [self.webView saveToFile:path];
+    
+    DOMDocument * dd = self.webView.mainFrame.DOMDocument;
+    WebFrame * webFrame = self.webView.mainFrame;
+    
+    NSLog(@"DOM %@ %@", dd, webFrame);
+
+    [self.webView saveImageFile:path];
 }
 
 @end

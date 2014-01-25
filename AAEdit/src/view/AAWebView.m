@@ -16,7 +16,7 @@
     [self setWantsLayer:YES];
 }
 
-- (void) saveToFile:(NSString *)path {
+- (void) saveImageFile:(NSString *)path {
     // http://xcatsan.blogspot.jp/2009/04/webkit2_08.html
     NSBitmapImageRep* bitmap =
     [self bitmapImageRepForCachingDisplayInRect:self.bounds];

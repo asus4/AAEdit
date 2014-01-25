@@ -19,4 +19,6 @@ typedef struct {
     int height;
 } AABitmap;
 
+typedef AABitmap* AABitmapRef;
+
 #endif
