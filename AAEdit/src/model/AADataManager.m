@@ -102,18 +102,14 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     
     // Edge trace
     int x=0,y=0;
-    
     AABitmap bmp;
-//    [edgeImage getBitmapData:&buffer bytesPerRow:&bytesPerRow width:&width height:&height];
     [edgeImage getAABitmap:&bmp];
-    
-//    NSLog(@"a");
     
     while (y<bmp.height) {
         x = 0;
         int _y = 0;
         while (x<bmp.width) {
-            if(isBlack(bmp.buffer, x, y, bmp.bytesPerRow, 10)) {
+            if(isBlackPixel(&bmp, x, y, 10)) {
                 [aa appendString:@"-"];
             }
             else {
@@ -152,10 +148,17 @@ static inline BOOL isBlack(UInt8* buffer, const int x, const int y, const size_t
     return (r + g + b < tolerance);
 }
 
+static inline BOOL isBlackPixel(AABitmap* bmp, const int x, const int y, const int tolerance) {
+    UInt8*  pixelPtr = (*bmp).buffer + (int)y * (*bmp).bytesPerRow + (int)x * 4;
+    UInt8 r = *(pixelPtr);
+    UInt8 g = *(pixelPtr + 1);
+    UInt8 b = *(pixelPtr + 2);
+    //    UInt8 a = *(pixelPtr + 3);
+    return (r + g + b < tolerance);
+}
+
 - (float) getMatchLevel:(NSBitmapImageRep*) bmp edgeData:(AAEdgeData*)edgeData {
     return 0;
 }
-
-
 
 @end
