@@ -113,6 +113,9 @@
 }
 
 - (void) setFontSize:(uint)fontSize {
+    if(fontSize <= 0) {
+        fontSize = 1;
+    }
     _fontSize = fontSize;
     self.dataManager.fontSize = fontSize;
     self.edgeString = self.edgeString; // update edge data
@@ -126,13 +129,22 @@
 }
 
 - (void) setToneString:(NSString *)toneString {
+    if(toneString.length == 0) {
+        toneString = @";";
+    }
     _toneString = toneString;
     [self.dataManager setToneString:toneString];
     
-    
+    // update talbe
+    NSArray * arr = [self.dataManager getToneTableData];
+    [self.toneArrayController removeAllObjects];
+    [self.toneArrayController addObjects:arr];
 }
 
 - (void) setEdgeString:(NSString *)edgeString {
+    if(edgeString.length == 0) {
+        edgeString = @"-";
+    }
     _edgeString = edgeString;
     [self.dataManager setEdgeString:edgeString];
     

@@ -29,6 +29,7 @@
 @property (weak) IBOutlet AAAsciiTraceView *asciiTraceView;
 @property (weak) IBOutlet AAWebView *webView;
 @property (weak) IBOutlet NSArrayController *edgeArrayController;
+@property (weak) IBOutlet NSArrayController *toneArrayController;
 
 @property (nonatomic) AADataManager * dataManager;
 

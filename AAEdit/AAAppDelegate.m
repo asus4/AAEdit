@@ -24,4 +24,5 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     [self.viewModel save];
 }
+
 @end

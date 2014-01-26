@@ -1,5 +1,5 @@
 //
-//  AADomUtil.h
+//  AADataProtcol.h
 //  AAEdit
 //
 //  Created by Koki Ibukuro on 2014/01/26.
@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AADomUtil : NSObject
+@protocol AADataProtcol <NSObject>
 
-+ (NSString*) wrapSpanString:(NSString*)str withColor:(NSColor*)color;
-+ (BOOL) isEscape:(UniChar) c;
+@property (nonatomic) NSString * character;
+@property (nonatomic) NSSize size;
+
 @end

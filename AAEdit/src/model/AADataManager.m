@@ -10,26 +10,14 @@
 #import "AAFileUtil.h"
 #import "NSImage+Addition.h"
 #import "AADomUtil.h"
+#import "AAToneData.h"
 
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
 #define _BLACK_TOLERANCE 20
 
-const UniChar escapes[] = {'\n','\b','\r','\t'};
 static int padding;
-
-#pragma mark private
-
-- (BOOL) isEscape:(UniChar) c {
-    uint length = sizeof escapes / sizeof escapes[0];
-    for(uint i=0; i<length; ++i) {
-        if(escapes[i] == c) {
-            return YES;
-        }
-    }
-    return NO;
-}
 
 #pragma mark public
 
@@ -38,7 +26,8 @@ static int padding;
         // initialize
         _directoryPath = NSSearchPathForDirectoriesInDomains(
                                                              NSDesktopDirectory, NSUserDomainMask, YES)[0];
-        _edgeData = [@{} mutableCopy];
+        _edgeData = [NSMutableDictionary dictionaryWithCapacity:0];
+        _toneData = [NSMutableArray arrayWithCapacity:0];
         self.fontSize = 12;
     }
     return self;
@@ -59,7 +48,7 @@ static int padding;
     
     for(uint i=0; i<edgeString.length; ++i) {
         UniChar c = [edgeString characterAtIndex:i];
-        if([self isEscape:c]) { // avoid escape characters
+        if([AADomUtil isEscape:c]) { // avoid escape characters
             continue;
         }
         self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c font:self.font];
@@ -71,7 +60,16 @@ static int padding;
 }
 
 - (void) setToneString:(NSString *)toneString {
-    // TODO: implemented tone string
+    [self.toneData removeAllObjects];
+    
+    NSArray * arr = [toneString componentsSeparatedByString:@"\n"];
+    for(uint i=0; i<arr.count; ++i) {
+        float brightness = 1.0f - (float)i/(float)arr.count;
+        AAToneData *data = [[AAToneData alloc] initWithString:arr[i]
+                                                         font:self.font
+                                                   brightness:brightness];
+        [self.toneData addObject:data];
+    }
 }
 
 - (NSArray*) getEdgeTableData {
@@ -80,6 +78,10 @@ static int padding;
         [arr addObject:data];
     }
     return arr;
+}
+
+- (NSArray*) getToneTableData {
+    return self.toneData;
 }
 
 - (void) setFontSize:(uint)fontSize {
@@ -102,21 +104,16 @@ static int padding;
     
     // this is slow
     //    NSColor * c = [imageRep colorAtX:0 y:0];
-    
     NSMutableString *aa = [NSMutableString stringWithString:@""];
-    
     
     // Edge trace
     int x=0,y=0;
     
-//    AABitmap colorBmp;
-//    [colorImage getAABitmap:&colorBmp];
     AABitmap edgeBmp;
     [edgeImage getAABitmap:&edgeBmp];
     
     
     NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
-    NSLog(@"colorrep %@", colorRep);
     
     while (y<edgeBmp.height) {
         x = 0;
@@ -125,14 +122,16 @@ static int padding;
             
             int _x = 0;
             float similarity = 0.0f;
-            AAEdgeData* matchedData = nil;
+            id<AADataProtcol> matchedData = nil; // AAEdgeData or AAToneData
             
-            for(AAEdgeData* data in edgeTable) {
-                float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
-                
-                if(f > similarity) {
-                    similarity = f;
-                    matchedData = data;
+            if(useEdge) {
+                for(AAEdgeData* data in edgeTable) {
+                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
+                    
+                    if(f > similarity) {
+                        similarity = f;
+                        matchedData = data;
+                    }
                 }
             }
             
@@ -140,17 +139,20 @@ static int padding;
                 break;
             }
             
+            NSColor *color = [colorRep colorAtX:x y:y];
             // no match
-            // TODO : tone
             if(similarity == 0) {
-                matchedData = self.spaceChar;
-//                matchedData.character = @"0";
+                if(useTone) {
+                    matchedData = [self getToneWithColor:color];
+                }
+                else {
+                   matchedData = self.spaceChar;
+                }
             }
             
             // color
-            if(useColor && matchedData!=self.spaceChar) {
-                NSColor *c = [colorRep colorAtX:x y:y];
-                [aa appendString:[AADomUtil wrapSpanString:matchedData.character withColor:c]];
+            if(useColor && ![matchedData.character isEqualToString:_spaceChar.character]) {
+                [aa appendString:[AADomUtil wrapSpanString:matchedData.character withColor:color]];
             }
             else {
                 [aa appendString:matchedData.character];
@@ -165,6 +167,19 @@ static int padding;
     }
     
     return aa;
+}
+
+- (AAToneData*) getToneWithColor:(NSColor*) color {
+    float brightness = color.brightnessComponent;
+    // TODO : checkcckckckck
+
+    if(brightness >= 1.0) {
+        brightness = 0.99f;
+    }
+    int i =  (1.0f-brightness) * (float) self.toneData.count;
+    AAToneData * data = self.toneData[i];
+    [data nextTone];
+    return data;
 }
 
 static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {

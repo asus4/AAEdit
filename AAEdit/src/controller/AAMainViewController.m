@@ -37,6 +37,17 @@
 
 - (IBAction)doTrace:(id)sender
 {
+    if(!self.viewModel.isTraceEdge && !self.viewModel.isTraceTone) {
+        // alert
+        NSAlert * alert = [NSAlert alertWithMessageText:@"Warning"
+                                          defaultButton:@"OK"
+                                        alternateButton:NULL
+                                            otherButton:NULL
+                              informativeTextWithFormat:@"Enable Edge or Tone switch."];
+        [alert beginSheetModalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        return;
+    }
+    
     [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
     [self.previewNormalImage setImage:self.asciiView.getNormalImage];
     
@@ -45,7 +56,7 @@
                                                   useEdge:self.viewModel.isTraceEdge
                                                   useTone:self.viewModel.isTraceTone
                                                  useColor:self.viewModel.isTraceColor];
-//    NSLog(@"========AA\n\n%@", aa);
+    
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, aa];
 }
