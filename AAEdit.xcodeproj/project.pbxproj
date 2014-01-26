@@ -46,6 +46,8 @@
 		78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */; };
 		78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B9F58D188FA4B7006D96DB /* UserDefaults.plist */; };
 		78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B9F590188FE9B3006D96DB /* AAEdgeData.m */; };
+		78C74BE21894FE870023C9C6 /* AADomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE11894FE870023C9C6 /* AADomUtil.m */; };
+		78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE11894FE870023C9C6 /* AADomUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		78B9F58D188FA4B7006D96DB /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		78B9F58F188FE9B3006D96DB /* AAEdgeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEdgeData.h; sourceTree = "<group>"; };
 		78B9F590188FE9B3006D96DB /* AAEdgeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEdgeData.m; sourceTree = "<group>"; };
+		78C74BE01894FE870023C9C6 /* AADomUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AADomUtil.h; path = util/AADomUtil.h; sourceTree = "<group>"; };
+		78C74BE11894FE870023C9C6 /* AADomUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AADomUtil.m; path = util/AADomUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 			children = (
 				781C3E08188E7C730017D677 /* AAFileUtil.h */,
 				781C3E09188E7C730017D677 /* AAFileUtil.m */,
+				78C74BE01894FE870023C9C6 /* AADomUtil.h */,
+				78C74BE11894FE870023C9C6 /* AADomUtil.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */,
 				78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */,
 				78731B481894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
+				78C74BE21894FE870023C9C6 /* AADomUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +484,7 @@
 				781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */,
 				78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
 				78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
+				78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

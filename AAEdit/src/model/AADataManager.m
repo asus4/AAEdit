@@ -9,6 +9,7 @@
 #import "AADataManager.h"
 #import "AAFileUtil.h"
 #import "NSImage+Addition.h"
+#import "AADomUtil.h"
 
 @implementation AADataManager
 
@@ -104,12 +105,18 @@ static int padding;
     
     NSMutableString *aa = [NSMutableString stringWithString:@""];
     
+    
     // Edge trace
     int x=0,y=0;
-    AABitmap edgeBmp;
-    [edgeImage getAABitmap:&edgeBmp];
+    
 //    AABitmap colorBmp;
 //    [colorImage getAABitmap:&colorBmp];
+    AABitmap edgeBmp;
+    [edgeImage getAABitmap:&edgeBmp];
+    
+    
+    NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
+    NSLog(@"colorrep %@", colorRep);
     
     while (y<edgeBmp.height) {
         x = 0;
@@ -129,18 +136,25 @@ static int padding;
                 }
             }
             
-            // no match
-            // TODO : tone
-            if(similarity < 0) {
+            if(similarity < 0) { // End of Line
                 break;
             }
             
+            // no match
+            // TODO : tone
             if(similarity == 0) {
                 matchedData = self.spaceChar;
+//                matchedData.character = @"0";
             }
             
-            // TODO : color
-            [aa appendString:matchedData.character];
+            // color
+            if(useColor && matchedData!=self.spaceChar) {
+                NSColor *c = [colorRep colorAtX:x y:y];
+                [aa appendString:[AADomUtil wrapSpanString:matchedData.character withColor:c]];
+            }
+            else {
+                [aa appendString:matchedData.character];
+            }
             _x = matchedData.size.width;
             _y = matchedData.size.height;
             
@@ -149,7 +163,7 @@ static int padding;
         [aa appendString:@"\n"];
         y+= _y;
     }
-        
+    
     return aa;
 }
 

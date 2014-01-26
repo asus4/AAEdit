@@ -13,4 +13,6 @@
 - (NSImage*) resizeImage:(NSSize)size scaleFactor:(CGFloat)scale;
 - (void) getBitmapData:(UInt8**) buffer bytesPerRow:(size_t*) bpr width:(int*) w height:(int*)h;
 - (void) getAABitmap:(AABitmap*) bmp;
+
+- (NSBitmapImageRep*) getBitmapImageRep;
 @end
