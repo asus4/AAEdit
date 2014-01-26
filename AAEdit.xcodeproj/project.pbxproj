@@ -50,6 +50,8 @@
 		78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE11894FE870023C9C6 /* AADomUtil.m */; };
 		78C74BE718950F560023C9C6 /* AAToneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE618950F560023C9C6 /* AAToneData.m */; };
 		78C74BE818950F560023C9C6 /* AAToneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE618950F560023C9C6 /* AAToneData.m */; };
+		78C74BEB189521270023C9C6 /* AAColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BEA189521270023C9C6 /* AAColorCell.m */; };
+		78C74BEC189521270023C9C6 /* AAColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BEA189521270023C9C6 /* AAColorCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		78C74BE418950E870023C9C6 /* AADataProtcol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataProtcol.h; sourceTree = "<group>"; };
 		78C74BE518950F560023C9C6 /* AAToneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAToneData.h; sourceTree = "<group>"; };
 		78C74BE618950F560023C9C6 /* AAToneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAToneData.m; sourceTree = "<group>"; };
+		78C74BE9189521270023C9C6 /* AAColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAColorCell.h; sourceTree = "<group>"; };
+		78C74BEA189521270023C9C6 /* AAColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColorCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +318,8 @@
 				7833C948188CD42F00905AA6 /* NSColorWellWithAlpha.m */,
 				78647E63188CF6BB00CECA10 /* AAWebView.h */,
 				78647E64188CF6BB00CECA10 /* AAWebView.m */,
+				78C74BE9189521270023C9C6 /* AAColorCell.h */,
+				78C74BEA189521270023C9C6 /* AAColorCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 				78731B481894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
 				78C74BE21894FE870023C9C6 /* AADomUtil.m in Sources */,
 				78C74BE718950F560023C9C6 /* AAToneData.m in Sources */,
+				78C74BEB189521270023C9C6 /* AAColorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +502,7 @@
 				78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
 				78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */,
 				78C74BE818950F560023C9C6 /* AAToneData.m in Sources */,
+				78C74BEC189521270023C9C6 /* AAColorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

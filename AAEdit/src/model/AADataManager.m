@@ -39,7 +39,8 @@ static int padding;
         // initialize
         _directoryPath = NSSearchPathForDirectoriesInDomains(
                                                              NSDesktopDirectory, NSUserDomainMask, YES)[0];
-        _edgeData = [@{} mutableCopy];
+        _edgeData = [NSMutableDictionary dictionaryWithCapacity:0];
+        _toneData = [NSMutableArray arrayWithCapacity:0];
         self.fontSize = 12;
     }
     return self;
@@ -75,9 +76,11 @@ static int padding;
     [self.toneData removeAllObjects];
     
     NSArray * arr = [toneString componentsSeparatedByString:@"\n"];
-    NSLog(@"setToneString %@", arr);
     for(uint i=0; i<arr.count; ++i) {
-        AAToneData *data = [[AAToneData alloc] initWithString:arr[i] font:self.font brightness:(float)i/(float)arr.count];
+        AAToneData *data = [[AAToneData alloc] initWithString:arr[i]
+                                                         font:self.font
+                                                   brightness:1.0f - (float)i/(float)arr.count];
+        
         [self.toneData addObject:data];
     }
 }
@@ -114,15 +117,11 @@ static int padding;
     
     // this is slow
     //    NSColor * c = [imageRep colorAtX:0 y:0];
-    
     NSMutableString *aa = [NSMutableString stringWithString:@""];
-    
     
     // Edge trace
     int x=0,y=0;
     
-//    AABitmap colorBmp;
-//    [colorImage getAABitmap:&colorBmp];
     AABitmap edgeBmp;
     [edgeImage getAABitmap:&edgeBmp];
     

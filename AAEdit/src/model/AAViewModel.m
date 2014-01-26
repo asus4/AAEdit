@@ -113,6 +113,9 @@
 }
 
 - (void) setFontSize:(uint)fontSize {
+    if(fontSize <= 0) {
+        fontSize = 1;
+    }
     _fontSize = fontSize;
     self.dataManager.fontSize = fontSize;
     self.edgeString = self.edgeString; // update edge data
