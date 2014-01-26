@@ -29,6 +29,10 @@
     self.edgeString = [defaults stringForKey:@"edgeString"];
     self.fontSize = [defaults integerForKey:@"fontSize"];
     self.overlayColor = [defaults colorForKey:@"overlayColor"];
+    
+    self.isTraceEdge = [defaults boolForKey:@"isTraceEdge"];
+    self.isTraceTone = [defaults boolForKey:@"isTraceTone"];
+    self.isTraceColor = [defaults boolForKey:@"isTraceColor"];
 }
 
 - (void) save {
@@ -40,6 +44,11 @@
     [defaults setObject:self.edgeString forKey:@"edgeString"];
     [defaults setInteger:self.fontSize forKey:@"fontSize"];
     [defaults setColor:self.overlayColor forKey:@"overlayColor"];
+    
+    [defaults setBool:self.isTraceEdge forKey:@"isTraceEdge"];
+    [defaults setBool:self.isTraceTone forKey:@"isTraceTone"];
+    [defaults setBool:self.isTraceColor forKey:@"isTraceColor"];
+    
     [defaults synchronize];
 }
 
@@ -118,17 +127,18 @@
 
 - (void) setToneString:(NSString *)toneString {
     _toneString = toneString;
-    NSLog(@"set tone string　%@", toneString);
+    [self.dataManager setToneString:toneString];
+    
+    
 }
 
 - (void) setEdgeString:(NSString *)edgeString {
-    // clear
-    [self.edgeArrayController removeAllObjects];
-    
     _edgeString = edgeString;
     [self.dataManager setEdgeString:edgeString];
     
+    // update table
     NSArray * arr = [self.dataManager getEdgeTableData];
+    [self.edgeArrayController removeAllObjects];
     [self.edgeArrayController addObjects:arr];
 }
 

@@ -46,6 +46,10 @@
 @property (nonatomic, setter = setOverlayColor:) NSColor* overlayColor;
 @property (nonatomic, setter = setEdgeIntensity:) double edgeIntensity;
 
+@property (nonatomic) BOOL isTraceEdge;
+@property (nonatomic) BOOL isTraceTone;
+@property (nonatomic) BOOL isTraceColor;
+
 // Font
 @property (nonatomic, setter = setFontSize:) uint fontSize;
 

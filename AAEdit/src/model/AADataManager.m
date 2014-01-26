@@ -70,7 +70,7 @@ static int padding;
 }
 
 - (void) setToneString:(NSString *)toneString {
-    // TODO: implemented
+    // TODO: implemented tone string
 }
 
 - (NSArray*) getEdgeTableData {
@@ -107,8 +107,8 @@ static int padding;
     // Edge trace
     int x=0,y=0;
     AABitmap edgeBmp;
-//    AABitmap colorBmp;
     [edgeImage getAABitmap:&edgeBmp];
+//    AABitmap colorBmp;
 //    [colorImage getAABitmap:&colorBmp];
     
     while (y<edgeBmp.height) {

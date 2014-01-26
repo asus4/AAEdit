@@ -37,19 +37,17 @@
 
 - (IBAction)doTrace:(id)sender
 {
-    
     [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
     [self.previewNormalImage setImage:self.asciiView.getNormalImage];
     
     NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage
                                                colorImage:self.asciiView.getNormalImage
-                                                  useEdge:YES
-                                                  useTone:NO
-                                                 useColor:YES];
-    NSLog(@"AA %@", aa);
+                                                  useEdge:self.viewModel.isTraceEdge
+                                                  useTone:self.viewModel.isTraceTone
+                                                 useColor:self.viewModel.isTraceColor];
+//    NSLog(@"========AA\n\n%@", aa);
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, aa];
-    
 }
 
 - (IBAction)save:(id)sender {
