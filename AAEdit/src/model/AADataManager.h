@@ -28,6 +28,6 @@
 - (void) setToneString:(NSString *)toneString;
 - (NSArray* )getEdgeTableData;
 
-- (NSString*) asciiTrace:(NSImage *) edgeImage;
+- (NSString*) asciiTrace:(NSImage *) edgeImage colorImage:(NSImage *) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor;
 
 @end

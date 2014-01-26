@@ -9,6 +9,7 @@
 #import "AAViewModel.h"
 #import "AAEdgeData.h"
 #import "NSArrayController+Addition.h"
+#import "NSUserDefaults+Addition.h"
 
 @implementation AAViewModel
 
@@ -26,8 +27,12 @@
     self.fps = [defaults integerForKey:@"fps"];
     self.toneString = [defaults stringForKey:@"toneString"];
     self.edgeString = [defaults stringForKey:@"edgeString"];
-    self.overlayColor = [NSColor clearColor];
     self.fontSize = [defaults integerForKey:@"fontSize"];
+    self.overlayColor = [defaults colorForKey:@"overlayColor"];
+    
+    self.isTraceEdge = [defaults boolForKey:@"isTraceEdge"];
+    self.isTraceTone = [defaults boolForKey:@"isTraceTone"];
+    self.isTraceColor = [defaults boolForKey:@"isTraceColor"];
 }
 
 - (void) save {
@@ -38,6 +43,12 @@
     [defaults setObject:self.toneString forKey:@"toneString"];
     [defaults setObject:self.edgeString forKey:@"edgeString"];
     [defaults setInteger:self.fontSize forKey:@"fontSize"];
+    [defaults setColor:self.overlayColor forKey:@"overlayColor"];
+    
+    [defaults setBool:self.isTraceEdge forKey:@"isTraceEdge"];
+    [defaults setBool:self.isTraceTone forKey:@"isTraceTone"];
+    [defaults setBool:self.isTraceColor forKey:@"isTraceColor"];
+    
     [defaults synchronize];
 }
 
@@ -92,7 +103,7 @@
 }
 
 - (void) setOverlayColor:(NSColor *)overlayColor {
-    _color = overlayColor;
+    _overlayColor = overlayColor;
     [self.asciiTraceView setOverlayColor:overlayColor];
 }
 
@@ -116,17 +127,18 @@
 
 - (void) setToneString:(NSString *)toneString {
     _toneString = toneString;
-    NSLog(@"set tone string　%@", toneString);
+    [self.dataManager setToneString:toneString];
+    
+    
 }
 
 - (void) setEdgeString:(NSString *)edgeString {
-    // clear
-    [self.edgeArrayController removeAllObjects];
-    
     _edgeString = edgeString;
     [self.dataManager setEdgeString:edgeString];
     
+    // update table
     NSArray * arr = [self.dataManager getEdgeTableData];
+    [self.edgeArrayController removeAllObjects];
     [self.edgeArrayController addObjects:arr];
 }
 

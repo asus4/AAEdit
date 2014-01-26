@@ -9,13 +9,15 @@
 #import "AADataManager.h"
 #import "AAFileUtil.h"
 #import "NSImage+Addition.h"
+#import "AADomUtil.h"
 
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
-#define _BLACK_TOLERANCE 10
+#define _BLACK_TOLERANCE 20
 
 const UniChar escapes[] = {'\n','\b','\r','\t'};
+static int padding;
 
 #pragma mark private
 
@@ -69,7 +71,7 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
 }
 
 - (void) setToneString:(NSString *)toneString {
-    // TODO: implemented
+    // TODO: implemented tone string
 }
 
 - (NSArray*) getEdgeTableData {
@@ -84,12 +86,14 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     _fontSize = fontSize;
     _font = nil;
     _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
+    
+    padding = fontSize;
 }
 
 
 #pragma mark Trace Logic
 
-- (NSString*) asciiTrace:(NSImage *) edgeImage {
+- (NSString*) asciiTrace:(NSImage *) edgeImage colorImage:(NSImage *) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor {
     NSArray * edgeTable = [self getEdgeTableData];
     
     if(edgeTable.count == 0) {
@@ -101,31 +105,30 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
     
     NSMutableString *aa = [NSMutableString stringWithString:@""];
     
+    
     // Edge trace
     int x=0,y=0;
-    AABitmap bmp;
-    [edgeImage getAABitmap:&bmp];
     
-    while (y<bmp.height) {
+//    AABitmap colorBmp;
+//    [colorImage getAABitmap:&colorBmp];
+    AABitmap edgeBmp;
+    [edgeImage getAABitmap:&edgeBmp];
+    
+    
+    NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
+    NSLog(@"colorrep %@", colorRep);
+    
+    while (y<edgeBmp.height) {
         x = 0;
         int _y = 0;
-        while (x<bmp.width) {
-            // test
-            /*
-            if(isBlackPixel(&bmp, x, y, 10)) {
-                [aa appendString:@"-"];
-            }
-            else {
-                [aa appendString:@"0"];
-            }
-            */
+        while (x<edgeBmp.width) {
             
             int _x = 0;
             float similarity = 0.0f;
             AAEdgeData* matchedData = nil;
             
             for(AAEdgeData* data in edgeTable) {
-                float f = getSimilarity(&bmp, [data getAABitmapRef], x, y);
+                float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
                 
                 if(f > similarity) {
                     similarity = f;
@@ -133,18 +136,25 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
                 }
             }
             
-            // no match
-            // TODO : tone
-            if(similarity < 0) {
+            if(similarity < 0) { // End of Line
                 break;
             }
             
+            // no match
+            // TODO : tone
             if(similarity == 0) {
                 matchedData = self.spaceChar;
+//                matchedData.character = @"0";
             }
             
-            // TODO : color
-            [aa appendString:matchedData.character];
+            // color
+            if(useColor && matchedData!=self.spaceChar) {
+                NSColor *c = [colorRep colorAtX:x y:y];
+                [aa appendString:[AADomUtil wrapSpanString:matchedData.character withColor:c]];
+            }
+            else {
+                [aa appendString:matchedData.character];
+            }
             _x = matchedData.size.width;
             _y = matchedData.size.height;
             
@@ -154,20 +164,7 @@ const UniChar escapes[] = {'\n','\b','\r','\t'};
         y+= _y;
     }
     
-    NSLog(@"image size %f,%f", edgeImage.size.width, edgeImage.size.height);
-    NSLog(@"bitmap size %d,%d", bmp.width, bmp.height);
-    
     return aa;
-}
-
-
-static inline BOOL isBlack(UInt8* buffer, const int x, const int y, const size_t bytesPerRow) {
-    UInt8*  pixelPtr = buffer + (int)y * bytesPerRow + (int)x * 4;
-    UInt8 r = *(pixelPtr);
-    UInt8 g = *(pixelPtr + 1);
-    UInt8 b = *(pixelPtr + 2);
-//    UInt8 a = *(pixelPtr + 3); // ignore alpha
-    return (r + g + b < _BLACK_TOLERANCE);
 }
 
 static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
@@ -179,11 +176,20 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     return (r + g + b < _BLACK_TOLERANCE);
 }
 
+static inline UInt8 getBrightness(AABitmapRef bmp, const int x, const int y) {
+    UInt8*  pixelPtr = bmp->buffer + (int)y * bmp->bytesPerRow + (int)x * 4;
+    UInt8 r = *(pixelPtr);
+    UInt8 g = *(pixelPtr + 1);
+    UInt8 b = *(pixelPtr + 2);
+    //    UInt8 a = *(pixelPtr + 3); // ignore alpha
+    return (r + g + b) / 3;
+}
+
 // bitmap matcing algorithm
 static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const int sX, const int sY) {
     
-    if(sX+charBmp->width >= srcBmp->width
-       || sY+charBmp->height >= srcBmp->height) {
+    if(sX+charBmp->width >= srcBmp->width-padding
+       || sY+charBmp->height >= srcBmp->height-padding) {
         return -1.0f;
     }
     
@@ -198,7 +204,7 @@ static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const
             if(sOn) numSrcOn++;
             if(cOn) numCharOn++;
             
-            if(sOn && cOn) {
+            if(sOn == cOn) {
                 similarity += 1.0f;
             }
             else {

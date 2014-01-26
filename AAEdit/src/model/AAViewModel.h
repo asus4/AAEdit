@@ -21,7 +21,7 @@
     int _currentFrame;
     bool _playbackMode;
     bool _useFilter;
-    NSColor *_color;
+    NSColor *_overlayColor;
     double _edgeIntensity;
     NSString * _htmlString;
 }
@@ -45,6 +45,10 @@
 @property (nonatomic, setter = setUseFilter:) bool useFilter;
 @property (nonatomic, setter = setOverlayColor:) NSColor* overlayColor;
 @property (nonatomic, setter = setEdgeIntensity:) double edgeIntensity;
+
+@property (nonatomic) BOOL isTraceEdge;
+@property (nonatomic) BOOL isTraceTone;
+@property (nonatomic) BOOL isTraceColor;
 
 // Font
 @property (nonatomic, setter = setFontSize:) uint fontSize;
