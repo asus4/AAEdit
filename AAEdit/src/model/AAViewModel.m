@@ -129,7 +129,10 @@
     _toneString = toneString;
     [self.dataManager setToneString:toneString];
     
-    
+    // update talbe
+    NSArray * arr = [self.dataManager getToneTableData];
+    [self.toneArrayController removeAllObjects];
+    [self.toneArrayController addObjects:arr];
 }
 
 - (void) setEdgeString:(NSString *)edgeString {

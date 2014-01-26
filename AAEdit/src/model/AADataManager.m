@@ -10,6 +10,7 @@
 #import "AAFileUtil.h"
 #import "NSImage+Addition.h"
 #import "AADomUtil.h"
+#import "AAToneData.h"
 
 @implementation AADataManager
 
@@ -71,7 +72,14 @@ static int padding;
 }
 
 - (void) setToneString:(NSString *)toneString {
-    // TODO: implemented tone string
+    [self.toneData removeAllObjects];
+    
+    NSArray * arr = [toneString componentsSeparatedByString:@"\n"];
+    NSLog(@"setToneString %@", arr);
+    for(uint i=0; i<arr.count; ++i) {
+        AAToneData *data = [[AAToneData alloc] initWithString:arr[i] font:self.font brightness:(float)i/(float)arr.count];
+        [self.toneData addObject:data];
+    }
 }
 
 - (NSArray*) getEdgeTableData {
@@ -80,6 +88,10 @@ static int padding;
         [arr addObject:data];
     }
     return arr;
+}
+
+- (NSArray*) getToneTableData {
+    return self.toneData;
 }
 
 - (void) setFontSize:(uint)fontSize {
@@ -116,7 +128,6 @@ static int padding;
     
     
     NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
-    NSLog(@"colorrep %@", colorRep);
     
     while (y<edgeBmp.height) {
         x = 0;
@@ -125,7 +136,7 @@ static int padding;
             
             int _x = 0;
             float similarity = 0.0f;
-            AAEdgeData* matchedData = nil;
+            id<AADataProtcol> matchedData = nil; // AAEdgeData or AAToneData
             
             for(AAEdgeData* data in edgeTable) {
                 float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
@@ -144,7 +155,6 @@ static int padding;
             // TODO : tone
             if(similarity == 0) {
                 matchedData = self.spaceChar;
-//                matchedData.character = @"0";
             }
             
             // color

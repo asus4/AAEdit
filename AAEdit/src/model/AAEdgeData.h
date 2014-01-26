@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AADataProtcol.h"
 #import "AABitmap.h"
 
-@interface AAEdgeData : NSObject {
+@interface AAEdgeData : NSObject <AADataProtcol> {
     AABitmap bitmap;
 }
 
