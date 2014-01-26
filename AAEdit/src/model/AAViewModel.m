@@ -9,6 +9,7 @@
 #import "AAViewModel.h"
 #import "AAEdgeData.h"
 #import "NSArrayController+Addition.h"
+#import "NSUserDefaults+Addition.h"
 
 @implementation AAViewModel
 
@@ -26,8 +27,8 @@
     self.fps = [defaults integerForKey:@"fps"];
     self.toneString = [defaults stringForKey:@"toneString"];
     self.edgeString = [defaults stringForKey:@"edgeString"];
-    self.overlayColor = [NSColor clearColor];
     self.fontSize = [defaults integerForKey:@"fontSize"];
+    self.overlayColor = [defaults colorForKey:@"overlayColor"];
 }
 
 - (void) save {
@@ -38,6 +39,7 @@
     [defaults setObject:self.toneString forKey:@"toneString"];
     [defaults setObject:self.edgeString forKey:@"edgeString"];
     [defaults setInteger:self.fontSize forKey:@"fontSize"];
+    [defaults setColor:self.overlayColor forKey:@"overlayColor"];
     [defaults synchronize];
 }
 
@@ -92,7 +94,7 @@
 }
 
 - (void) setOverlayColor:(NSColor *)overlayColor {
-    _color = overlayColor;
+    _overlayColor = overlayColor;
     [self.asciiTraceView setOverlayColor:overlayColor];
 }
 

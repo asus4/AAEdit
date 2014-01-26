@@ -16,6 +16,7 @@
     if(self == [super init]) {
         self.character = [NSString stringWithCharacters:&c length:1];
         self.image = [self.character imageWithFont:font];
+        
         self.size = self.image.size;
         
         [self.image getAABitmap:&bitmap];

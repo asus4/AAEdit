@@ -21,7 +21,7 @@
     int _currentFrame;
     bool _playbackMode;
     bool _useFilter;
-    NSColor *_color;
+    NSColor *_overlayColor;
     double _edgeIntensity;
     NSString * _htmlString;
 }
