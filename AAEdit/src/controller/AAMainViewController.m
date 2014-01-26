@@ -43,7 +43,7 @@
                                           defaultButton:@"OK"
                                         alternateButton:NULL
                                             otherButton:NULL
-                              informativeTextWithFormat:@"Need to enable edge or tone."];
+                              informativeTextWithFormat:@"Enable Edge or Tone switch."];
         [alert beginSheetModalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
         return;
     }

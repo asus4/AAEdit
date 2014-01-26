@@ -129,6 +129,9 @@
 }
 
 - (void) setToneString:(NSString *)toneString {
+    if(toneString.length == 0) {
+        toneString = @";";
+    }
     _toneString = toneString;
     [self.dataManager setToneString:toneString];
     
@@ -139,6 +142,9 @@
 }
 
 - (void) setEdgeString:(NSString *)edgeString {
+    if(edgeString.length == 0) {
+        edgeString = @"-";
+    }
     _edgeString = edgeString;
     [self.dataManager setEdgeString:edgeString];
     

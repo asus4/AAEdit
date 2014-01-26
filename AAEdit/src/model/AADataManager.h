@@ -16,7 +16,7 @@
 @property (nonatomic, readonly) NSString * directoryPath;
 
 @property (nonatomic, readonly) NSMutableDictionary * edgeData; // [Unicode, AAEdgeData]
-@property (nonatomic, readonly) NSMutableArray * toneData; // [AAToneData]
+@property (nonatomic, readonly) NSMutableArray * toneData; // [AAToneData] // white(1.0) - black(0.0)
 @property (nonatomic, readonly) AAEdgeData * spaceChar;
 
 @property (nonatomic) uint fontSize;

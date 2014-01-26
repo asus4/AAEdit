@@ -17,4 +17,16 @@
     
     return [NSString stringWithFormat:@"<span style=\"color:#%02x%02x%02x;\">%@</span>",r,g,b,str];
 }
+
+const UniChar escapes[] = {'\n','\b','\r','\t'};
++ (BOOL) isEscape:(UniChar)c {
+    uint length = sizeof escapes / sizeof escapes[0];
+    for(uint i=0; i<length; ++i) {
+        if(escapes[i] == c) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

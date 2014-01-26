@@ -11,4 +11,5 @@
 @interface AADomUtil : NSObject
 
 + (NSString*) wrapSpanString:(NSString*)str withColor:(NSColor*)color;
++ (BOOL) isEscape:(UniChar) c;
 @end
