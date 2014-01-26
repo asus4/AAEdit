@@ -10,7 +10,7 @@
 
 @implementation NSString (AAAddition)
 
-- (NSImage*) imageWithFont:(NSFont *)font {
+- (NSImage*) imageWithFont:(NSFont *)font size:(NSSize*) size {
     
     // @see: http://stackoverflow.com/questions/2444717/embed-font-in-a-mac-bundle
     // @see: http://stackoverflow.com/questions/11442993/how-to-convert-text-to-image-in-cocoa-objective-c
@@ -24,6 +24,8 @@
     double fWidth = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
     
     // On iOS 4.0 and Mac OS X v10.6 you can pass null for data
+    *size = CGSizeMake(fWidth, ascent + descent);
+    
     size_t width = (size_t)ceilf(fWidth);
     size_t height = (size_t)ceilf(ascent + descent);
     void* data = malloc(width*height*4);

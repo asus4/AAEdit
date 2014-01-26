@@ -15,9 +15,10 @@
 - (id) initWithCharacter:(UniChar)c font:(NSFont *)font{
     if(self == [super init]) {
         self.character = [NSString stringWithCharacters:&c length:1];
-        self.image = [self.character imageWithFont:font];
         
-        self.size = self.image.size;
+        NSSize size;
+        self.image = [self.character imageWithFont:font size:&size];
+        self.size = size;
         
         [self.image getAABitmap:&bitmap];
     }

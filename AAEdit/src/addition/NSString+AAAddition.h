@@ -10,6 +10,6 @@
 
 @interface NSString (AAAddition)
 
-- (NSImage*) imageWithFont:(NSFont*)font;
+- (NSImage*) imageWithFont:(NSFont*)font size:(NSSize*)size;
 
 @end

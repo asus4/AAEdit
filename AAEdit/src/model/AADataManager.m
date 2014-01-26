@@ -107,7 +107,7 @@ static int padding;
     NSMutableString *aa = [NSMutableString stringWithString:@""];
     
     // Edge trace
-    int x=0,y=0;
+    double x=0,y=0;
     
     AABitmap edgeBmp;
     [edgeImage getAABitmap:&edgeBmp];
@@ -117,10 +117,10 @@ static int padding;
     
     while (y<edgeBmp.height) {
         x = 0;
-        int _y = 0;
+        double _y = 0;
         while (x<edgeBmp.width) {
             
-            int _x = 0;
+            double _x = 0;
             float similarity = 0.0f;
             id<AADataProtcol> matchedData = nil; // AAEdgeData or AAToneData
             
