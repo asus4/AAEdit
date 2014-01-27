@@ -16,4 +16,6 @@
 + (void) createFolder:(NSString*)directory;
 + (NSString*) loadTextResource:(NSString*)file extensition:(NSString*)extension;
 
++ (BOOL) saveText:(NSString*)text toPath:(NSString*)path;
+
 @end

@@ -119,6 +119,7 @@
     _fontSize = fontSize;
     self.dataManager.fontSize = fontSize;
     self.edgeString = self.edgeString; // update edge data
+    self.toneString = self.toneString; // update edge data
 }
 
 - (void) setHtmlString:(NSString *)htmlString {

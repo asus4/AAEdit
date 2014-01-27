@@ -58,15 +58,17 @@
                                                  useColor:self.viewModel.isTraceColor];
     
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
-    self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, aa];
+    self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, self.viewModel.currentFrame, aa];
 }
 
 - (IBAction)save:(id)sender {
     NSString* img_path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
     NSString* html_path = [NSString stringWithFormat:@"%@/%i.html", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
+    NSString* txt_path = [NSString stringWithFormat:@"%@/%i.txt", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
     
     [self.webView saveImageFile:img_path];
     [self.webView saveHtmlFile:html_path];
+    [self.webView saveIdOuterHtml:@"pre" path:txt_path];
 }
 
 @end

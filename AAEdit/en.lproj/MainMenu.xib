@@ -2057,7 +2057,7 @@ oLbooLvmrJ3ngaM</bytes>
 																						<nil key="NSTabStops"/>
 																					</object>
 																				</dictionary>
-																				<dictionary id="50812117">
+																				<dictionary id="285573327">
 																					<reference key="NSFont" ref="307394060"/>
 																					<object class="NSParagraphStyle" key="NSParagraphStyle" id="1060018393">
 																						<int key="NSAlignment">4</int>
@@ -2441,7 +2441,7 @@ vJwK44CAIO+8nu+8nAou44CA44CA44CAIOOAgO+8ng</bytes>
 																			</object>
 																			<array class="NSMutableArray" key="NSAttributes">
 																				<reference ref="399388847"/>
-																				<reference ref="50812117"/>
+																				<reference ref="285573327"/>
 																				<reference ref="252386404"/>
 																			</array>
 																			<object class="NSMutableData" key="NSAttributeInfo">
@@ -2653,7 +2653,7 @@ AQACAQ</bytes>
 																		<bool key="NSIsResizeable">YES</bool>
 																		<bool key="NSIsEditable">YES</bool>
 																		<reference key="NSTableView" ref="241901099"/>
-																		<object class="NSSortDescriptor" key="NSSortDescriptorPrototype" id="1061957374">
+																		<object class="NSSortDescriptor" key="NSSortDescriptorPrototype" id="44261319">
 																			<string key="NSKey">key</string>
 																			<bool key="NSAscending">NO</bool>
 																			<string key="NSSelector">compare:</string>
@@ -2701,7 +2701,7 @@ AQACAQ</bytes>
 																<reference key="NSDataSource"/>
 																<int key="NSGridStyleMask">9</int>
 																<array key="NSSortDescriptors">
-																	<reference ref="1061957374"/>
+																	<reference ref="44261319"/>
 																</array>
 																<int key="NSColumnAutoresizingStyle">2</int>
 																<int key="NSDraggingSourceMaskForLocal">15</int>

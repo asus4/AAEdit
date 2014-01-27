@@ -53,4 +53,15 @@
 }
 
 
++ (BOOL) saveText:(NSString*)text toPath:(NSString*)path {
+    NSError *error;
+    BOOL status = [text writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    if(!status) {
+        NSLog(@"Failed to save : %@", [error domain]);
+    }
+    
+    return status;
+}
+
 @end

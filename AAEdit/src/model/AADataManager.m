@@ -12,12 +12,12 @@
 #import "AADomUtil.h"
 #import "AAToneData.h"
 
+#import "cv.h"
+
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
 #define _BLACK_TOLERANCE 20
-
-static int padding;
 
 #pragma mark public
 
@@ -88,8 +88,6 @@ static int padding;
     _fontSize = fontSize;
     _font = nil;
     _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
-    
-    padding = 0;
 }
 
 
@@ -110,10 +108,11 @@ static int padding;
     
     // Edge trace
     double x=0,y=0;
-    
+
+    NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
     AABitmap edgeBmp;
     NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
-    NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
+    edgeBmp.buffer = edgeRep.bitmapData;
     
     while (y<edgeBmp.height) {
         x = 0;
@@ -174,13 +173,18 @@ static int padding;
 
 - (AAToneData*) getToneWithColor:(NSColor*) color {
     float brightness = color.brightnessComponent;
-    // TODO : checkcckckckck
-
-    if(brightness >= 1.0) {
-        brightness = 0.99f;
+    int length = (int)_toneData.count;
+    
+    int i =  (1.0f-brightness) * (float) length;
+    
+    if(i >= length) {
+        i = length -1;
     }
-    int i =  (1.0f-brightness) * (float) self.toneData.count;
-    AAToneData * data = self.toneData[i];
+    if(i < 0){
+        i = 0;
+    }
+    
+    AAToneData * data = _toneData[i];
     [data nextTone];
     return data;
 }
@@ -206,8 +210,8 @@ static inline UInt8 getBrightness(AABitmapRef bmp, const int x, const int y) {
 // bitmap matcing algorithm
 static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const int sX, const int sY) {
     
-    if(sX+charBmp->width >= srcBmp->width-padding
-       || sY+charBmp->height >= srcBmp->height-padding) {
+    if((sX+charBmp->width) >= (srcBmp->width)
+       || sY+charBmp->height >= srcBmp->height) {
         return -1.0f;
     }
     
@@ -222,7 +226,7 @@ static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const
             if(sOn) numSrcOn++;
             if(cOn) numCharOn++;
             
-            if(sOn == cOn) {
+            if(sOn == cOn) { // on on || off off
                 similarity += 1.0f;
             }
             else {

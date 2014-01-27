@@ -13,4 +13,5 @@
 
 - (void) saveImageFile:(NSString *)path;
 - (void) saveHtmlFile:(NSString *)path;
+- (void) saveIdOuterHtml:(NSString*)_id path:(NSString *)path;
 @end

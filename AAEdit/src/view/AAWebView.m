@@ -41,4 +41,9 @@
     }
 }
 
+- (void) saveIdOuterHtml:(NSString*)_id path:(NSString *)path {
+    // TODO: impelemented
+}
+
+
 @end
