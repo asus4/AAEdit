@@ -26,8 +26,8 @@
     // On iOS 4.0 and Mac OS X v10.6 you can pass null for data
     *size = CGSizeMake(fWidth, ascent + descent);
     
-    size_t width = (size_t)ceilf(fWidth);
-    size_t height = (size_t)ceilf(ascent + descent);
+    size_t width = (size_t)ceilf(size->width);
+    size_t height = (size_t)ceilf(size->height);
     void* data = malloc(width*height*4);
     
     // Create the context and fill it with white background
@@ -47,8 +47,8 @@
     
     // Save as image
     CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
-    NSBitmapImageRep* imageRep = [[NSBitmapImageRep alloc] initWithCGImage:imageRef];
-    NSAssert(imageRep, @"imageRep must not be nil");
+//    NSBitmapImageRep* imageRep = [[NSBitmapImageRep alloc] initWithCGImage:imageRef];
+//    NSAssert(imageRep, @"imageRep must not be nil");
     
     NSImage * img = [[NSImage alloc] initWithCGImage:imageRef size:NSMakeSize(width, height)];
     

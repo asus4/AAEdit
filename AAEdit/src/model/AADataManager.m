@@ -89,7 +89,7 @@ static int padding;
     _font = nil;
     _font = [NSFont fontWithName:_FONT_NAME size:fontSize];
     
-    padding = fontSize;
+    padding = 0;
 }
 
 
@@ -98,21 +98,21 @@ static int padding;
 - (NSString*) asciiTrace:(NSImage *) edgeImage colorImage:(NSImage *) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor {
     NSArray * edgeTable = [self getEdgeTableData];
     
+    // errors
     if(edgeTable.count == 0) {
         return @"edge table is empty.";
     }
+    if(self.toneData.count == 0) {
+        return @"tone table is empty.";
+    }
     
-    // this is slow
-    //    NSColor * c = [imageRep colorAtX:0 y:0];
     NSMutableString *aa = [NSMutableString stringWithString:@""];
     
     // Edge trace
     double x=0,y=0;
     
     AABitmap edgeBmp;
-    [edgeImage getAABitmap:&edgeBmp];
-    
-    
+    NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
     NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
     
     while (y<edgeBmp.height) {
@@ -165,6 +165,9 @@ static int padding;
         [aa appendString:@"\n"];
         y+= _y;
     }
+    
+    edgeRep = nil;
+    colorRep = nil;
     
     return aa;
 }

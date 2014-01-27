@@ -12,6 +12,8 @@
 
 
 - (void) setObjectValue:(id<NSCopying>)obj {
+    [super setObjectValue:obj];
+    
     id o = obj;
     if([o isKindOfClass:[NSColor class]] ) {
         NSColor * color = o;
@@ -19,7 +21,6 @@
         [self setBackgroundColor:color];
         [self setTextColor:color]; // this will work.
     }
-    [super setObjectValue:obj];
 }
 
 @end

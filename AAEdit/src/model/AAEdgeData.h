@@ -11,6 +11,7 @@
 #import "AABitmap.h"
 
 @interface AAEdgeData : NSObject <AADataProtcol> {
+    NSBitmapImageRep* imageRep;
     AABitmap bitmap;
 }
 

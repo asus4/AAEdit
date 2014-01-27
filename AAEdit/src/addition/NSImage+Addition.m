@@ -30,9 +30,10 @@
     return resizedImage;
 }
 
-- (void) getBitmapData:(UInt8 **)buffer bytesPerRow:(size_t *)bpr width:(int *)w height:(int *)h {
+- (NSBitmapImageRep*) getBitmapData:(UInt8**) buffer bytesPerRow:(size_t*) bpr width:(int*) w height:(int*)h;
+ {
     // Get Bitmap image
-    NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:[self TIFFRepresentation]];
+     NSBitmapImageRep* imageRep = [self getBitmapImageRep];
     
     CGImageRef imageRef = imageRep.CGImage;
     CGDataProviderRef dataProvider = CGImageGetDataProvider(imageRef); // data provider
@@ -44,10 +45,12 @@
     *h = (int)imageRep.pixelsHigh;
     
     CFRelease(dataRef);
+     
+    return imageRep;
 }
 
-- (void) getAABitmap:(AABitmapRef)bmp {
-    [self getBitmapData:&(*bmp).buffer bytesPerRow:&(*bmp).bytesPerRow width:&(*bmp).width height:&(*bmp).height];
+- (NSBitmapImageRep*) getAABitmap:(AABitmapRef)bmp {
+    return [self getBitmapData:&(*bmp).buffer bytesPerRow:&(*bmp).bytesPerRow width:&(*bmp).width height:&(*bmp).height];
 }
 
 - (NSBitmapImageRep*) getBitmapImageRep {

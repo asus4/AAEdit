@@ -18,9 +18,12 @@
         
         NSSize size;
         self.image = [self.character imageWithFont:font size:&size];
+        //floorf, ceilf, roundf
+//        size.width = ceilf(size.width);
+//        size.height = ceilf(size.height);
         self.size = size;
         
-        [self.image getAABitmap:&bitmap];
+        imageRep = [self.image getAABitmap:&bitmap];
     }
     return self;
 }
