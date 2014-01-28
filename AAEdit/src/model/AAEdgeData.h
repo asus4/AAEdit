@@ -15,6 +15,7 @@
 @interface AAEdgeData : NSObject <AADataProtcol> {
     NSBitmapImageRep* imageRep;
     AABitmap bitmap;
+    IplImage* grayImage;
 }
 
 @property (nonatomic) NSString * character;

@@ -33,6 +33,7 @@
     if([panel runModal] == NSOKButton) {
         self.viewModel.movieUrl = panel.URL;
     }
+    self.viewModel.currentFrame = 0;
 }
 
 - (IBAction)doTrace:(id)sender

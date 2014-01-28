@@ -11,125 +11,104 @@
 
 #import "NSImage+OpenCV.h"
 
-static void ProviderReleaseDataNOP(void *info, const void *data, size_t size)
-{
-    return;
-}
 
 @implementation NSImage (OpenCV)
 
--(CGImageRef)CGImage
-{
-    CGContextRef bitmapCtx = CGBitmapContextCreate(NULL/*data - pass NULL to let CG allocate the memory*/,
-                                                   [self size].width,
-                                                   [self size].height,
-                                                   8 /*bitsPerComponent*/,
-                                                   0 /*bytesPerRow - CG will calculate it for you if it's allocating the data.  This might get padded out a bit for better alignment*/,
-                                                   [[NSColorSpace genericRGBColorSpace] CGColorSpace],
-                                                   kCGBitmapByteOrder32Host|kCGImageAlphaPremultipliedFirst);
-    
-    [NSGraphicsContext saveGraphicsState];
-    [NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithGraphicsPort:bitmapCtx flipped:NO]];
-    [self drawInRect:NSMakeRect(0,0, [self size].width, [self size].height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-    [NSGraphicsContext restoreGraphicsState];
-    
-    CGImageRef cgImage = CGBitmapContextCreateImage(bitmapCtx);
-    CGContextRelease(bitmapCtx);
-    
-    return cgImage;
-}
+#pragma mark class method
 
++ (NSImage*) imageWithIplImage:(IplImage *)iplImage {
+//    http://article.gmane.org/gmane.comp.lib.opencv/14808
 
--(cv::Mat)CVMat
-{
-    CGImageRef imageRef = [self CGImage];
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
-    CGFloat cols = self.size.width;
-    CGFloat rows = self.size.height;
-    cv::Mat cvMat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels
-    
-    CGContextRef contextRef = CGBitmapContextCreate(cvMat.data,                 // Pointer to backing data
-                                                    cols,                      // Width of bitmap
-                                                    rows,                     // Height of bitmap
-                                                    8,                          // Bits per component
-                                                    cvMat.step[0],              // Bytes per row
-                                                    colorSpace,                 // Colorspace
-                                                    kCGImageAlphaNoneSkipLast |
-                                                    kCGBitmapByteOrderDefault); // Bitmap info flags
-    
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), imageRef);
-    CGContextRelease(contextRef);
-    CGImageRelease(imageRef);
-    return cvMat;
-}
+    NSString* colorspace;
 
--(cv::Mat)CVGrayscaleMat
-{
-    CGImageRef imageRef = [self CGImage];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    CGFloat cols = self.size.width;
-    CGFloat rows = self.size.height;
-    cv::Mat cvMat = cv::Mat(rows, cols, CV_8UC1); // 8 bits per component, 1 channel
-    CGContextRef contextRef = CGBitmapContextCreate(cvMat.data,                 // Pointer to backing data
-                                                    cols,                      // Width of bitmap
-                                                    rows,                     // Height of bitmap
-                                                    8,                          // Bits per component
-                                                    cvMat.step[0],              // Bytes per row
-                                                    colorSpace,                 // Colorspace
-                                                    kCGImageAlphaNone |
-                                                    kCGBitmapByteOrderDefault); // Bitmap info flags
     
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), imageRef);
-    CGContextRelease(contextRef);
-    CGColorSpaceRelease(colorSpace);
-    CGImageRelease(imageRef);
-    return cvMat;
-}
-
-+ (NSImage *)imageWithCVMat:(const cv::Mat&)cvMat
-{
-    return [[NSImage alloc] initWithCVMat:cvMat];
-}
-
-- (id)initWithCVMat:(const cv::Mat&)cvMat
-{
-    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()];
-    
-    CGColorSpaceRef colorSpace;
-    
-    if (cvMat.elemSize() == 1)
-    {
-        colorSpace = CGColorSpaceCreateDeviceGray();
+    if(iplImage->nChannels == 1) {
+        colorspace = NSDeviceWhiteColorSpace;
     }
-    else
-    {
-        colorSpace = CGColorSpaceCreateDeviceRGB();
+    else {
+        colorspace = NSDeviceRGBColorSpace;
     }
     
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+    int nChannels = iplImage->nChannels;
+    BOOL hasAlpha = iplImage->nChannels >= 4 ? YES : NO;
+    char *d = iplImage->imageData;
+    NSUInteger colors[nChannels];
+    int width = iplImage->width;
+    int height = iplImage->height;
+    int bytePerRow = iplImage->widthStep;
     
-    CGImageRef imageRef = CGImageCreate(cvMat.cols,                                     // Width
-                                        cvMat.rows,                                     // Height
-                                        8,                                              // Bits per component
-                                        8 * cvMat.elemSize(),                           // Bits per pixel
-                                        cvMat.step[0],                                  // Bytes per row
-                                        colorSpace,                                     // Colorspace
-                                        kCGImageAlphaNone | kCGBitmapByteOrderDefault,  // Bitmap info flags
-                                        provider,                                       // CGDataProviderRef
-                                        NULL,                                           // Decode
-                                        false,                                          // Should interpolate
-                                        kCGRenderingIntentDefault);                     // Intent
+//    NSLog(@"NSImage hasAlpha:%d ch:%d", hasAlpha, nChannels);
     
+    NSBitmapImageRep *bmp = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL
+                                                                    pixelsWide:width
+                                                                    pixelsHigh:height
+                                                                 bitsPerSample:iplImage->depth samplesPerPixel:nChannels
+                                                                      hasAlpha:hasAlpha
+                                                                      isPlanar:NO
+                                                                colorSpaceName:colorspace bytesPerRow:bytePerRow
+                                                                  bitsPerPixel:0];
     
-    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:imageRef];
-    NSImage *image = [[NSImage alloc] init];
-    [image addRepresentation:bitmapRep];
+    for(int y=0; y<iplImage->height; ++y) {
+        for(int x=0; x<iplImage->width; ++x) {
+            if(nChannels == 3){
+				colors[0] = (unsigned int) d[(y * bytePerRow) + (x*3)];
+				colors[1] = (unsigned int) d[(y * bytePerRow) + (x*3)+1];
+				colors[2] = (unsigned int) d[(y * bytePerRow) + (x*3)+2];
+			}
+            else if(nChannels == 4) {
+                colors[0] = (unsigned int) d[(y * bytePerRow) + (x*4)];
+				colors[1] = (unsigned int) d[(y * bytePerRow) + (x*4)+1];
+				colors[2] = (unsigned int) d[(y * bytePerRow) + (x*4)+2];
+                colors[3] = (unsigned int) d[(y * bytePerRow) + (x*4)+3];
+            }
+			else{
+				colors[0] = (unsigned int)d[(y * bytePerRow) + x];
+			}
+            [bmp setPixel:colors atX:x y:y];
+        }
+    }
     
-    CGImageRelease(imageRef);
-    CGDataProviderRelease(provider);
-    CGColorSpaceRelease(colorSpace);
+    return [[NSImage alloc] initWithData:[bmp TIFFRepresentation]];
+}
+
+#pragma mark properties
+
+- (cv::Mat) CVGrayscaleMat {
+    cv::Mat mat;
+    return mat;
+}
+
+- (IplImage*) cvImage {
+    NSBitmapImageRep *bmp = [NSBitmapImageRep imageRepWithData:[self TIFFRepresentation]];
     
-    return image;
+    int depth       = (int) bmp.bitsPerSample;
+    int channels    = (int) bmp.samplesPerPixel;
+    int width       = bmp.size.width;
+    int height      = bmp.size.height;
+    
+    IplImage *iplImage = cvCreateImage(cvSize(width, height), depth, channels);
+    cvSetData(iplImage, bmp.bitmapData, (int)bmp.bytesPerRow);
+    
+    // release
+    bmp = nil;
+    return iplImage;
+}
+
+- (IplImage*) cvGrayImage {
+    
+    IplImage* img = self.cvImage;
+    if(img->nChannels == 1) {
+        return img;
+    }
+    // else ... convert color to grayscale
+    
+    IplImage *grayImage = cvCreateImage(cvSize(img->width, img->height), img->depth, 1);
+    cvCvtColor(img, grayImage, CV_RGB2GRAY);
+    
+    // release
+//    cvReleaseImage(&img);
+    
+    return  grayImage;
 }
 
 @end

@@ -206,7 +206,6 @@
 		7833C8F1188CD33C00905AA6 = {
 			isa = PBXGroup;
 			children = (
-				7839889C18973B730096C50D /* libc++.dylib */,
 				7833C903188CD33C00905AA6 /* AAEdit */,
 				7833C920188CD33C00905AA6 /* AAEditTests */,
 				7833C8FC188CD33C00905AA6 /* Frameworks */,
@@ -226,6 +225,7 @@
 		7833C8FC188CD33C00905AA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7839889C18973B730096C50D /* libc++.dylib */,
 				788AD44418967E5C00FEB743 /* opencv2.framework */,
 				78647E60188CF66F00CECA10 /* WebKit.framework */,
 				7833C951188CD45900905AA6 /* QTKit.framework */,

@@ -6,15 +6,24 @@
 //  Copyright (c) 2014年 Koki Ibukuro. All rights reserved.
 //
 
-#import <opencv2/opencv.hpp>
+#ifndef __NSIMAGE_OPENCV_H__
+#define __NSIMAGE_OPENCV_H__
+
+
 #import <Cocoa/Cocoa.h>
+#include <opencv2/opencv.hpp>
 
 @interface NSImage (OpenCV)
 
-+(NSImage*)imageWithCVMat:(const cv::Mat&)cvMat;
--(id)initWithCVMat:(const cv::Mat&)cvMat;
+//using namespace cv;
 
-@property(nonatomic, readonly) cv::Mat CVMat;
-@property(nonatomic, readonly) cv::Mat CVGrayscaleMat;
++ (NSImage*) imageWithIplImage:(IplImage*) iplImage;
+
+@property(nonatomic, readonly) IplImage* cvImage;
+@property(nonatomic, readonly) IplImage* cvGrayImage;
+
+//@property(nonatomic, readonly) cv::Mat CVGrayscaleMat;
 
 @end
+
+#endif

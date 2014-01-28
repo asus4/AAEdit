@@ -10,6 +10,8 @@
 #import "NSImage+Addition.h"
 #import "NSString+AAAddition.h"
 
+
+
 @implementation AAEdgeData
 
 - (id) initWithCharacter:(UniChar)c font:(NSFont *)font{
@@ -21,12 +23,19 @@
         self.size = size;
         
         imageRep = [self.image getAABitmap:&bitmap];
+        grayImage = self.image.cvGrayImage;
+        
+        // test code
+//        IplImage* colorimg = self.image.cvImage;
+//        self.image = [NSImage imageWithIplImage:colorimg];
+//        self.image = [NSImage imageWithIplImage:grayImage];
     }
     return self;
 }
 
 - (void) dealloc {
     imageRep = nil;
+    cvReleaseImage(&grayImage);
 }
 
 - (AABitmapRef) getAABitmapRef {
