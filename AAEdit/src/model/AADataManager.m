@@ -139,7 +139,6 @@ static IplImage* templeteResult;
                     if(f > similarity) {
                         similarity = f;
                         matchedData = data;
-                        
                     }
                 }
             }
@@ -239,16 +238,16 @@ static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const in
     
     // calc similarity
     cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
-//    double similarity = cvMatchShapes(srcBmp, charBmp, CV_CONTOURS_MATCH_I2, 0);
-    cvMatchTemplate(srcBmp, charBmp, templeteResult, CV_TM_CCOEFF);
+    double similarity = cvMatchShapes(srcBmp, charBmp, CV_CONTOURS_MATCH_I3, 0);
     
-    char * c = templeteResult->imageData;
-    double similarity = *c;
-    //templeteResult
+//    cvMatchTemplate(srcBmp, charBmp, templeteResult, CV_TM_CCOEFF);
+//    char * c = templeteResult->imageData;
+//    double similarity = *c;
+    
     cvResetImageROI(srcBmp);
     
-//    return 1.0f - similarity;
-    return similarity;
+    return 1.0f - similarity;
+//    return similarity;
 }
 
 // bitmap matching algorithm
