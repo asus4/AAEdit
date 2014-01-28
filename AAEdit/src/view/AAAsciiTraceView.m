@@ -45,8 +45,11 @@
     NSString *file = [[NSBundle mainBundle] pathForResource:@"player" ofType:@"qtz"];
     
     if([_qcView loadCompositionFromFile:file] == YES) {
-    } {
+        
+    }
+    else {
         NSLog(@"failed to load"); // ???
+        return;
     }
     [_qcView startRendering];
     
@@ -64,7 +67,6 @@
 
 #pragma Quartz Composer Interface
 - (void) loadMovie:(NSString *)file {
-    NSLog(@"load move %@", file);
     [_qcView setValue:file forInputKey:_KEY_MOVIE_LOCATION];
 }
 
