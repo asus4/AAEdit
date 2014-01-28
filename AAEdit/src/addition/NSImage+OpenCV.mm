@@ -83,8 +83,8 @@
     
     int depth       = (int) bmp.bitsPerSample;
     int channels    = (int) bmp.samplesPerPixel;
-    int width       = bmp.size.width;
-    int height      = bmp.size.height;
+    int width       = (int) bmp.pixelsWide;
+    int height      = (int) bmp.pixelsHigh;
     
     IplImage *iplImage = cvCreateImage(cvSize(width, height), depth, channels);
     cvSetData(iplImage, bmp.bitmapData, (int)bmp.bytesPerRow);

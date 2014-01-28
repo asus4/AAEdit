@@ -49,11 +49,14 @@
         return;
     }
     
-    [self.previewEdgeImage setImage:self.asciiView.getEdgeImage];
-    [self.previewNormalImage setImage:self.asciiView.getNormalImage];
+    NSImage *edge = self.asciiView.getEdgeImage;
+    NSImage *normal = self.asciiView.getNormalImage;
     
-    NSString* aa = [self.viewModel.dataManager asciiTrace:self.asciiView.getEdgeImage
-                                               colorImage:self.asciiView.getNormalImage
+    [self.previewEdgeImage setImage:edge];
+    [self.previewNormalImage setImage:normal];
+    
+    NSString* aa = [self.viewModel.dataManager asciiTrace:edge
+                                               colorImage:normal
                                                   useEdge:self.viewModel.isTraceEdge
                                                   useTone:self.viewModel.isTraceTone
                                                  useColor:self.viewModel.isTraceColor];

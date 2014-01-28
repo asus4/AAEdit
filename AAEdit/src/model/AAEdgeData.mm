@@ -23,9 +23,8 @@
         self.size = size;
         
         imageRep = [self.image getAABitmap:&bitmap];
-        grayImage = self.image.cvGrayImage;
+        _grayImage = self.image.cvGrayImage;
         
-        // test code
 //        IplImage* colorimg = self.image.cvImage;
 //        self.image = [NSImage imageWithIplImage:colorimg];
 //        self.image = [NSImage imageWithIplImage:grayImage];
@@ -35,11 +34,15 @@
 
 - (void) dealloc {
     imageRep = nil;
-    cvReleaseImage(&grayImage);
+    cvReleaseImage(&_grayImage);
 }
 
 - (AABitmapRef) getAABitmapRef {
     return &bitmap;
+}
+
+- (IplImage*) grayImage {
+    return _grayImage;
 }
 
 @end

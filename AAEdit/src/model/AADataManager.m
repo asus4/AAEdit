@@ -15,7 +15,7 @@
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
-#define _BLACK_TOLERANCE 20
+#define _BLACK_TOLERANCE 170
 
 #pragma mark public
 
@@ -106,11 +106,15 @@
     
     // Edge trace
     double x=0,y=0;
-
+    
     NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
     AABitmap edgeBmp;
     NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
     edgeBmp.buffer = edgeRep.bitmapData;
+    
+    IplImage* edgeIplImage = edgeImage.cvGrayImage;
+    
+    NSLog(@"edge ipl (%d,%d)", edgeIplImage->width, edgeIplImage->height);
     
     while (y<edgeBmp.height) {
         x = 0;
@@ -123,7 +127,8 @@
             
             if(useEdge) {
                 for(AAEdgeData* data in edgeTable) {
-                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
+//                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
+                    float f = getCvSimilarity(edgeIplImage, [data grayImage], x, y);
                     
                     if(f > similarity) {
                         similarity = f;
@@ -166,6 +171,8 @@
     edgeRep = nil;
     colorRep = nil;
     
+    cvReleaseImage(&edgeIplImage);
+    
     return aa;
 }
 
@@ -196,6 +203,12 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     return (r + g + b < _BLACK_TOLERANCE);
 }
 
+static inline BOOL isBlack(IplImage* bmp, const int x, const int y) {
+    char *data = bmp->imageData + y * bmp->widthStep + x;
+    unsigned char b = (unsigned char) *data;
+    return (b < _BLACK_TOLERANCE);
+}
+
 static inline UInt8 getBrightness(AABitmapRef bmp, const int x, const int y) {
     UInt8*  pixelPtr = bmp->buffer + (int)y * bmp->bytesPerRow + (int)x * 4;
     UInt8 r = *(pixelPtr);
@@ -203,6 +216,44 @@ static inline UInt8 getBrightness(AABitmapRef bmp, const int x, const int y) {
     UInt8 b = *(pixelPtr + 2);
     //    UInt8 a = *(pixelPtr + 3); // ignore alpha
     return (r + g + b) / 3;
+}
+
+static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const int sX, const int sY) {
+    
+    if((sX+charBmp->width) >= (srcBmp->width)
+       || sY+charBmp->height >= srcBmp->height) {
+        return -1.0f;
+    }
+    
+    float similarity = 0.1f;
+    int numSrcOn=0, numCharOn=0;
+    
+    for(int cY=0; cY<charBmp->height; ++cY) {
+        for(int cX=0; cX<charBmp->width; ++cX) {
+            BOOL cOn = isBlack(charBmp, cX, cY);
+            BOOL sOn = isBlack(srcBmp, sX+cX, sY+cY);
+            
+            if(sOn) numSrcOn++;
+            if(cOn) numCharOn++;
+            
+            if(sOn == cOn) { // on on || off off
+                similarity += 1.0f;
+            }
+            else {
+                similarity -= 1.0f;
+            }
+        }
+    }
+    
+    if(numSrcOn == 0) { // white pixel
+        return 0;
+    }
+    
+    if(similarity < 0) {
+        similarity = 0.1f;
+    }
+    
+    return similarity;
 }
 
 // bitmap matcing algorithm
@@ -219,7 +270,7 @@ static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const
     for(int cY=0; cY<charBmp->height; ++cY) {
         for(int cX=0; cX<charBmp->width; ++cX) {
             BOOL cOn = isBlackPixel(charBmp, cX, cY);
-            BOOL sOn = !isBlackPixel(srcBmp, sX+cX, sY+cY);
+            BOOL sOn = isBlackPixel(srcBmp, sX+cX, sY+cY);
             
             if(sOn) numSrcOn++;
             if(cOn) numCharOn++;

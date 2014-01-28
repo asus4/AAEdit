@@ -24,9 +24,11 @@
     [resizedImage lockFocus];
     [self drawInRect:NSMakeRect(0, 0, size.width, size.height)
             fromRect:NSMakeRect(0, 0, originalSize.width, originalSize.height)
-           operation:NSCompositeSourceOver fraction:1.0];
+           operation:NSCompositeSourceOver
+            fraction:1.0];
     [resizedImage unlockFocus];
     
+    NSLog(@"before:%@  after:%@", NSStringFromSize(originalSize), NSStringFromSize(size));
     return resizedImage;
 }
 
@@ -55,6 +57,59 @@
 
 - (NSBitmapImageRep*) getBitmapImageRep {
     return [NSBitmapImageRep imageRepWithData:[self TIFFRepresentation]];
+}
+
+
+- (NSInteger) pixelsWide
+{
+    /*
+     returns the pixel width of NSImage.
+     Selects the largest bitmapRep by preference
+     If there is no bitmapRep returns largest size reported by any imageRep.
+     */
+    NSInteger result = 0;
+    NSInteger bitmapResult = 0;
+    
+    for (NSImageRep* imageRep in [self representations]) {
+        if ([imageRep isKindOfClass:[NSBitmapImageRep class]]) {
+            if (imageRep.pixelsWide > bitmapResult)
+                bitmapResult = imageRep.pixelsWide;
+        } else {
+            if (imageRep.pixelsWide > result)
+                result = imageRep.pixelsWide;
+        }
+    }
+    if (bitmapResult) result = bitmapResult;
+    return result;
+    
+}
+
+- (NSInteger) pixelsHigh
+{
+    /*
+     returns the pixel height of NSImage.
+     Selects the largest bitmapRep by preference
+     If there is no bitmapRep returns largest size reported by any imageRep.
+     */
+    NSInteger result = 0;
+    NSInteger bitmapResult = 0;
+    
+    for (NSImageRep* imageRep in [self representations]) {
+        if ([imageRep isKindOfClass:[NSBitmapImageRep class]]) {
+            if (imageRep.pixelsHigh > bitmapResult)
+                bitmapResult = imageRep.pixelsHigh;
+        } else {
+            if (imageRep.pixelsHigh > result)
+                result = imageRep.pixelsHigh;
+        }
+    }
+    if (bitmapResult) result = bitmapResult;
+    return result;
+}
+
+- (NSSize) pixelSize
+{
+    return NSMakeSize(self.pixelsWide,self.pixelsHigh);
 }
 
 @end
