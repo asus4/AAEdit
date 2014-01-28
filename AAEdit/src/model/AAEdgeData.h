@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AADataProtcol.h"
 #import "AABitmap.h"
+#import "NSImage+OpenCV.h"
+
 
 @interface AAEdgeData : NSObject <AADataProtcol> {
     NSBitmapImageRep* imageRep;

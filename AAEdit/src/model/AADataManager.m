@@ -12,8 +12,6 @@
 #import "AADomUtil.h"
 #import "AAToneData.h"
 
-#import "cv.h"
-
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
