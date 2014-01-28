@@ -44,11 +44,8 @@
     
     NSString *file = [[NSBundle mainBundle] pathForResource:@"player" ofType:@"qtz"];
     
-    if([_qcView loadCompositionFromFile:file] == YES) {
-        
-    }
-    else {
-        NSLog(@"failed to load"); // ???
+    if(![_qcView loadCompositionFromFile:file]) {
+        NSLog(@"failed to load");
         return;
     }
     [_qcView startRendering];

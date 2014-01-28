@@ -28,7 +28,6 @@
             fraction:1.0];
     [resizedImage unlockFocus];
     
-    NSLog(@"before:%@  after:%@", NSStringFromSize(originalSize), NSStringFromSize(size));
     return resizedImage;
 }
 

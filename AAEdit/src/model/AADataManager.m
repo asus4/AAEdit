@@ -19,6 +19,8 @@
 
 #pragma mark public
 
+static IplImage* templeteResult;
+
 - (id) init {
     if(self = [super init]) {
         // initialize
@@ -27,8 +29,14 @@
         _edgeData = [NSMutableDictionary dictionaryWithCapacity:0];
         _toneData = [NSMutableArray arrayWithCapacity:0];
         self.fontSize = 12;
+        
+        templeteResult = cvCreateImage(cvSize(1, 1), 32, 1);
     }
     return self;
+}
+
+- (void) dealloc {
+    cvReleaseImage(&templeteResult);
 }
 
 - (void) loadMovieFile:(NSURL *)file {
@@ -114,8 +122,6 @@
     
     IplImage* edgeIplImage = edgeImage.cvGrayImage;
     
-    NSLog(@"edge ipl (%d,%d)", edgeIplImage->width, edgeIplImage->height);
-    
     while (y<edgeBmp.height) {
         x = 0;
         double _y = 0;
@@ -133,6 +139,7 @@
                     if(f > similarity) {
                         similarity = f;
                         matchedData = data;
+                        
                     }
                 }
             }
@@ -203,60 +210,48 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     return (r + g + b < _BLACK_TOLERANCE);
 }
 
+// gray scale image
 static inline BOOL isBlack(IplImage* bmp, const int x, const int y) {
     char *data = bmp->imageData + y * bmp->widthStep + x;
     unsigned char b = (unsigned char) *data;
     return (b < _BLACK_TOLERANCE);
 }
 
-static inline UInt8 getBrightness(AABitmapRef bmp, const int x, const int y) {
-    UInt8*  pixelPtr = bmp->buffer + (int)y * bmp->bytesPerRow + (int)x * 4;
-    UInt8 r = *(pixelPtr);
-    UInt8 g = *(pixelPtr + 1);
-    UInt8 b = *(pixelPtr + 2);
-    //    UInt8 a = *(pixelPtr + 3); // ignore alpha
-    return (r + g + b) / 3;
-}
-
 static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const int sX, const int sY) {
     
+    // check over size
     if((sX+charBmp->width) >= (srcBmp->width)
        || sY+charBmp->height >= srcBmp->height) {
         return -1.0f;
     }
     
-    float similarity = 0.1f;
-    int numSrcOn=0, numCharOn=0;
-    
+    // check white pixel
+    int numSrcOn=0;
     for(int cY=0; cY<charBmp->height; ++cY) {
         for(int cX=0; cX<charBmp->width; ++cX) {
-            BOOL cOn = isBlack(charBmp, cX, cY);
             BOOL sOn = isBlack(srcBmp, sX+cX, sY+cY);
-            
             if(sOn) numSrcOn++;
-            if(cOn) numCharOn++;
-            
-            if(sOn == cOn) { // on on || off off
-                similarity += 1.0f;
-            }
-            else {
-                similarity -= 1.0f;
-            }
         }
     }
-    
-    if(numSrcOn == 0) { // white pixel
+    if(numSrcOn == 0) {
         return 0;
     }
     
-    if(similarity < 0) {
-        similarity = 0.1f;
-    }
+    // calc similarity
+    cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
+//    double similarity = cvMatchShapes(srcBmp, charBmp, CV_CONTOURS_MATCH_I2, 0);
+    cvMatchTemplate(srcBmp, charBmp, templeteResult, CV_TM_CCOEFF);
     
+    char * c = templeteResult->imageData;
+    double similarity = *c;
+    //templeteResult
+    cvResetImageROI(srcBmp);
+    
+//    return 1.0f - similarity;
     return similarity;
 }
 
-// bitmap matcing algorithm
+// bitmap matching algorithm
 static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const int sX, const int sY) {
     
     if((sX+charBmp->width) >= (srcBmp->width)
