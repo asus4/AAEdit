@@ -9,15 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "AADataProtcol.h"
 #import "AABitmap.h"
+#import "NSImage+OpenCV.h"
+
 
 @interface AAEdgeData : NSObject <AADataProtcol> {
     NSBitmapImageRep* imageRep;
     AABitmap bitmap;
+    IplImage* _grayImage;
 }
 
 @property (nonatomic) NSString * character;
 @property (nonatomic) NSImage * image;
 @property (nonatomic) NSSize size;
+
+@property (nonatomic, readonly) IplImage* grayImage;
 
 - (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
 - (AABitmapRef) getAABitmapRef;

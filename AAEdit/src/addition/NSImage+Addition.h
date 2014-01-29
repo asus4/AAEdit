@@ -16,4 +16,9 @@
 - (NSBitmapImageRep*) getAABitmap:(AABitmap*) bmp;
 
 - (NSBitmapImageRep*) getBitmapImageRep;
+
+
+- (NSInteger) pixelsWide;
+- (NSInteger) pixelsHigh;
+- (NSSize) pixelSize;
 @end

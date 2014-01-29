@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		781C3E03188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
-		781C3E04188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
+		781C3E03188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
+		781C3E04188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
 		781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E05188E6FE80017D677 /* ipagp-mona.woff */; };
 		781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
 		781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
@@ -34,10 +34,20 @@
 		7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 7833C948188CD42F00905AA6 /* NSColorWellWithAlpha.m */; };
 		7833C952188CD45900905AA6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7833C951188CD45900905AA6 /* QTKit.framework */; };
 		7833C956188CD4A200905AA6 /* player.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 7833C954188CD4A200905AA6 /* player.qtz */; };
+		7839889D18973B730096C50D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7839889C18973B730096C50D /* libc++.dylib */; };
 		78647E62188CF68E00CECA10 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78647E60188CF66F00CECA10 /* WebKit.framework */; };
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
+		7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */; };
+		7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */; };
+		7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD6189944D100C8E679 /* AAProgressViewModel.m */; };
+		7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD6189944D100C8E679 /* AAProgressViewModel.m */; };
 		78731B481894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
 		78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
+		788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */; };
+		788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */; };
+		788AD44518967E5C00FEB743 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788AD44418967E5C00FEB743 /* opencv2.framework */; };
+		788AD44618967E5C00FEB743 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788AD44418967E5C00FEB743 /* opencv2.framework */; };
+		788AD44818967E9800FEB743 /* opencv2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 788AD44418967E5C00FEB743 /* opencv2.framework */; };
 		78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
 		78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */; };
 		78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78ADD97A18926047003B6D07 /* ipagp-mona.ttf */; };
@@ -45,7 +55,7 @@
 		78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9821892A47F003B6D07 /* NSString+AAAddition.m */; };
 		78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */; };
 		78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B9F58D188FA4B7006D96DB /* UserDefaults.plist */; };
-		78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B9F590188FE9B3006D96DB /* AAEdgeData.m */; };
+		78B9F591188FE9B3006D96DB /* AAEdgeData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78B9F590188FE9B3006D96DB /* AAEdgeData.mm */; };
 		78C74BE21894FE870023C9C6 /* AADomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE11894FE870023C9C6 /* AADomUtil.m */; };
 		78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE11894FE870023C9C6 /* AADomUtil.m */; };
 		78C74BE718950F560023C9C6 /* AAToneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C74BE618950F560023C9C6 /* AAToneData.m */; };
@@ -65,6 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		788AD44718967E8900FEB743 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				788AD44818967E9800FEB743 /* opencv2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78ADD97C189260BC003B6D07 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -79,7 +99,7 @@
 
 /* Begin PBXFileReference section */
 		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
-		781C3E02188E22E20017D677 /* AADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataManager.m; sourceTree = "<group>"; };
+		781C3E02188E22E20017D677 /* AADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AADataManager.mm; sourceTree = "<group>"; };
 		781C3E05188E6FE80017D677 /* ipagp-mona.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ipagp-mona.woff"; sourceTree = "<group>"; };
 		781C3E08188E7C730017D677 /* AAFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAFileUtil.h; path = util/AAFileUtil.h; sourceTree = "<group>"; };
 		781C3E09188E7C730017D677 /* AAFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAFileUtil.m; path = util/AAFileUtil.m; sourceTree = "<group>"; };
@@ -121,11 +141,20 @@
 		7833C948188CD42F00905AA6 /* NSColorWellWithAlpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSColorWellWithAlpha.m; sourceTree = "<group>"; };
 		7833C951188CD45900905AA6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		7833C954188CD4A200905AA6 /* player.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = player.qtz; sourceTree = "<group>"; };
+		7839889C18973B730096C50D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		78647E60188CF66F00CECA10 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		78647E63188CF6BB00CECA10 /* AAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAWebView.h; sourceTree = "<group>"; };
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
+		7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoTraceProgress.xib; sourceTree = "<group>"; };
+		7864BAD218993D2D00C8E679 /* AAAutoProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAutoProgressWindow.h; sourceTree = "<group>"; };
+		7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAutoProgressWindow.m; sourceTree = "<group>"; };
+		7864BAD5189944D100C8E679 /* AAProgressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProgressViewModel.h; sourceTree = "<group>"; };
+		7864BAD6189944D100C8E679 /* AAProgressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProgressViewModel.m; sourceTree = "<group>"; };
 		78731B461894E5FC002183C8 /* NSUserDefaults+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Addition.h"; path = "addition/NSUserDefaults+Addition.h"; sourceTree = "<group>"; };
 		78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Addition.m"; path = "addition/NSUserDefaults+Addition.m"; sourceTree = "<group>"; };
+		788AD434189655DF00FEB743 /* NSImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+OpenCV.h"; path = "addition/NSImage+OpenCV.h"; sourceTree = "<group>"; };
+		788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSImage+OpenCV.mm"; path = "addition/NSImage+OpenCV.mm"; sourceTree = "<group>"; };
+		788AD44418967E5C00FEB743 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = lib/opencv2.framework; sourceTree = "<group>"; };
 		78ADD974189247C6003B6D07 /* NSArrayController+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArrayController+Addition.h"; path = "addition/NSArrayController+Addition.h"; sourceTree = "<group>"; };
 		78ADD975189247C6003B6D07 /* NSArrayController+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArrayController+Addition.m"; path = "addition/NSArrayController+Addition.m"; sourceTree = "<group>"; };
 		78ADD97A18926047003B6D07 /* ipagp-mona.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ipagp-mona.ttf"; path = "fonts/ipagp-mona.ttf"; sourceTree = "<group>"; };
@@ -135,7 +164,7 @@
 		78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Addition.m"; path = "addition/NSImage+Addition.m"; sourceTree = "<group>"; };
 		78B9F58D188FA4B7006D96DB /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		78B9F58F188FE9B3006D96DB /* AAEdgeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAEdgeData.h; sourceTree = "<group>"; };
-		78B9F590188FE9B3006D96DB /* AAEdgeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAEdgeData.m; sourceTree = "<group>"; };
+		78B9F590188FE9B3006D96DB /* AAEdgeData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AAEdgeData.mm; sourceTree = "<group>"; };
 		78C74BE01894FE870023C9C6 /* AADomUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AADomUtil.h; path = util/AADomUtil.h; sourceTree = "<group>"; };
 		78C74BE11894FE870023C9C6 /* AADomUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AADomUtil.m; path = util/AADomUtil.m; sourceTree = "<group>"; };
 		78C74BE418950E870023C9C6 /* AADataProtcol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataProtcol.h; sourceTree = "<group>"; };
@@ -150,10 +179,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7839889D18973B730096C50D /* libc++.dylib in Frameworks */,
 				7833C952188CD45900905AA6 /* QTKit.framework in Frameworks */,
 				7833C932188CD37900905AA6 /* Quartz.framework in Frameworks */,
 				78647E62188CF68E00CECA10 /* WebKit.framework in Frameworks */,
 				7833C8FE188CD33C00905AA6 /* Cocoa.framework in Frameworks */,
+				788AD44518967E5C00FEB743 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +194,7 @@
 			files = (
 				7833C91C188CD33C00905AA6 /* SenTestingKit.framework in Frameworks */,
 				7833C91D188CD33C00905AA6 /* Cocoa.framework in Frameworks */,
+				788AD44618967E5C00FEB743 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +234,8 @@
 		7833C8FC188CD33C00905AA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7839889C18973B730096C50D /* libc++.dylib */,
+				788AD44418967E5C00FEB743 /* opencv2.framework */,
 				78647E60188CF66F00CECA10 /* WebKit.framework */,
 				7833C951188CD45900905AA6 /* QTKit.framework */,
 				7833C931188CD37900905AA6 /* Quartz.framework */,
@@ -290,15 +324,17 @@
 			isa = PBXGroup;
 			children = (
 				781C3E01188E22E20017D677 /* AADataManager.h */,
-				781C3E02188E22E20017D677 /* AADataManager.m */,
+				781C3E02188E22E20017D677 /* AADataManager.mm */,
 				7833C93A188CD42F00905AA6 /* AAViewModel.h */,
 				7833C93B188CD42F00905AA6 /* AAViewModel.m */,
 				78B9F58F188FE9B3006D96DB /* AAEdgeData.h */,
-				78B9F590188FE9B3006D96DB /* AAEdgeData.m */,
+				78B9F590188FE9B3006D96DB /* AAEdgeData.mm */,
 				782432911893CDBF0037C1F8 /* AABitmap.h */,
 				78C74BE418950E870023C9C6 /* AADataProtcol.h */,
 				78C74BE518950F560023C9C6 /* AAToneData.h */,
 				78C74BE618950F560023C9C6 /* AAToneData.m */,
+				7864BAD5189944D100C8E679 /* AAProgressViewModel.h */,
+				7864BAD6189944D100C8E679 /* AAProgressViewModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -320,6 +356,8 @@
 				78647E64188CF6BB00CECA10 /* AAWebView.m */,
 				78C74BE9189521270023C9C6 /* AAColorCell.h */,
 				78C74BEA189521270023C9C6 /* AAColorCell.m */,
+				7864BAD218993D2D00C8E679 /* AAAutoProgressWindow.h */,
+				7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -333,6 +371,7 @@
 				7833C912188CD33C00905AA6 /* MainMenu.xib */,
 				78ADD97A18926047003B6D07 /* ipagp-mona.ttf */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
+				7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -348,6 +387,8 @@
 				78ADD9851892B1C3003B6D07 /* NSImage+Addition.m */,
 				78731B461894E5FC002183C8 /* NSUserDefaults+Addition.h */,
 				78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */,
+				788AD434189655DF00FEB743 /* NSImage+OpenCV.h */,
+				788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */,
 			);
 			name = addition;
 			sourceTree = "<group>";
@@ -363,6 +404,7 @@
 				7833C8F7188CD33C00905AA6 /* Frameworks */,
 				7833C8F8188CD33C00905AA6 /* Resources */,
 				78ADD97C189260BC003B6D07 /* CopyFiles */,
+				788AD44718967E8900FEB743 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -433,6 +475,7 @@
 				781C3E0D188E7E050017D677 /* template.html in Resources */,
 				78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */,
 				78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */,
+				7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,9 +521,9 @@
 				7833C94E188CD42F00905AA6 /* AATextView.m in Sources */,
 				7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */,
 				78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */,
-				781C3E03188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E03188E22E20017D677 /* AADataManager.mm in Sources */,
 				781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */,
-				78B9F591188FE9B3006D96DB /* AAEdgeData.m in Sources */,
+				78B9F591188FE9B3006D96DB /* AAEdgeData.mm in Sources */,
 				78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
 				78ADD9831892A47F003B6D07 /* NSString+AAAddition.m in Sources */,
 				78ADD9861892B1C3003B6D07 /* NSImage+Addition.m in Sources */,
@@ -488,6 +531,9 @@
 				78C74BE21894FE870023C9C6 /* AADomUtil.m in Sources */,
 				78C74BE718950F560023C9C6 /* AAToneData.m in Sources */,
 				78C74BEB189521270023C9C6 /* AAColorCell.m in Sources */,
+				788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
+				7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */,
+				7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,13 +542,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7833C928188CD33C00905AA6 /* AAEditTests.m in Sources */,
-				781C3E04188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E04188E22E20017D677 /* AADataManager.mm in Sources */,
 				781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */,
 				78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
 				78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
 				78C74BE31894FE870023C9C6 /* AADomUtil.m in Sources */,
 				78C74BE818950F560023C9C6 /* AAToneData.m in Sources */,
 				78C74BEC189521270023C9C6 /* AAColorCell.m in Sources */,
+				788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
+				7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +628,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -607,7 +655,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -615,11 +663,19 @@
 		7833C92C188CD33C00905AA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AAEdit/AAEdit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -628,11 +684,19 @@
 		7833C92D188CD33C00905AA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AAEdit/AAEdit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -643,10 +707,19 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AAEdit.app/Contents/MacOS/AAEdit";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
 				INFOPLIST_FILE = "AAEditTests/AAEditTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/AAEdit/lib/opencv/lib/osx\"",
+					"\"$(SRCROOT)/lib/opencv/lib/osx\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -658,10 +731,19 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AAEdit.app/Contents/MacOS/AAEdit";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
 				INFOPLIST_FILE = "AAEditTests/AAEditTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/AAEdit/lib/opencv/lib/osx\"",
+					"\"$(SRCROOT)/lib/opencv/lib/osx\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
