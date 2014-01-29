@@ -22,7 +22,7 @@
 @property(nonatomic, readonly) IplImage* cvImage;
 @property(nonatomic, readonly) IplImage* cvGrayImage;
 
-//@property(nonatomic, readonly) cv::Mat CVGrayscaleMat;
+- (IplImage*) getCvMonotoneImage:(double)threshold;
 
 @end
 

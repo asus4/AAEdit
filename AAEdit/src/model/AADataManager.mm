@@ -12,6 +12,8 @@
 #import "AADomUtil.h"
 #import "AAToneData.h"
 
+#include <opencv2/legacy/compat.hpp>
+
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
@@ -116,16 +118,19 @@ static IplImage* templeteResult;
     double x=0,y=0;
     
     NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
-    AABitmap edgeBmp;
-    NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
-    edgeBmp.buffer = edgeRep.bitmapData;
+//    AABitmap edgeBmp;
+//    NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
+//    edgeBmp.buffer = edgeRep.bitmapData;
     
-    IplImage* edgeIplImage = edgeImage.cvGrayImage;
+    IplImage* edgeIplImage = [edgeImage getCvMonotoneImage:200];
     
-    while (y<edgeBmp.height) {
+    int source_width = edgeIplImage->width;
+    int source_hegiht = edgeIplImage->height;
+    
+    while (y<source_hegiht) {
         x = 0;
         double _y = 0;
-        while (x<edgeBmp.width) {
+        while (x<source_width) {
             
             double _x = 0;
             float similarity = 0.0f;
@@ -134,9 +139,11 @@ static IplImage* templeteResult;
             if(useEdge) {
                 for(AAEdgeData* data in edgeTable) {
 //                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
-                    float f = getCvSimilarity(edgeIplImage, [data grayImage], x, y);
+//                    float f = getCvSimilarity(edgeIplImage, [data grayImage], x, y);
+//                    getCvSimilaritySurf(edgeIplImage, [data grayImage], x, y);
+                    float f = getCvSimilarityContours(edgeIplImage, [data grayImage], x, y);
                     
-                    if(f > similarity) {
+                    if(f > similarity) { //
                         similarity = f;
                         matchedData = data;
                     }
@@ -174,7 +181,7 @@ static IplImage* templeteResult;
         y+= _y;
     }
     
-    edgeRep = nil;
+//    edgeRep = nil;
     colorRep = nil;
     
     cvReleaseImage(&edgeIplImage);
@@ -200,6 +207,7 @@ static IplImage* templeteResult;
     return data;
 }
 
+// rgb color black threthold
 static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     UInt8*  pixelPtr = bmp->buffer + (int)y * bmp->bytesPerRow + (int)x * 4;
     UInt8 r = *(pixelPtr);
@@ -209,15 +217,14 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
     return (r + g + b < _BLACK_TOLERANCE);
 }
 
-// gray scale image
+// monotone threthold
 static inline BOOL isBlack(IplImage* bmp, const int x, const int y) {
     char *data = bmp->imageData + y * bmp->widthStep + x;
-    unsigned char b = (unsigned char) *data;
-    return (b < _BLACK_TOLERANCE);
+    return (unsigned char) *data == 0;
+//    return (b < _BLACK_TOLERANCE);
 }
 
-static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const int sX, const int sY) {
-    
+static inline float getCvPreCheck(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
     // check over size
     if((sX+charBmp->width) >= (srcBmp->width)
        || sY+charBmp->height >= srcBmp->height) {
@@ -233,21 +240,120 @@ static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const in
         }
     }
     if(numSrcOn == 0) {
-        return 0;
+        return 0.0f;
+    }
+    
+    return 1.0f;
+}
+
+static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+    // precheck oversize and white
+    float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
+    if(result <= 0) {
+        return result;
+    }
+    
+    cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
+    
+    CvMemStorage *srcStorage = cvCreateMemStorage (0);
+    CvMemStorage *charStorage = cvCreateMemStorage(0);
+    CvSeq *srcContours = NULL, *charContours = NULL;
+    
+    int srcNum = cvFindContours(srcBmp,
+                                srcStorage,
+                                &srcContours,
+                                sizeof(CvContour),
+                                CV_RETR_LIST,
+                                CV_CHAIN_APPROX_NONE);
+    
+    int chrNum = cvFindContours(charBmp,
+                                charStorage,
+                                &charContours,
+                                sizeof(CvContour),
+                                CV_RETR_LIST,
+                                CV_CHAIN_APPROX_NONE);
+    
+    
+    if(srcNum == 0 || chrNum ==0) {
+        result = 0.0001;
+    }
+    else {
+        double similarity = cvMatchShapes(srcContours, charContours, CV_CONTOURS_MATCH_I3, 0);
+        
+        if(similarity == 0) {
+            result = 0.000001;
+        }
+        else {
+            result = 10.0 - similarity;
+        }
+//        NSLog(@"src:%d chr:%d smi:%f", srcNum, chrNum, similarity);
+    }
+    
+    // cleanup
+    cvResetImageROI(srcBmp);
+    cvReleaseMemStorage(&srcStorage);
+    cvReleaseMemStorage(&charStorage);
+    
+    return result;
+}
+
+// use SURF method
+static inline float getCvSimilaritySurf(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+    // precheck oversize and white
+    float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
+    if(result <= 0) {
+        return result;
+    }
+    
+    // surf algorithm
+    cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
+    
+    CvSeq *keypoints1 = 0, *descriptors1 = 0;
+    CvSeq *keypoints2 = 0, *descriptors2 = 0;
+    CvMemStorage* storage = cvCreateMemStorage(0);
+    CvSURFParams params = cvSURFParams(600, 1);
+    
+    cvExtractSURF(srcBmp, 0, &keypoints1, &descriptors1, storage, params, 500);
+    cvExtractSURF(charBmp, 0, &keypoints2, &descriptors2, storage, params, 500);
+    
+    if(descriptors2->total != 0 || descriptors1->total != 0) {
+        NSLog(@"key num : %d %d",descriptors1->total, descriptors2->total);
+    }
+    
+    // creanup
+    cvClearSeq(keypoints1);
+    cvClearSeq(descriptors1);
+    cvClearSeq(keypoints2);
+    cvClearSeq(descriptors2);
+    cvReleaseMemStorage(&storage);
+    
+    cvResetImageROI(srcBmp);
+    
+    return 0;
+}
+
+// -1: out of boarder
+// 0 : white pixel
+// ~ : similarity
+static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const int sX, const int sY) {
+    
+    // precheck oversize and white
+    float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
+    if(result <= 0) {
+        return result;
     }
     
     // calc similarity
     cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
-    double similarity = cvMatchShapes(srcBmp, charBmp, CV_CONTOURS_MATCH_I3, 0);
+    double similarity = cvMatchShapes(srcBmp, charBmp, CV_CONTOURS_MATCH_I1, 0);
     
-//    cvMatchTemplate(srcBmp, charBmp, templeteResult, CV_TM_CCOEFF);
+//    cvMatchTemplate(srcBmp, charBmp, templeteResult, CV_TM_SQDIFF);
 //    char * c = templeteResult->imageData;
 //    double similarity = *c;
     
     cvResetImageROI(srcBmp);
     
     return 1.0f - similarity;
-//    return similarity;
 }
 
 // bitmap matching algorithm

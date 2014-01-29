@@ -111,4 +111,12 @@
     return  grayImage;
 }
 
+- (IplImage*) getCvMonotoneImage:(double)threshold {
+    IplImage* gray = self.cvGrayImage;
+    cvThreshold(gray, gray, threshold, 255, CV_THRESH_BINARY);
+    
+    // you must release image manualy
+    return gray;
+}
+
 @end

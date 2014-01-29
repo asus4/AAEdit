@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		781C3E03188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
-		781C3E04188E22E20017D677 /* AADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.m */; };
+		781C3E03188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
+		781C3E04188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
 		781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E05188E6FE80017D677 /* ipagp-mona.woff */; };
 		781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
 		781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E09188E7C730017D677 /* AAFileUtil.m */; };
@@ -37,6 +37,10 @@
 		7839889D18973B730096C50D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7839889C18973B730096C50D /* libc++.dylib */; };
 		78647E62188CF68E00CECA10 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78647E60188CF66F00CECA10 /* WebKit.framework */; };
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
+		7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */; };
+		7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */; };
+		7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD6189944D100C8E679 /* AAProgressViewModel.m */; };
+		7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD6189944D100C8E679 /* AAProgressViewModel.m */; };
 		78731B481894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
 		78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
 		788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */; };
@@ -95,7 +99,7 @@
 
 /* Begin PBXFileReference section */
 		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
-		781C3E02188E22E20017D677 /* AADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AADataManager.m; sourceTree = "<group>"; };
+		781C3E02188E22E20017D677 /* AADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AADataManager.mm; sourceTree = "<group>"; };
 		781C3E05188E6FE80017D677 /* ipagp-mona.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ipagp-mona.woff"; sourceTree = "<group>"; };
 		781C3E08188E7C730017D677 /* AAFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAFileUtil.h; path = util/AAFileUtil.h; sourceTree = "<group>"; };
 		781C3E09188E7C730017D677 /* AAFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAFileUtil.m; path = util/AAFileUtil.m; sourceTree = "<group>"; };
@@ -141,6 +145,11 @@
 		78647E60188CF66F00CECA10 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		78647E63188CF6BB00CECA10 /* AAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAWebView.h; sourceTree = "<group>"; };
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
+		7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoTraceProgress.xib; sourceTree = "<group>"; };
+		7864BAD218993D2D00C8E679 /* AAAutoProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAutoProgressWindow.h; sourceTree = "<group>"; };
+		7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAutoProgressWindow.m; sourceTree = "<group>"; };
+		7864BAD5189944D100C8E679 /* AAProgressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAProgressViewModel.h; sourceTree = "<group>"; };
+		7864BAD6189944D100C8E679 /* AAProgressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProgressViewModel.m; sourceTree = "<group>"; };
 		78731B461894E5FC002183C8 /* NSUserDefaults+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Addition.h"; path = "addition/NSUserDefaults+Addition.h"; sourceTree = "<group>"; };
 		78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Addition.m"; path = "addition/NSUserDefaults+Addition.m"; sourceTree = "<group>"; };
 		788AD434189655DF00FEB743 /* NSImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+OpenCV.h"; path = "addition/NSImage+OpenCV.h"; sourceTree = "<group>"; };
@@ -315,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				781C3E01188E22E20017D677 /* AADataManager.h */,
-				781C3E02188E22E20017D677 /* AADataManager.m */,
+				781C3E02188E22E20017D677 /* AADataManager.mm */,
 				7833C93A188CD42F00905AA6 /* AAViewModel.h */,
 				7833C93B188CD42F00905AA6 /* AAViewModel.m */,
 				78B9F58F188FE9B3006D96DB /* AAEdgeData.h */,
@@ -324,6 +333,8 @@
 				78C74BE418950E870023C9C6 /* AADataProtcol.h */,
 				78C74BE518950F560023C9C6 /* AAToneData.h */,
 				78C74BE618950F560023C9C6 /* AAToneData.m */,
+				7864BAD5189944D100C8E679 /* AAProgressViewModel.h */,
+				7864BAD6189944D100C8E679 /* AAProgressViewModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -345,6 +356,8 @@
 				78647E64188CF6BB00CECA10 /* AAWebView.m */,
 				78C74BE9189521270023C9C6 /* AAColorCell.h */,
 				78C74BEA189521270023C9C6 /* AAColorCell.m */,
+				7864BAD218993D2D00C8E679 /* AAAutoProgressWindow.h */,
+				7864BAD318993D2D00C8E679 /* AAAutoProgressWindow.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -358,6 +371,7 @@
 				7833C912188CD33C00905AA6 /* MainMenu.xib */,
 				78ADD97A18926047003B6D07 /* ipagp-mona.ttf */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
+				7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -461,6 +475,7 @@
 				781C3E0D188E7E050017D677 /* template.html in Resources */,
 				78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */,
 				78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */,
+				7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +521,7 @@
 				7833C94E188CD42F00905AA6 /* AATextView.m in Sources */,
 				7833C950188CD42F00905AA6 /* NSColorWellWithAlpha.m in Sources */,
 				78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */,
-				781C3E03188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E03188E22E20017D677 /* AADataManager.mm in Sources */,
 				781C3E0A188E7C730017D677 /* AAFileUtil.m in Sources */,
 				78B9F591188FE9B3006D96DB /* AAEdgeData.mm in Sources */,
 				78ADD976189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
@@ -517,6 +532,8 @@
 				78C74BE718950F560023C9C6 /* AAToneData.m in Sources */,
 				78C74BEB189521270023C9C6 /* AAColorCell.m in Sources */,
 				788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
+				7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */,
+				7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7833C928188CD33C00905AA6 /* AAEditTests.m in Sources */,
-				781C3E04188E22E20017D677 /* AADataManager.m in Sources */,
+				781C3E04188E22E20017D677 /* AADataManager.mm in Sources */,
 				781C3E0B188E7C730017D677 /* AAFileUtil.m in Sources */,
 				78ADD977189247C6003B6D07 /* NSArrayController+Addition.m in Sources */,
 				78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */,
@@ -533,6 +550,7 @@
 				78C74BE818950F560023C9C6 /* AAToneData.m in Sources */,
 				78C74BEC189521270023C9C6 /* AAColorCell.m in Sources */,
 				788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
+				7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
