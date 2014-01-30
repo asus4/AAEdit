@@ -9,8 +9,7 @@
 #import "AAEdgeData.h"
 #import "NSImage+Addition.h"
 #import "NSString+AAAddition.h"
-
-
+#import "AACvUtil.h"
 
 @implementation AAEdgeData
 
@@ -19,21 +18,21 @@
         self.character = [NSString stringWithCharacters:&c length:1];
         
         NSSize size;
-        self.image = [self.character imageWithFont:font size:&size];
+        NSImage* img = [self.character imageWithFont:font size:&size];
         self.size = size;
         
-        imageRep = [self.image getAABitmap:&bitmap];
-        _grayImage = [self.image getCvMonotoneImage:150];
-//        cvNot(_grayImage, _grayImage);
+        _grayImage = [img getCvMonotoneImage:200];
+        _signImage = [AACvUtil resizeMonoImage:_grayImage width:3 height:4];
         
         self.image = [NSImage imageWithIplImage:_grayImage];
+        self.miniImage = [NSImage imageWithIplImage:_signImage];
     }
     return self;
 }
 
 - (void) dealloc {
-    imageRep = nil;
     cvReleaseImage(&_grayImage);
+    cvReleaseImage(&_signImage);
 }
 
 - (AABitmapRef) getAABitmapRef {
@@ -42,6 +41,10 @@
 
 - (IplImage*) grayImage {
     return _grayImage;
+}
+
+- (IplImage*) signImage {
+    return _signImage;
 }
 
 @end

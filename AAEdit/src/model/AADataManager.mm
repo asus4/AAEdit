@@ -120,7 +120,9 @@ static IplImage* templeteResult;
     NSBitmapImageRep *colorRep = [(*colorImage) getBitmapImageRep];
     
     IplImage* edgeIplImage = [(*edgeImage) getCvMonotoneImage:150];
-    IplImage* debugIplImage = (*colorImage).cvImage;
+    
+    IplImage* debugIplImage = cvCreateImage(cvSize(edgeIplImage->width, edgeIplImage->height), edgeIplImage->depth, 3);
+    cvCvtColor(edgeIplImage, debugIplImage, CV_GRAY2BGR);
     
     int source_width = edgeIplImage->width;
     int source_hegiht = edgeIplImage->height;
@@ -136,13 +138,9 @@ static IplImage* templeteResult;
             
             if(useEdge) {
                 for(AAEdgeData* data in edgeTable) {
-                    float f = getSimilarity2(edgeIplImage, [data grayImage], x, y);
-//                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
-//                    float f = getCvSimilarity(edgeIplImage, [data grayImage], x, y);
-//                    getCvSimilaritySurf(edgeIplImage, [data grayImage], x, y);
-//                    float f = getCvSimilarityContours(edgeIplImage, [data grayImage], debugIplImage, x, y);
+                    float f = getSimilarity(edgeIplImage, [data grayImage], x, y);
                     
-                    if(f > similarity) { //
+                    if(f > similarity) {
                         similarity = f;
                         matchedData = data;
                     }
@@ -174,14 +172,18 @@ static IplImage* templeteResult;
             _x = matchedData.size.width;
             _y = matchedData.size.height;
             
+            // draw debug
+            cvRectangle(debugIplImage, cvPoint(x, y), cvPoint(x+_x, y+_y), cvScalar(0,0,255), 1, 8, 0);
+            
             x += _x;
         }
         [aa appendString:@"\n"];
         y+= _y;
     }
     
-    (*edgeImage) = [NSImage imageWithIplImage:edgeIplImage];
+    (*colorImage) = [NSImage imageWithIplImage:debugIplImage];
     
+    // cleanup
     colorRep = nil;
     cvReleaseImage(&edgeIplImage);
     
@@ -366,7 +368,7 @@ static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const in
     return 1.0f - similarity;
 }
 
-static inline float getSimilarity2(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+static inline float getSimilarity(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
     float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
     if(result <= 0) {
         return result;
@@ -382,45 +384,6 @@ static inline float getSimilarity2(IplImage* srcBmp, IplImage* charBmp, const in
             }
         }
     }
-    return similarity;
-}
-
-// bitmap matching algorithm
-static inline float getSimilarity(AABitmapRef srcBmp, AABitmapRef charBmp, const int sX, const int sY) {
-    
-    if((sX+charBmp->width) >= (srcBmp->width)
-       || sY+charBmp->height >= srcBmp->height) {
-        return -1.0f;
-    }
-    
-    float similarity = 0.1f;
-    int numSrcOn=0, numCharOn=0;
-    
-    for(int cY=0; cY<charBmp->height; ++cY) {
-        for(int cX=0; cX<charBmp->width; ++cX) {
-            BOOL cOn = isBlackPixel(charBmp, cX, cY);
-            BOOL sOn = isBlackPixel(srcBmp, sX+cX, sY+cY);
-            
-            if(sOn) numSrcOn++;
-            if(cOn) numCharOn++;
-            
-            if(sOn == cOn) { // on on || off off
-                similarity += 1.0f;
-            }
-            else {
-                similarity -= 1.0f;
-            }
-        }
-    }
-    
-    if(numSrcOn == 0) { // white pixel
-        return 0;
-    }
-    
-    if(similarity < 0) {
-        similarity = 0.1f;
-    }
-    
     return similarity;
 }
 
