@@ -11,13 +11,13 @@
 #import "NSImage+Addition.h"
 #import "AADomUtil.h"
 #import "AAToneData.h"
-
-#include <opencv2/legacy/compat.hpp>
+#import "AACvUtil.h"
 
 @implementation AADataManager
 
 #define _FONT_NAME @"IPAMonaPGothic"
 #define _BLACK_TOLERANCE 170
+#define _AA_WHITE_PIXEL_THRETHOLD 5
 
 #pragma mark public
 
@@ -54,12 +54,13 @@ static IplImage* templeteResult;
 - (void) setEdgeString:(NSString *)edgeString {
     [self.edgeData removeAllObjects];
     
+    NSFont *bigFont = [NSFont fontWithName:self.font.fontName size:64];
     for(uint i=0; i<edgeString.length; ++i) {
         UniChar c = [edgeString characterAtIndex:i];
         if([AADomUtil isEscape:c]) { // avoid escape characters
             continue;
         }
-        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c font:self.font];
+        self.edgeData[[NSNumber numberWithUnsignedShort:c]] = [[AAEdgeData alloc] initWithCharacter:c font:self.font bigFont:bigFont];
     }
     
     // 全角スペース
@@ -119,7 +120,7 @@ static IplImage* templeteResult;
     
     NSBitmapImageRep *colorRep = [(*colorImage) getBitmapImageRep];
     
-    IplImage* edgeIplImage = [(*edgeImage) getCvMonotoneImage:150];
+    IplImage* edgeIplImage = [(*edgeImage) getCvMonotoneImage:240];
     
     IplImage* debugIplImage = cvCreateImage(cvSize(edgeIplImage->width, edgeIplImage->height), edgeIplImage->depth, 3);
     cvCvtColor(edgeIplImage, debugIplImage, CV_GRAY2BGR);
@@ -138,7 +139,7 @@ static IplImage* templeteResult;
             
             if(useEdge) {
                 for(AAEdgeData* data in edgeTable) {
-                    float f = getSimilarity(edgeIplImage, [data grayImage], x, y);
+                    float f = getSimilarity(edgeIplImage, data, x, y);
                     
                     if(f > similarity) {
                         similarity = f;
@@ -181,11 +182,13 @@ static IplImage* templeteResult;
         y+= _y;
     }
     
+    (*edgeImage) = [NSImage imageWithIplImage:edgeIplImage];
     (*colorImage) = [NSImage imageWithIplImage:debugIplImage];
     
     // cleanup
     colorRep = nil;
     cvReleaseImage(&edgeIplImage);
+    cvReleaseImage(&debugIplImage);
     
     return aa;
 }
@@ -215,6 +218,7 @@ static inline BOOL isBlack(IplImage* bmp, const int x, const int y) {
 }
 
 static inline float getCvPreCheck(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+    
     // check over size
     if((sX+charBmp->width) >= (srcBmp->width)
        || sY+charBmp->height >= srcBmp->height) {
@@ -223,32 +227,49 @@ static inline float getCvPreCheck(IplImage* srcBmp, IplImage* charBmp, const int
     
     // check white pixel
     int numSrcOn=0;
-    for(int cY=0; cY<charBmp->height; ++cY) {
-        for(int cX=0; cX<charBmp->width; ++cX) {
+    int width = charBmp->width;
+    int height = charBmp->height;
+
+    for(int cY=0; cY<height; ++cY) {
+        for(int cX=0; cX<width; ++cX) {
             BOOL sOn = isBlack(srcBmp, sX+cX, sY+cY);
             if(sOn) numSrcOn++;
         }
     }
-    if(numSrcOn == 0) {
+    
+    
+    if(numSrcOn <= (width*height/16)) {
         return 0.0f;
     }
     
     return 1.0f;
 }
 
-static inline float getSimilarity(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+static inline float getSimilarity(IplImage* srcBmp, AAEdgeData* edge, const int sX, const int sY) {
+    IplImage * charBmp = edge.grayImage;
+    
     float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
     if(result <= 0) {
         return result;
     }
     
-    float similarity = 0.001f;
-    for(int cY=0; cY<charBmp->height; ++cY) {
-        for(int cX=0; cX<charBmp->width; ++cX) {
-            BOOL cOn = isBlack(charBmp, cX, cY);
-            BOOL sOn = isBlack(srcBmp, sX+cX, sY+cY);
+    IplImage* sign = edge.signImage;
+    IplImage* buf = edge.signBuffer;
+    
+    cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
+    [AACvUtil resizeMonoImage:srcBmp dst:buf];
+    cvResetImageROI(srcBmp);
+    
+    float similarity = 100.0f;
+    for(int cY=0; cY<sign->height; ++cY) {
+        for(int cX=0; cX<sign->width; ++cX) {
+            BOOL cOn = isBlack(sign, cX, cY);
+            BOOL sOn = isBlack(buf, cX, cY);
             if(sOn == cOn) {
-                similarity++;
+                similarity+=2;
+            }
+            else {
+                similarity-=5;
             }
         }
     }

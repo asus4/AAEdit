@@ -29,6 +29,7 @@
 @property (nonatomic, readonly) IplImage* signBuffer;
 
 - (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
+- (id) initWithCharacter:(UniChar) c font:(NSFont*)font bigFont:(NSFont*)bigFont;
 //- (AABitmapRef) getAABitmapRef;
 
 @end
