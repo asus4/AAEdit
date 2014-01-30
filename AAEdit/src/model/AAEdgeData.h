@@ -13,18 +13,23 @@
 
 
 @interface AAEdgeData : NSObject <AADataProtcol> {
-    NSBitmapImageRep* imageRep;
     AABitmap bitmap;
     IplImage* _grayImage;
+    IplImage* _signImage;
+    IplImage* _signBuffer;
 }
 
 @property (nonatomic) NSString * character;
 @property (nonatomic) NSImage * image;
+@property (nonatomic) NSImage * miniImage;
 @property (nonatomic) NSSize size;
 
 @property (nonatomic, readonly) IplImage* grayImage;
+@property (nonatomic, readonly) IplImage* signImage;
+@property (nonatomic, readonly) IplImage* signBuffer;
 
 - (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
-- (AABitmapRef) getAABitmapRef;
+- (id) initWithCharacter:(UniChar) c font:(NSFont*)font bigFont:(NSFont*)bigFont;
+//- (AABitmapRef) getAABitmapRef;
 
 @end

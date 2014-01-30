@@ -82,6 +82,16 @@
 - (void) setCurrentFrame:(int)currentFrame {
     _currentFrame = currentFrame;
     [self.asciiTraceView setFrames:currentFrame];
+    
+    // is has file
+    if([self hasSavedFile:@"html"]) {
+        NSString *path = [self getSavePath:@"html"];
+        NSError *error = nil;
+        NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        if(error == nil) {
+            [self setHtmlString:html];
+        }
+    }
 }
 
 - (int) getCurrentFrame {
@@ -168,4 +178,14 @@
         self.currentFrame--;
     }
 }
+
+- (NSString*) getSavePath:(NSString *)extension {
+    return [NSString stringWithFormat:@"%@/%i.%@", _dataManager.directoryPath, _currentFrame, extension];
+}
+
+- (BOOL) hasSavedFile:(NSString *)extension {
+    NSString* path = [self getSavePath:extension];
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
+
 @end

@@ -43,6 +43,8 @@
 		7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864BAD6189944D100C8E679 /* AAProgressViewModel.m */; };
 		78731B481894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
 		78731B491894E5FC002183C8 /* NSUserDefaults+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */; };
+		78834CD9189A8C0000C2A329 /* AACvUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78834CD8189A8C0000C2A329 /* AACvUtil.m */; };
+		78834CDA189A8C0000C2A329 /* AACvUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78834CD8189A8C0000C2A329 /* AACvUtil.m */; };
 		788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */; };
 		788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */; };
 		788AD44518967E5C00FEB743 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788AD44418967E5C00FEB743 /* opencv2.framework */; };
@@ -152,6 +154,8 @@
 		7864BAD6189944D100C8E679 /* AAProgressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAProgressViewModel.m; sourceTree = "<group>"; };
 		78731B461894E5FC002183C8 /* NSUserDefaults+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Addition.h"; path = "addition/NSUserDefaults+Addition.h"; sourceTree = "<group>"; };
 		78731B471894E5FC002183C8 /* NSUserDefaults+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Addition.m"; path = "addition/NSUserDefaults+Addition.m"; sourceTree = "<group>"; };
+		78834CD7189A8C0000C2A329 /* AACvUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AACvUtil.h; path = util/AACvUtil.h; sourceTree = "<group>"; };
+		78834CD8189A8C0000C2A329 /* AACvUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AACvUtil.m; path = util/AACvUtil.m; sourceTree = "<group>"; };
 		788AD434189655DF00FEB743 /* NSImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+OpenCV.h"; path = "addition/NSImage+OpenCV.h"; sourceTree = "<group>"; };
 		788AD435189655DF00FEB743 /* NSImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSImage+OpenCV.mm"; path = "addition/NSImage+OpenCV.mm"; sourceTree = "<group>"; };
 		788AD44418967E5C00FEB743 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = lib/opencv2.framework; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				781C3E09188E7C730017D677 /* AAFileUtil.m */,
 				78C74BE01894FE870023C9C6 /* AADomUtil.h */,
 				78C74BE11894FE870023C9C6 /* AADomUtil.m */,
+				78834CD7189A8C0000C2A329 /* AACvUtil.h */,
+				78834CD8189A8C0000C2A329 /* AACvUtil.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 				788AD436189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
 				7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */,
 				7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */,
+				78834CD9189A8C0000C2A329 /* AACvUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +558,7 @@
 				78C74BEC189521270023C9C6 /* AAColorCell.m in Sources */,
 				788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
 				7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */,
+				78834CDA189A8C0000C2A329 /* AACvUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

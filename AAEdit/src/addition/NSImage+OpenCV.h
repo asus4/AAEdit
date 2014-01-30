@@ -24,6 +24,7 @@
 
 - (IplImage*) getCvMonotoneImage:(double)threshold;
 
+
 @end
 
 #endif
