@@ -10,10 +10,11 @@
 
 @implementation AACvUtil
 
+#define _AA_BLACK_THRETHOLD 220
 
 + (void) resizeMonoImage:(IplImage*)src dst:(IplImage*)dst {
     cvResize(src,dst,CV_INTER_AREA);
-    cvThreshold(dst, dst, 200, 255, CV_THRESH_BINARY);
+    cvThreshold(dst, dst, _AA_BLACK_THRETHOLD, 255, CV_THRESH_BINARY);
 }
 
 + (IplImage*) resizeMonoImage:(IplImage *)src width:(const uint)width height:(const uint)height {

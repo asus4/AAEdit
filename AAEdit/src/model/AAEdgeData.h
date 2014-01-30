@@ -16,6 +16,7 @@
     AABitmap bitmap;
     IplImage* _grayImage;
     IplImage* _signImage;
+    IplImage* _signBuffer;
 }
 
 @property (nonatomic) NSString * character;
@@ -25,6 +26,7 @@
 
 @property (nonatomic, readonly) IplImage* grayImage;
 @property (nonatomic, readonly) IplImage* signImage;
+@property (nonatomic, readonly) IplImage* signBuffer;
 
 - (id) initWithCharacter:(UniChar) c font:(NSFont*)font;
 //- (AABitmapRef) getAABitmapRef;
