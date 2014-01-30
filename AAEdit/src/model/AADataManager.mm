@@ -101,7 +101,7 @@ static IplImage* templeteResult;
 
 #pragma mark Trace Logic
 
-- (NSString*) asciiTrace:(NSImage *) edgeImage colorImage:(NSImage *) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor {
+- (NSString*) asciiTrace:(NSImage**) edgeImage colorImage:(NSImage**) colorImage useEdge:(BOOL) useEdge useTone:(BOOL)useTone useColor:(BOOL) useColor {
     NSArray * edgeTable = [self getEdgeTableData];
     
     // errors
@@ -117,12 +117,10 @@ static IplImage* templeteResult;
     // Edge trace
     double x=0,y=0;
     
-    NSBitmapImageRep *colorRep = [colorImage getBitmapImageRep];
-//    AABitmap edgeBmp;
-//    NSBitmapImageRep *edgeRep = [edgeImage getAABitmap:&edgeBmp];
-//    edgeBmp.buffer = edgeRep.bitmapData;
+    NSBitmapImageRep *colorRep = [(*colorImage) getBitmapImageRep];
     
-    IplImage* edgeIplImage = [edgeImage getCvMonotoneImage:200];
+    IplImage* edgeIplImage = [(*edgeImage) getCvMonotoneImage:150];
+    IplImage* debugIplImage = (*colorImage).cvImage;
     
     int source_width = edgeIplImage->width;
     int source_hegiht = edgeIplImage->height;
@@ -138,10 +136,11 @@ static IplImage* templeteResult;
             
             if(useEdge) {
                 for(AAEdgeData* data in edgeTable) {
+                    float f = getSimilarity2(edgeIplImage, [data grayImage], x, y);
 //                    float f = getSimilarity(&edgeBmp, [data getAABitmapRef], x, y);
 //                    float f = getCvSimilarity(edgeIplImage, [data grayImage], x, y);
 //                    getCvSimilaritySurf(edgeIplImage, [data grayImage], x, y);
-                    float f = getCvSimilarityContours(edgeIplImage, [data grayImage], x, y);
+//                    float f = getCvSimilarityContours(edgeIplImage, [data grayImage], debugIplImage, x, y);
                     
                     if(f > similarity) { //
                         similarity = f;
@@ -181,9 +180,9 @@ static IplImage* templeteResult;
         y+= _y;
     }
     
-//    edgeRep = nil;
-    colorRep = nil;
+    (*edgeImage) = [NSImage imageWithIplImage:edgeIplImage];
     
+    colorRep = nil;
     cvReleaseImage(&edgeIplImage);
     
     return aa;
@@ -221,7 +220,6 @@ static inline BOOL isBlackPixel(AABitmapRef bmp, const int x, const int y) {
 static inline BOOL isBlack(IplImage* bmp, const int x, const int y) {
     char *data = bmp->imageData + y * bmp->widthStep + x;
     return (unsigned char) *data == 0;
-//    return (b < _BLACK_TOLERANCE);
 }
 
 static inline float getCvPreCheck(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
@@ -246,7 +244,7 @@ static inline float getCvPreCheck(IplImage* srcBmp, IplImage* charBmp, const int
     return 1.0f;
 }
 
-static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp, IplImage* debugBmp, const int sX, const int sY) {
     // precheck oversize and white
     float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
     if(result <= 0) {
@@ -254,6 +252,7 @@ static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp,
     }
     
     cvSetImageROI(srcBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
+    cvSetImageROI(debugBmp, cvRect(sX, sY, charBmp->width, charBmp->height));
     
     CvMemStorage *srcStorage = cvCreateMemStorage (0);
     CvMemStorage *charStorage = cvCreateMemStorage(0);
@@ -278,6 +277,8 @@ static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp,
         result = 0.0001;
     }
     else {
+//        cvDrawContours(debugBmp, srcContours, CV_RGB( 0, 0, 255 ), CV_RGB( 0, 255, 0), 0, 2);
+        
         double similarity = cvMatchShapes(srcContours, charContours, CV_CONTOURS_MATCH_I3, 0);
         
         if(similarity == 0) {
@@ -286,11 +287,11 @@ static inline float getCvSimilarityContours(IplImage* srcBmp, IplImage* charBmp,
         else {
             result = 10.0 - similarity;
         }
-//        NSLog(@"src:%d chr:%d smi:%f", srcNum, chrNum, similarity);
     }
     
     // cleanup
     cvResetImageROI(srcBmp);
+    cvResetImageROI(debugBmp);
     cvReleaseMemStorage(&srcStorage);
     cvReleaseMemStorage(&charStorage);
     
@@ -316,8 +317,17 @@ static inline float getCvSimilaritySurf(IplImage* srcBmp, IplImage* charBmp, con
     cvExtractSURF(srcBmp, 0, &keypoints1, &descriptors1, storage, params, 500);
     cvExtractSURF(charBmp, 0, &keypoints2, &descriptors2, storage, params, 500);
     
-    if(descriptors2->total != 0 || descriptors1->total != 0) {
-        NSLog(@"key num : %d %d",descriptors1->total, descriptors2->total);
+//    NSLog(@"key num : %d %d",keypoints1->total, keypoints2->total);
+    
+    if(keypoints1->total != 0 || keypoints2->total != 0) {
+        
+        for(int i=0; i<keypoints1->total; ++i) {
+            CvSURFPoint* point = (CvSURFPoint*)cvGetSeqElem(keypoints1, i);
+            CvPoint center;
+            center.x = cvRound(point->pt.x);
+            center.y = cvRound(point->pt.y);
+            cvCircle(srcBmp, center, 2, cvScalar(0,255,255), CV_FILLED);
+        }
     }
     
     // creanup
@@ -354,6 +364,25 @@ static inline float getCvSimilarity(IplImage* srcBmp, IplImage* charBmp,const in
     cvResetImageROI(srcBmp);
     
     return 1.0f - similarity;
+}
+
+static inline float getSimilarity2(IplImage* srcBmp, IplImage* charBmp, const int sX, const int sY) {
+    float result = getCvPreCheck(srcBmp, charBmp, sX, sY);
+    if(result <= 0) {
+        return result;
+    }
+    
+    float similarity = 0.001f;
+    for(int cY=0; cY<charBmp->height; ++cY) {
+        for(int cX=0; cX<charBmp->width; ++cX) {
+            BOOL cOn = isBlack(charBmp, cX, cY);
+            BOOL sOn = isBlack(srcBmp, sX+cX, sY+cY);
+            if(sOn == cOn) {
+                similarity++;
+            }
+        }
+    }
+    return similarity;
 }
 
 // bitmap matching algorithm

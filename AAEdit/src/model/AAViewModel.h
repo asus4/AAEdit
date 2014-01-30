@@ -62,6 +62,10 @@
 - (IBAction)nextFrame:(id)sender;
 - (IBAction)prevFrame:(id)sender;
 
+- (NSString*) getSavePath:(NSString*) extension;
+- (BOOL) hasSavedFile:(NSString*) extension;
+
+// save data
 - (void) load;
 - (void) save;
 @end

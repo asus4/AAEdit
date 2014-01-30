@@ -23,11 +23,10 @@
         self.size = size;
         
         imageRep = [self.image getAABitmap:&bitmap];
-        _grayImage = self.image.cvGrayImage;
+        _grayImage = [self.image getCvMonotoneImage:150];
+//        cvNot(_grayImage, _grayImage);
         
-//        IplImage* colorimg = self.image.cvImage;
-//        self.image = [NSImage imageWithIplImage:colorimg];
-//        self.image = [NSImage imageWithIplImage:grayImage];
+        self.image = [NSImage imageWithIplImage:_grayImage];
     }
     return self;
 }

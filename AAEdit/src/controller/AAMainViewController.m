@@ -50,17 +50,18 @@
         return;
     }
     
-    NSImage *edge = self.asciiView.getEdgeImage;
-    NSImage *normal = self.asciiView.getNormalImage;
+    NSImage *edge = _asciiView.getEdgeImage;
+    NSImage *normal = _asciiView.getNormalImage;
+    
+    
+    NSString* aa = [_viewModel.dataManager asciiTrace:&edge
+                                               colorImage:&normal
+                                                  useEdge:_viewModel.isTraceEdge
+                                                  useTone:_viewModel.isTraceTone
+                                                 useColor:_viewModel.isTraceColor];
     
     [self.previewEdgeImage setImage:edge];
     [self.previewNormalImage setImage:normal];
-    
-    NSString* aa = [self.viewModel.dataManager asciiTrace:edge
-                                               colorImage:normal
-                                                  useEdge:self.viewModel.isTraceEdge
-                                                  useTone:self.viewModel.isTraceTone
-                                                 useColor:self.viewModel.isTraceColor];
     
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
     self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, self.viewModel.currentFrame, aa];
@@ -99,6 +100,7 @@
                     break;
                 }
                 
+                // trace
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self doTrace:nil];
                     for (id subview in self.webView.subviews) {
@@ -109,14 +111,15 @@
                     }
                 });
                 
+                // wait
                 [NSThread sleepForTimeInterval:0.5];
                 
+                // save file
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self save:nil];
                     _viewModel.currentFrame++;
                     [self.progressWindow setProgress:_viewModel.currentFrame total:_viewModel.totalFrames];
                 });
-                
             }
             
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -129,9 +132,9 @@
 }
 
 - (IBAction)save:(id)sender {
-    NSString* img_path = [NSString stringWithFormat:@"%@/%i.png", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
-    NSString* html_path = [NSString stringWithFormat:@"%@/%i.html", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
-    NSString* txt_path = [NSString stringWithFormat:@"%@/%i.txt", self.viewModel.dataManager.directoryPath, self.viewModel.currentFrame];
+    NSString* img_path = [self.viewModel getSavePath:@"png"];
+    NSString* html_path = [self.viewModel getSavePath:@"html"];
+    NSString* txt_path = [self.viewModel getSavePath:@"txt"];
     
     [self.webView saveImageFile:img_path];
     [self.webView saveHtmlFile:html_path];
