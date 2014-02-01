@@ -80,8 +80,8 @@
     }
     
     // start auto trace
-    _viewModel.moviePosition = 0;
-    _viewModel.currentFrame = 0;
+//    _viewModel.moviePosition = 0;
+//    _viewModel.currentFrame = 0;
     
     // create modal view
     if(!_progressWindow) {
