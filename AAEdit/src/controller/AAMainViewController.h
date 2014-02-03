@@ -20,6 +20,8 @@
 - (IBAction)autoTrace:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)cancelAutoTrace:(id)sender;
+- (IBAction)biggerFont:(id)sender;
+- (IBAction)smallerFont:(id)sender;
 
 
 @property (weak) IBOutlet AAViewModel *viewModel;

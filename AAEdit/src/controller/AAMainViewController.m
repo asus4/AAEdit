@@ -149,4 +149,13 @@
     }
 }
 
+- (IBAction)biggerFont:(id)sender {
+    self.viewModel.fontSize++;
+}
+
+- (IBAction)smallerFont:(id)sender {
+    if(self.viewModel.fontSize > 4) {
+        self.viewModel.fontSize--;
+    }
+}
 @end
