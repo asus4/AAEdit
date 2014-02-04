@@ -33,6 +33,8 @@
     self.isTraceEdge = [defaults boolForKey:@"isTraceEdge"];
     self.isTraceTone = [defaults boolForKey:@"isTraceTone"];
     self.isTraceColor = [defaults boolForKey:@"isTraceColor"];
+    
+    self.overflowMode = YES;
 }
 
 - (void) save {

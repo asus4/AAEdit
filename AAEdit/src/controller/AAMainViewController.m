@@ -64,7 +64,13 @@
     [self.previewNormalImage setImage:normal];
     
     NSString * template = [AAFileUtil loadTextResource:@"template" extensition:@"html"];
-    self.viewModel.htmlString = [NSString stringWithFormat:template,self.viewModel.fontSize, self.viewModel.currentFrame, aa];
+    
+    NSString* overflow = self.viewModel.overflowMode ? @"hidden" : @"auto";
+    self.viewModel.htmlString = [NSString stringWithFormat:template,
+                                 overflow,
+                                 self.viewModel.fontSize,
+                                 self.viewModel.currentFrame,
+                                 aa];
 }
 
 

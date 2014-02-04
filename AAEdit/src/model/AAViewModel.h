@@ -46,6 +46,7 @@
 @property (nonatomic, setter = setUseFilter:) bool useFilter;
 @property (nonatomic, setter = setOverlayColor:) NSColor* overlayColor;
 @property (nonatomic, setter = setEdgeIntensity:) double edgeIntensity;
+@property (nonatomic) BOOL overflowMode;
 
 @property (nonatomic) BOOL isTraceEdge;
 @property (nonatomic) BOOL isTraceTone;
