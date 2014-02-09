@@ -125,8 +125,8 @@
 }
 
 - (void) setFontSize:(uint)fontSize {
-    if(fontSize <= 0) {
-        fontSize = 1;
+    if(fontSize <= 3) {
+        fontSize = 4;
     }
     _fontSize = fontSize;
     self.dataManager.fontSize = fontSize;

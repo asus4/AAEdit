@@ -38,6 +38,9 @@
 }
 
 - (void) nextTone {
+    if(self.datas == NULL || self.datas.count == 0) {
+        return;
+    }
     if(self.currentIndex >= self.datas.count) {
         self.currentIndex = 0;
     }
