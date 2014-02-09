@@ -28,6 +28,7 @@ static IplImage* templeteResult;
         // initialize
         _directoryPath = NSSearchPathForDirectoriesInDomains(
                                                              NSDesktopDirectory, NSUserDomainMask, YES)[0];
+        _filePrefix = @"";
         _edgeData = [NSMutableDictionary dictionaryWithCapacity:0];
         _toneData = [NSMutableArray arrayWithCapacity:0];
         self.fontSize = 12;
@@ -44,6 +45,8 @@ static IplImage* templeteResult;
 - (void) loadMovieFile:(NSURL *)file {
     // initialize
     _directoryPath = [AAFileUtil getContainsDirectory:file];
+    _filePrefix = [AAFileUtil getFileNameWithURL:file];
+//    NSLog(@"fliename is %@", _filePrefix);
     [AAFileUtil createFolder:_directoryPath];
     
     // copy font file
@@ -72,6 +75,10 @@ static IplImage* templeteResult;
     [self.toneData removeAllObjects];
     
     NSArray * arr = [toneString componentsSeparatedByString:@"\n"];
+    if(arr.count == 0) {
+        NSLog(@"error tone count is 0");
+        return;
+    }
     for(uint i=0; i<arr.count; ++i) {
         float brightness = 1.0f - (float)i/(float)arr.count;
         AAToneData *data = [[AAToneData alloc] initWithString:arr[i]

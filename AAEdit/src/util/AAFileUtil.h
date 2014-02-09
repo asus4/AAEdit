@@ -13,6 +13,7 @@
 
 + (void) copyFile:(NSString*)file toDirectory:(NSString*) directory name:(NSString*) name;
 + (NSString*) getContainsDirectory:(NSURL*)file;
++ (NSString*) getFileNameWithURL:(NSURL*)file;
 + (void) createFolder:(NSString*)directory;
 + (NSString*) loadTextResource:(NSString*)file extensition:(NSString*)extension;
 

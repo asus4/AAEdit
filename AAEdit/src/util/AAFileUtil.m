@@ -34,6 +34,12 @@
     return directory;
 }
 
++ (NSString*) getFileNameWithURL:(NSURL *)file {
+    NSString * extension = [NSString stringWithFormat:@".%@", file.pathExtension];
+    NSArray* arr = [file.lastPathComponent componentsSeparatedByString:extension];
+    return arr[0];
+}
+
 + (void) createFolder:(NSString*)directory {
     NSFileManager * fm = [NSFileManager defaultManager];
     

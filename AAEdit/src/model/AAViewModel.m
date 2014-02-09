@@ -182,7 +182,11 @@
 }
 
 - (NSString*) getSavePath:(NSString *)extension {
-    return [NSString stringWithFormat:@"%@/%i.%@", _dataManager.directoryPath, _currentFrame, extension];
+    return [NSString stringWithFormat:@"%@/%@_%i.%@",
+            _dataManager.directoryPath,
+            _dataManager.filePrefix,
+            _currentFrame,
+            extension];
 }
 
 - (BOOL) hasSavedFile:(NSString *)extension {
