@@ -18,6 +18,7 @@
 - (IBAction)loadMovie:(id)sender;
 - (IBAction)doTrace:(id)sender;
 - (IBAction)autoTrace:(id)sender;
+- (IBAction)autoHtmlRendering:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)cancelAutoTrace:(id)sender;
 - (IBAction)biggerFont:(id)sender;

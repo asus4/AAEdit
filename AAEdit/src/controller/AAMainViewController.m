@@ -12,6 +12,8 @@
 @interface AAMainViewController ()
 
 @property (atomic) BOOL isAutoTracing;
+@property (atomic) BOOL isHtmlOnly;
+
 @end
 
 @implementation AAMainViewController
@@ -74,7 +76,7 @@
 }
 
 
-- (IBAction)autoTrace:(id)sender {
+- (void) traceThread {
     // confirmation
     NSAlert * alert = [NSAlert alertWithMessageText:@"Confirmation"
                                       defaultButton:@"GO" alternateButton:@"Cancel"
@@ -86,8 +88,8 @@
     }
     
     // start auto trace
-//    _viewModel.moviePosition = 0;
-//    _viewModel.currentFrame = 0;
+    //    _viewModel.moviePosition = 0;
+    //    _viewModel.currentFrame = 0;
     
     // create modal view
     if(!_progressWindow) {
@@ -108,7 +110,10 @@
                 
                 // trace
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [self doTrace:nil];
+                    if(!_isHtmlOnly) {
+                        [self doTrace:nil];
+                    }
+                    // hide scrollbar
                     for (id subview in self.webView.subviews) {
                         if ([[subview class] isSubclassOfClass: [NSScrollView class]]) {
                             ((NSScrollView *)subview).hasHorizontalScroller = NO;
@@ -131,10 +136,19 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self cancelAutoTrace:nil];
             });
-
+            
         }
     });
-    
+}
+
+- (IBAction)autoTrace:(id)sender {
+    _isHtmlOnly = NO;
+    [self traceThread];
+}
+
+- (IBAction)autoHtmlRendering:(id)sender {
+    _isHtmlOnly = YES;
+    [self traceThread];
 }
 
 - (IBAction)save:(id)sender {
