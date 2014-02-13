@@ -11,6 +11,7 @@
 #import "AATextField.h"
 #import "AAWebView.h"
 #import "AADataManager.h"
+#import "PremiereMakerDirector.h"
 
 @interface AAViewModel : NSObject {
     AADataManager * _dataManager;
@@ -32,6 +33,7 @@
 @property (weak) IBOutlet NSArrayController *toneArrayController;
 
 @property (nonatomic) AADataManager * dataManager;
+@property (nonatomic) PremiereMakerDirector * markerDirector;
 
 // Bindings
 // movie
@@ -65,6 +67,7 @@
 
 - (NSString*) getSavePath:(NSString*) extension;
 - (BOOL) hasSavedFile:(NSString*) extension;
+- (BOOL) loadPremiereMarker:(NSURL*)url;
 
 // save data
 - (void) load;
