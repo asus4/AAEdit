@@ -100,7 +100,8 @@
     if(_markerDirector != nil) {
         PremiereMarker *marker = [_markerDirector getMarkerFromFrame:currentFrame fps:_fps];
         if(![self.edgeString isEqualToString:marker.markerName]) {
-            NSLog(@"name:%@ %d", marker.markerName, (int)marker.inTime);
+//            NSLog(@"name:%@ %d", marker.markerName, (int)marker.inTime);
+            // TODO : set 
             self.edgeString = marker.markerName;
         }
     }

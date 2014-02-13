@@ -12,12 +12,19 @@
 
 -(PremiereMarker*) getMarkerFromFrame:(NSInteger)frame fps:(NSUInteger)fps {
     PremiereMarker *current = _markers[0];
-    for(PremiereMarker *m in _markers) {
-        if(frame <= m.inTime) {
+    
+    for(uint i=0; i<_markers.count; ++i) {
+        PremiereMarker *m = _markers[i];
+        
+        if(frame >= m.inTime) {
             current = m;
+        }
+        else {
+            current = i>0 ? _markers[i-1] : _markers[0];
             break;
         }
     }
+    
     return current;
 }
 
