@@ -103,6 +103,8 @@
 //            NSLog(@"name:%@ %d", marker.markerName, (int)marker.inTime);
             // TODO : set 
             self.edgeString = marker.markerName;
+            self.toneString = [NSString stringWithFormat:@"　\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@",
+                               marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName];
         }
     }
 }
