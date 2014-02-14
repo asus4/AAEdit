@@ -37,6 +37,10 @@ static inline int timecodeToFrames(NSString* timecode, int fps) {
     marker.outTime = timecodeToFrames(arr[3], fps);
     marker.duration = timecodeToFrames(arr[4], fps);
     marker.markerType = arr[5];
+    
+    if([marker.markerName isEqualToString:@""]) { // null
+        marker.markerName = @"-"; // default name
+    }
     return  marker;
 }
 @end
