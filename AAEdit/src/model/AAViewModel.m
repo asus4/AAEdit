@@ -59,6 +59,7 @@
 
 - (void) setMovieUrl:(NSURL *)movieUrl {
     _movieUrl = movieUrl;
+    _markerDirector = nil;
     [self.asciiTraceView loadMovie:movieUrl.path];
     [_dataManager loadMovieFile:movieUrl];
 }
@@ -92,6 +93,18 @@
         NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
         if(error == nil) {
             [self setHtmlString:html];
+        }
+    }
+    
+    // is has premiere marker
+    if(_markerDirector != nil) {
+        PremiereMarker *marker = [_markerDirector getMarkerFromFrame:currentFrame fps:_fps];
+        if(![self.edgeString isEqualToString:marker.markerName]) {
+//            NSLog(@"name:%@ %d", marker.markerName, (int)marker.inTime);
+            // TODO : set 
+            self.edgeString = marker.markerName;
+            self.toneString = [NSString stringWithFormat:@"　\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@",
+                               marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName,marker.markerName];
         }
     }
 }
@@ -192,6 +205,16 @@
 - (BOOL) hasSavedFile:(NSString *)extension {
     NSString* path = [self getSavePath:extension];
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
+
+- (BOOL) loadPremiereMarker:(NSURL *)url {
+    self.markerDirector = [PremiereMakerDirector directorFromCsv:url fps:self.fps];
+    if(self.markerDirector) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 @end

@@ -23,6 +23,7 @@
 - (IBAction)cancelAutoTrace:(id)sender;
 - (IBAction)biggerFont:(id)sender;
 - (IBAction)smallerFont:(id)sender;
+- (IBAction)loadPremiereMarker:(id)sender;
 
 
 @property (weak) IBOutlet AAViewModel *viewModel;

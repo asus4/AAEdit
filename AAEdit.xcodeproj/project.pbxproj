@@ -35,6 +35,10 @@
 		7833C952188CD45900905AA6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7833C951188CD45900905AA6 /* QTKit.framework */; };
 		7833C956188CD4A200905AA6 /* player.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 7833C954188CD4A200905AA6 /* player.qtz */; };
 		7839889D18973B730096C50D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7839889C18973B730096C50D /* libc++.dylib */; };
+		7853900218AD252B0095F02F /* PremiereMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853900118AD252B0095F02F /* PremiereMarker.m */; };
+		7853900318AD252B0095F02F /* PremiereMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853900118AD252B0095F02F /* PremiereMarker.m */; };
+		7853900618AD30B50095F02F /* PremiereMakerDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853900518AD30B50095F02F /* PremiereMakerDirector.m */; };
+		7853900718AD30B50095F02F /* PremiereMakerDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853900518AD30B50095F02F /* PremiereMakerDirector.m */; };
 		78647E62188CF68E00CECA10 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78647E60188CF66F00CECA10 /* WebKit.framework */; };
 		78647E65188CF6BB00CECA10 /* AAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78647E64188CF6BB00CECA10 /* AAWebView.m */; };
 		7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */; };
@@ -144,6 +148,10 @@
 		7833C951188CD45900905AA6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		7833C954188CD4A200905AA6 /* player.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = player.qtz; sourceTree = "<group>"; };
 		7839889C18973B730096C50D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		7853900018AD252B0095F02F /* PremiereMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PremiereMarker.h; path = premiere/PremiereMarker.h; sourceTree = "<group>"; };
+		7853900118AD252B0095F02F /* PremiereMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PremiereMarker.m; path = premiere/PremiereMarker.m; sourceTree = "<group>"; };
+		7853900418AD30B50095F02F /* PremiereMakerDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PremiereMakerDirector.h; path = premiere/PremiereMakerDirector.h; sourceTree = "<group>"; };
+		7853900518AD30B50095F02F /* PremiereMakerDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PremiereMakerDirector.m; path = premiere/PremiereMakerDirector.m; sourceTree = "<group>"; };
 		78647E60188CF66F00CECA10 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		78647E63188CF6BB00CECA10 /* AAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAWebView.h; sourceTree = "<group>"; };
 		78647E64188CF6BB00CECA10 /* AAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAWebView.m; sourceTree = "<group>"; };
@@ -329,6 +337,7 @@
 		7833C939188CD42F00905AA6 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				78538FFF18AD24DC0095F02F /* premiere */,
 				781C3E01188E22E20017D677 /* AADataManager.h */,
 				781C3E02188E22E20017D677 /* AADataManager.mm */,
 				7833C93A188CD42F00905AA6 /* AAViewModel.h */,
@@ -380,6 +389,17 @@
 				7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		78538FFF18AD24DC0095F02F /* premiere */ = {
+			isa = PBXGroup;
+			children = (
+				7853900018AD252B0095F02F /* PremiereMarker.h */,
+				7853900118AD252B0095F02F /* PremiereMarker.m */,
+				7853900418AD30B50095F02F /* PremiereMakerDirector.h */,
+				7853900518AD30B50095F02F /* PremiereMakerDirector.m */,
+			);
+			name = premiere;
 			sourceTree = "<group>";
 		};
 		78ADD96F18924579003B6D07 /* addition */ = {
@@ -541,6 +561,8 @@
 				7864BAD418993D2D00C8E679 /* AAAutoProgressWindow.m in Sources */,
 				7864BAD7189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 				78834CD9189A8C0000C2A329 /* AACvUtil.m in Sources */,
+				7853900218AD252B0095F02F /* PremiereMarker.m in Sources */,
+				7853900618AD30B50095F02F /* PremiereMakerDirector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +581,8 @@
 				788AD437189655DF00FEB743 /* NSImage+OpenCV.mm in Sources */,
 				7864BAD8189944D100C8E679 /* AAProgressViewModel.m in Sources */,
 				78834CDA189A8C0000C2A329 /* AACvUtil.m in Sources */,
+				7853900318AD252B0095F02F /* PremiereMarker.m in Sources */,
+				7853900718AD30B50095F02F /* PremiereMakerDirector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

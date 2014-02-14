@@ -178,4 +178,14 @@
         self.viewModel.fontSize--;
     }
 }
+
+- (IBAction)loadPremiereMarker:(id)sender {
+    NSOpenPanel * panel = [NSOpenPanel openPanel];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setAllowedFileTypes:@[@"csv"]]; // all file types
+    
+    if([panel runModal] == NSOKButton) {
+        [self.viewModel loadPremiereMarker:panel.URL];
+    }
+}
 @end
