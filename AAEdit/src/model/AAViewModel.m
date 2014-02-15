@@ -151,6 +151,7 @@
     _htmlString = htmlString;
     
     NSURL *url = [NSURL fileURLWithPath: [_dataManager.directoryPath stringByAppendingString:@"/"]];
+    
     [self.webView.mainFrame loadHTMLString:htmlString baseURL:url];
 }
 

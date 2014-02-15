@@ -10,9 +10,10 @@
 #import "AAFileUtil.h"
 
 @interface AAMainViewController ()
-
+// atomic
 @property (atomic) BOOL isAutoTracing;
 @property (atomic) BOOL isHtmlOnly;
+@property (atomic) BOOL isLoadedWebview;
 
 @end
 
@@ -23,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Initialization code here.
+        _isLoadedWebview = NO;
     }
     return self;
 }
@@ -39,8 +41,7 @@
     self.viewModel.currentFrame = 0;
 }
 
-- (IBAction)doTrace:(id)sender
-{
+- (void) trace:(void (^)(void))onComplete {
     if(!self.viewModel.isTraceEdge && !self.viewModel.isTraceTone) {
         // alert
         NSAlert * alert = [NSAlert alertWithMessageText:@"Warning"
@@ -57,10 +58,10 @@
     
     
     NSString* aa = [_viewModel.dataManager asciiTrace:&edge
-                                               colorImage:&normal
-                                                  useEdge:_viewModel.isTraceEdge
-                                                  useTone:_viewModel.isTraceTone
-                                                 useColor:_viewModel.isTraceColor];
+                                           colorImage:&normal
+                                              useEdge:_viewModel.isTraceEdge
+                                              useTone:_viewModel.isTraceTone
+                                             useColor:_viewModel.isTraceColor];
     
     [self.previewEdgeImage setImage:edge];
     [self.previewNormalImage setImage:normal];
@@ -75,6 +76,11 @@
                                  aa];
 }
 
+- (IBAction)doTrace:(id)sender
+{
+    [self trace:nil];
+}
+
 
 - (void) traceThread {
     // confirmation
@@ -84,12 +90,10 @@
                           informativeTextWithFormat:@"Will overwrite all frames?"];
     NSUInteger result = [alert runModal];
     if(result != NSAlertDefaultReturn) {
-        return; // cancel
+        return; // cancel auto trace
     }
     
-    // start auto trace
-    //    _viewModel.moviePosition = 0;
-    //    _viewModel.currentFrame = 0;
+    self.webView.frameLoadDelegate = self;
     
     // create modal view
     if(!_progressWindow) {
@@ -102,16 +106,22 @@
     // start auto trace
     _isAutoTracing = YES;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        // threaded block
         @autoreleasepool{
             while (_viewModel.currentFrame < _viewModel.totalFrames) {
                 if(!_isAutoTracing) {
                     break;
                 }
                 
+                self.isLoadedWebview = NO;
+                
                 // trace
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     if(!_isHtmlOnly) {
-                        [self doTrace:nil];
+                        [self trace:nil];
+                    }
+                    else {
+                        self.isLoadedWebview = YES;
                     }
                     // hide scrollbar
                     for (id subview in self.webView.subviews) {
@@ -122,12 +132,15 @@
                     }
                 });
                 
-                // wait
-                [NSThread sleepForTimeInterval:0.5];
+                // wait for webview load
+                while (self.isLoadedWebview == NO) {
+                    [NSThread sleepForTimeInterval:0.01];
+                }
                 
                 // save file
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self save:nil];
+                    self.isLoadedWebview = NO;
                     _viewModel.currentFrame++;
                     [self.progressWindow setProgress:_viewModel.currentFrame total:_viewModel.totalFrames];
                 });
@@ -186,6 +199,15 @@
     
     if([panel runModal] == NSOKButton) {
         [self.viewModel loadPremiereMarker:panel.URL];
+    }
+}
+
+#pragma mark --
+#pragma mark delegate
+
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    if(frame == _webView.mainFrame) {
+        self.isLoadedWebview = YES; // atomic
     }
 }
 @end
