@@ -128,12 +128,17 @@ static IplImage* templeteResult;
     NSBitmapImageRep *colorRep = [(*colorImage) getBitmapImageRep];
     
     IplImage* edgeIplImage = [(*edgeImage) getCvMonotoneImage:240];
-    
     IplImage* debugIplImage = cvCreateImage(cvSize(edgeIplImage->width, edgeIplImage->height), edgeIplImage->depth, 3);
     cvCvtColor(edgeIplImage, debugIplImage, CV_GRAY2BGR);
     
     int source_width = edgeIplImage->width;
     int source_hegiht = edgeIplImage->height;
+    
+    // fix edge bug
+    cvRectangle(edgeIplImage, cvPoint(source_width-2, 0), cvPoint(source_width, source_hegiht), cvScalar(255), CV_FILLED, 8, 0);
+    cvRectangle(edgeIplImage, cvPoint(0, source_hegiht-2), cvPoint(source_width, source_hegiht), cvScalar(255), CV_FILLED, 8, 0);
+    
+
     
     while (y<source_hegiht) {
         x = 0;
