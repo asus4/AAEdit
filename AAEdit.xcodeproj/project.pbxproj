@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781960B118C4E7E000E3E921 /* AAEditHelp in Resources */ = {isa = PBXBuildFile; fileRef = 781960B018C4E7E000E3E921 /* AAEditHelp */; };
 		781C3E03188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
 		781C3E04188E22E20017D677 /* AADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 781C3E02188E22E20017D677 /* AADataManager.mm */; };
 		781C3E06188E6FE80017D677 /* ipagp-mona.woff in Resources */ = {isa = PBXBuildFile; fileRef = 781C3E05188E6FE80017D677 /* ipagp-mona.woff */; };
@@ -104,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		781960B018C4E7E000E3E921 /* AAEditHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AAEditHelp; sourceTree = "<group>"; };
 		781C3E01188E22E20017D677 /* AADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AADataManager.h; sourceTree = "<group>"; };
 		781C3E02188E22E20017D677 /* AADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AADataManager.mm; sourceTree = "<group>"; };
 		781C3E05188E6FE80017D677 /* ipagp-mona.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ipagp-mona.woff"; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				78ADD97A18926047003B6D07 /* ipagp-mona.ttf */,
 				7833C954188CD4A200905AA6 /* player.qtz */,
 				7864BAD018993C6500C8E679 /* AutoTraceProgress.xib */,
+				781960B018C4E7E000E3E921 /* AAEditHelp */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				78B9F58E188FA4B7006D96DB /* UserDefaults.plist in Resources */,
 				78ADD97B18926047003B6D07 /* ipagp-mona.ttf in Resources */,
 				7864BAD118993C6500C8E679 /* AutoTraceProgress.xib in Resources */,
+				781960B118C4E7E000E3E921 /* AAEditHelp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
