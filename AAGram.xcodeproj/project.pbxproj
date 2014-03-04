@@ -113,22 +113,22 @@
 		781C3E09188E7C730017D677 /* AAFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAFileUtil.m; path = util/AAFileUtil.m; sourceTree = "<group>"; };
 		781C3E0C188E7E050017D677 /* template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = template.html; sourceTree = "<group>"; };
 		782432911893CDBF0037C1F8 /* AABitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABitmap.h; sourceTree = "<group>"; };
-		7833C8FA188CD33C00905AA6 /* AAEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7833C8FA188CD33C00905AA6 /* AAGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C8FD188CD33C00905AA6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7833C900188CD33C00905AA6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7833C901188CD33C00905AA6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7833C902188CD33C00905AA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7833C905188CD33C00905AA6 /* AAEdit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AAEdit-Info.plist"; sourceTree = "<group>"; };
+		7833C905188CD33C00905AA6 /* AAGram-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AAGram-Info.plist"; sourceTree = "<group>"; };
 		7833C907188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7833C909188CD33C00905AA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7833C90B188CD33C00905AA6 /* AAEdit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAEdit-Prefix.pch"; sourceTree = "<group>"; };
+		7833C90B188CD33C00905AA6 /* AAGram-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAGram-Prefix.pch"; sourceTree = "<group>"; };
 		7833C90D188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		7833C90F188CD33C00905AA6 /* AAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AAAppDelegate.h; path = ../AAAppDelegate.h; sourceTree = "<group>"; };
 		7833C910188CD33C00905AA6 /* AAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AAAppDelegate.m; path = ../AAAppDelegate.m; sourceTree = "<group>"; };
 		7833C913188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7833C91A188CD33C00905AA6 /* AAEditTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AAEditTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7833C91A188CD33C00905AA6 /* AAGramTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AAGramTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7833C91B188CD33C00905AA6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		7833C922188CD33C00905AA6 /* AAEditTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AAEditTests-Info.plist"; sourceTree = "<group>"; };
+		7833C922188CD33C00905AA6 /* AAGramTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AAGramTests-Info.plist"; sourceTree = "<group>"; };
 		7833C924188CD33C00905AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7833C926188CD33C00905AA6 /* AAEditTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAEditTests.h; sourceTree = "<group>"; };
 		7833C927188CD33C00905AA6 /* AAEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAEditTests.m; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 		7833C8FB188CD33C00905AA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7833C8FA188CD33C00905AA6 /* AAEdit.app */,
-				7833C91A188CD33C00905AA6 /* AAEditTests.octest */,
+				7833C8FA188CD33C00905AA6 /* AAGram.app */,
+				7833C91A188CD33C00905AA6 /* AAGramTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,10 +285,10 @@
 		7833C904188CD33C00905AA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7833C905188CD33C00905AA6 /* AAEdit-Info.plist */,
+				7833C905188CD33C00905AA6 /* AAGram-Info.plist */,
 				7833C906188CD33C00905AA6 /* InfoPlist.strings */,
 				7833C909188CD33C00905AA6 /* main.m */,
-				7833C90B188CD33C00905AA6 /* AAEdit-Prefix.pch */,
+				7833C90B188CD33C00905AA6 /* AAGram-Prefix.pch */,
 				7833C90C188CD33C00905AA6 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -307,7 +307,7 @@
 		7833C921188CD33C00905AA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7833C922188CD33C00905AA6 /* AAEditTests-Info.plist */,
+				7833C922188CD33C00905AA6 /* AAGramTests-Info.plist */,
 				7833C923188CD33C00905AA6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -425,9 +425,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7833C8F9188CD33C00905AA6 /* AAEdit */ = {
+		7833C8F9188CD33C00905AA6 /* AAGram */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7833C92B188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAEdit" */;
+			buildConfigurationList = 7833C92B188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAGram" */;
 			buildPhases = (
 				7833C8F6188CD33C00905AA6 /* Sources */,
 				7833C8F7188CD33C00905AA6 /* Frameworks */,
@@ -439,14 +439,14 @@
 			);
 			dependencies = (
 			);
-			name = AAEdit;
+			name = AAGram;
 			productName = AAEdit;
-			productReference = 7833C8FA188CD33C00905AA6 /* AAEdit.app */;
+			productReference = 7833C8FA188CD33C00905AA6 /* AAGram.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7833C919188CD33C00905AA6 /* AAEditTests */ = {
+		7833C919188CD33C00905AA6 /* AAGramTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7833C92E188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAEditTests" */;
+			buildConfigurationList = 7833C92E188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAGramTests" */;
 			buildPhases = (
 				7833C915188CD33C00905AA6 /* Sources */,
 				7833C916188CD33C00905AA6 /* Frameworks */,
@@ -458,9 +458,9 @@
 			dependencies = (
 				7833C91F188CD33C00905AA6 /* PBXTargetDependency */,
 			);
-			name = AAEditTests;
+			name = AAGramTests;
 			productName = AAEditTests;
-			productReference = 7833C91A188CD33C00905AA6 /* AAEditTests.octest */;
+			productReference = 7833C91A188CD33C00905AA6 /* AAGramTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -473,7 +473,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Koki Ibukuro";
 			};
-			buildConfigurationList = 7833C8F5188CD33C00905AA6 /* Build configuration list for PBXProject "AAEdit" */;
+			buildConfigurationList = 7833C8F5188CD33C00905AA6 /* Build configuration list for PBXProject "AAGram" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -485,8 +485,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7833C8F9188CD33C00905AA6 /* AAEdit */,
-				7833C919188CD33C00905AA6 /* AAEditTests */,
+				7833C8F9188CD33C00905AA6 /* AAGram */,
+				7833C919188CD33C00905AA6 /* AAGramTests */,
 			);
 		};
 /* End PBXProject section */
@@ -595,7 +595,7 @@
 /* Begin PBXTargetDependency section */
 		7833C91F188CD33C00905AA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7833C8F9188CD33C00905AA6 /* AAEdit */;
+			target = 7833C8F9188CD33C00905AA6 /* AAGram */;
 			targetProxy = 7833C91E188CD33C00905AA6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -709,13 +709,13 @@
 					"\"$(SRCROOT)/lib\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
+				GCC_PREFIX_HEADER = "AAEdit/AAGram-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "AAEdit/AAEdit-Info.plist";
+				INFOPLIST_FILE = "AAEdit/AAGram-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AAGram;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -730,13 +730,13 @@
 					"\"$(SRCROOT)/lib\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
+				GCC_PREFIX_HEADER = "AAEdit/AAGram-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "AAEdit/AAEdit-Info.plist";
+				INFOPLIST_FILE = "AAEdit/AAGram-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AAGram;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -752,14 +752,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
-				INFOPLIST_FILE = "AAEditTests/AAEditTests-Info.plist";
+				INFOPLIST_FILE = "AAEditTests/AAGramTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AAEdit/lib/opencv/lib/osx\"",
 					"\"$(SRCROOT)/lib/opencv/lib/osx\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AAGramTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -776,14 +776,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AAEdit/AAEdit-Prefix.pch";
-				INFOPLIST_FILE = "AAEditTests/AAEditTests-Info.plist";
+				INFOPLIST_FILE = "AAEditTests/AAGramTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AAEdit/lib/opencv/lib/osx\"",
 					"\"$(SRCROOT)/lib/opencv/lib/osx\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AAGramTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -792,7 +792,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7833C8F5188CD33C00905AA6 /* Build configuration list for PBXProject "AAEdit" */ = {
+		7833C8F5188CD33C00905AA6 /* Build configuration list for PBXProject "AAGram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7833C929188CD33C00905AA6 /* Debug */,
@@ -801,7 +801,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7833C92B188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAEdit" */ = {
+		7833C92B188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAGram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7833C92C188CD33C00905AA6 /* Debug */,
@@ -810,7 +810,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7833C92E188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAEditTests" */ = {
+		7833C92E188CD33C00905AA6 /* Build configuration list for PBXNativeTarget "AAGramTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7833C92F188CD33C00905AA6 /* Debug */,
