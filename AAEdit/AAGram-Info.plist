@@ -13,7 +13,7 @@
 	<key>CFBundleHelpBookName</key>
 	<string>AAEditHelp</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.asus4.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
