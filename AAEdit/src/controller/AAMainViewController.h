@@ -24,6 +24,7 @@
 - (IBAction)biggerFont:(id)sender;
 - (IBAction)smallerFont:(id)sender;
 - (IBAction)loadPremiereMarker:(id)sender;
+- (IBAction)resetSetting:(id)sender;
 
 
 @property (weak) IBOutlet AAViewModel *viewModel;

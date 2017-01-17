@@ -81,7 +81,6 @@
     [self trace:nil];
 }
 
-
 - (void) traceThread {
     // confirmation
     NSAlert * alert = [NSAlert alertWithMessageText:@"Confirmation"
@@ -200,6 +199,27 @@
     if([panel runModal] == NSOKButton) {
         [self.viewModel loadPremiereMarker:panel.URL];
     }
+}
+
+- (IBAction)resetSetting:(id)sender {
+    // confirmation
+    NSAlert * alert = [NSAlert alertWithMessageText:@"Confirmation"
+                                      defaultButton:@"RESET"
+                                    alternateButton:@"Cancel"
+                                        otherButton:NULL
+                          informativeTextWithFormat:@"Do you reset all settgin?"];
+    NSUInteger result = [alert runModal];
+    if(result != NSAlertDefaultReturn) {
+        return; // cancel
+    }
+    
+    // Delete user defaults
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removePersistentDomainForName:appDomain];
+    
+    // Reload model
+    [self.viewModel load];
 }
 
 #pragma mark --
