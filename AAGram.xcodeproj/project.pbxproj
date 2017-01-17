@@ -672,6 +672,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
+				);
 				SDKROOT = macosx10.8;
 			};
 			name = Debug;
@@ -699,6 +705,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
+				);
 				SDKROOT = macosx10.8;
 			};
 			name = Release;
@@ -718,7 +730,7 @@
 				INFOPLIST_FILE = "AAEdit/AAGram-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = AAGram;
 				WRAPPER_EXTENSION = app;
 			};
@@ -739,7 +751,7 @@
 				INFOPLIST_FILE = "AAEdit/AAGram-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = AAGram;
 				WRAPPER_EXTENSION = app;
 			};
