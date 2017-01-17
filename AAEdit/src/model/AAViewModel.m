@@ -24,10 +24,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.movieUrl = [defaults URLForKey:@"movieUrl"];
-    self.fps = [defaults integerForKey:@"fps"];
+    self.fps = (int)[defaults integerForKey:@"fps"];
     self.toneString = [defaults stringForKey:@"toneString"];
     self.edgeString = [defaults stringForKey:@"edgeString"];
-    self.fontSize = [defaults integerForKey:@"fontSize"];
+    self.fontSize = (uint)[defaults integerForKey:@"fontSize"];
     self.overlayColor = [defaults colorForKey:@"overlayColor"];
     
     self.isTraceEdge = [defaults boolForKey:@"isTraceEdge"];
