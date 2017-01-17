@@ -30,10 +30,12 @@
 
 +(PremiereMakerDirector*) directorFromCsv:(NSURL *)url fps:(float)fps {
     NSError * error;
-    NSString* csv = [NSString stringWithContentsOfFile:url.path encoding:NSUTF8StringEncoding error:&error];
+//    NSString* csv = [NSString stringWithContentsOfFile:url.path encoding:NSUTF8StringEncoding error:&error];
+    NSString* csv = [NSString stringWithContentsOfFile:url.path encoding:NSUTF16StringEncoding error:&error];
     if(error) {
         return nil;
     }
+    NSLog(@"loaded : %@", csv);
     
     NSArray *arr = [csv componentsSeparatedByString:@"\n"];
     NSMutableArray *_markers = [[NSMutableArray alloc] initWithCapacity:0];
